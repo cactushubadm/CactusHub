@@ -380,15 +380,32 @@
           <p>Conte o que precisa melhorar. A Cactus Hub transforma o contexto do negócio em uma proposta técnica objetiva.</p>
           <div class="contact-points"><span>✓ Diagnóstico inicial</span><span>✓ Solução personalizada</span><span>✓ Desenvolvimento colaborativo</span></div>
         </div>
-        <form class="contact-form reveal" data-delay="100" id="contact-form">
-          <div class="field-row"><label>Nome<input required name="nome" autocomplete="name" placeholder="Seu nome"></label><label>Empresa<input name="empresa" autocomplete="organization" placeholder="Sua empresa"></label></div>
+        
+        <form class="contact-form reveal" data-delay="100" id="contact-form" name="contato" method="POST" data-netlify="true">
+          <div class="field-row">
+            <label>Nome<input required name="nome" autocomplete="name" placeholder="Seu nome"></label>
+            <label>Empresa<input name="empresa" autocomplete="organization" placeholder="Sua empresa"></label>
+          </div>
           <label>E-mail<input required type="email" name="email" autocomplete="email" placeholder="voce@empresa.com"></label>
-          <label>Como podemos ajudar?<select name="interesse"><option>Solução tecnológica personalizada</option><option>Sistema / software sob medida</option><option>Integração e automação</option><option>Dados e dashboards</option><option>Inteligência artificial aplicada</option><option>CACTUS ONE</option><option>Drones e visão computacional</option><option>Outro desafio</option></select></label>
+          <label>Como podemos ajudar?
+            <select name="interesse">
+              <option>Solução tecnológica personalizada</option>
+              <option>Sistema / software sob medida</option>
+              <option>Integração e automação</option>
+              <option>Dados e dashboards</option>
+              <option>Inteligência artificial aplicada</option>
+              <option>CACTUS ONE</option>
+              <option>Drones e visão computacional</option>
+              <option>Outro desafio</option>
+            </select>
+          </label>
           <label>Mensagem<textarea required name="mensagem" rows="5" placeholder="Conte um pouco sobre o desafio..."></textarea></label>
           <button class="btn btn-primary btn-submit" type="submit">Enviar contato <span>→</span></button>
-          <p class="form-note">Formulário demonstrativo pronto para integração com e-mail, CRM ou API.</p>
-          <div class="form-success" role="status" aria-live="polite">Mensagem registrada na demonstração. A integração de envio pode ser conectada ao canal comercial da Cactus Hub.</div>
+          <p class="form-note">Formulário integrado com Netlify Forms.</p>
+          <!-- Você pode remover ou adaptar a div abaixo, explicarei o porquê a seguir -->
+          <div class="form-success" role="status" aria-live="polite">Mensagem enviada com sucesso! Em breve entraremos em contato.</div>
         </form>
+
       </div>
     </section>
   </main>

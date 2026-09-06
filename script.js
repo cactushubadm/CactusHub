@@ -32,9 +32,35 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
 form.addEventListener('submit', (event) => {
-  event.preventDefault();
-  success.classList.add('show');
-  form.querySelector('button[type="submit"]').textContent = 'Contato registrado ✓';
+  event.preventDefault(); // Continua impedindo o recarregamento da página
+
+  const myForm = event.target;
+  const formData = new FormData(myForm);
+
+  // Pega o botão para podermos mudar o texto dele
+  const submitButton = form.querySelector('button[type="submit"]');
+  const originalText = submitButton.innerHTML;
+  
+  // Muda o texto para "Enviando..." enquanto o Netlify processa
+  submitButton.textContent = 'Enviando...';
+
+  // Envia os dados silenciosamente para o Netlify
+  fetch('/', {
+    method: 'POST',
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: new URLSearchParams(formData).toString()
+  })
+  .then(() => {
+    // Se der certo, mostra a sua mensagem verde e atualiza o botão
+    success.classList.add('show');
+    submitButton.textContent = 'Contato enviado ✓';
+    myForm.reset(); // Limpa os campos do formulário após o envio
+  })
+  .catch((error) => {
+    // Se der erro, avisa o usuário e volta o botão ao normal
+    alert('Ops! Ocorreu um erro ao enviar. Tente novamente.');
+    submitButton.innerHTML = originalText;
+  });
 });
 
 
