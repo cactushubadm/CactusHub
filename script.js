@@ -36,3 +36,27 @@ form.addEventListener('submit', (event) => {
   success.classList.add('show');
   form.querySelector('button[type="submit"]').textContent = 'Contato registrado ✓';
 });
+
+
+const productTabs = Array.from(document.querySelectorAll('.variant-card[data-product]'));
+const productPanels = Array.from(document.querySelectorAll('.product-detail'));
+
+if (productTabs.length && productPanels.length) {
+  const activateProduct = (product) => {
+    productTabs.forEach(tab => {
+      const isActive = tab.dataset.product === product;
+      tab.classList.toggle('active', isActive);
+      tab.setAttribute('aria-selected', String(isActive));
+    });
+
+    productPanels.forEach(panel => {
+      const isActive = panel.id === `product-detail-${product}`;
+      panel.classList.toggle('active', isActive);
+      panel.hidden = !isActive;
+    });
+  };
+
+  productTabs.forEach(tab => {
+    tab.addEventListener('click', () => activateProduct(tab.dataset.product));
+  });
+}
