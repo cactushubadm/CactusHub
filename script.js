@@ -47,23 +47,6 @@ if ('IntersectionObserver' in window) {
   document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
 }
 
-const phoneInput = document.querySelector('input[name="telefone"]');
-if (phoneInput) {
-  phoneInput.addEventListener('input', () => {
-    let value = phoneInput.value.replace(/\D/g, '').slice(0, 11);
-    if (value.length > 10) {
-      value = value.replace(/^(\d{2})(\d{5})(\d{4}).*/, '($1) $2-$3');
-    } else if (value.length > 6) {
-      value = value.replace(/^(\d{2})(\d{4})(\d{0,4}).*/, '($1) $2-$3');
-    } else if (value.length > 2) {
-      value = value.replace(/^(\d{2})(\d{0,5})/, '($1) $2');
-    } else if (value.length > 0) {
-      value = value.replace(/^(\d*)/, '($1');
-    }
-    phoneInput.value = value;
-  });
-}
-
 if (form && success) {
   const params = new URLSearchParams(window.location.search);
   const interest = params.get('interest');
@@ -172,4 +155,36 @@ if (billingButtons.length) {
   });
 
   updateBilling('monthly');
+}
+
+
+// V17 — Alternância visual entre categorias de produtos
+const catalogSwitches = Array.from(document.querySelectorAll('[data-catalog-target]'));
+const catalogPanes = Array.from(document.querySelectorAll('[data-catalog-pane]'));
+
+if (catalogSwitches.length && catalogPanes.length) {
+  const activateCatalog = (targetId, updateHash = true) => {
+    catalogSwitches.forEach(button => {
+      const active = button.dataset.catalogTarget === targetId;
+      button.classList.toggle('active', active);
+      button.setAttribute('aria-selected', String(active));
+    });
+
+    catalogPanes.forEach(pane => {
+      const active = pane.id === targetId;
+      pane.hidden = !active;
+      pane.classList.toggle('active', active);
+    });
+
+    if (updateHash) {
+      history.replaceState(null, '', `#${targetId}`);
+    }
+  };
+
+  catalogSwitches.forEach(button => {
+    button.addEventListener('click', () => activateCatalog(button.dataset.catalogTarget));
+  });
+
+  const initialTarget = window.location.hash === '#sites-prontos' ? 'sites-prontos' : 'gestao-produtos';
+  activateCatalog(initialTarget, false);
 }

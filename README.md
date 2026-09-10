@@ -37,3 +37,8 @@ Se a hospedagem não for Netlify, o formulário precisará ser apontado para o s
 - Ice: #EDF1F7
 - Canvas: #F7F7F7
 - Tipografia: Montserrat para títulos e Manrope para interface/textos.
+
+
+## V16 — Produtos adicionados
+- Cactus Eventos — site + ingressos + Lista VIP + portaria digital.
+- Cactus FoodSite — site white-label para negócios de alimentação conectado ao sistema de pedidos existente.
