@@ -1,0 +1,548 @@
+    <!doctype html>
+    <html lang="pt-BR">
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+      <meta name="theme-color" content="#0E1524">
+      <title>Cactus Hub — Produtos & Planos</title>
+      <meta name="description" content="BuildHub, MinerHub, AgroHub e RouteHub com demonstração e planos mensais e anuais.">
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+      <link rel="icon" type="image/png" href="assets/favicon.png">
+      <link rel="stylesheet" href="styles.css">
+    </head>
+    <body data-page="produtos">
+      <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="site-header">
+  <div class="container nav-wrap">
+    <a class="brand" href="index.html" aria-label="Cactus Hub">
+      <img class="brand-mark-img" src="assets/logo-primary.png" alt="Cactus Hub">
+      <span class="brand-copy">
+        <strong>CACTUS HUB</strong>
+        <small>SOLUÇÕES TECNOLÓGICAS</small>
+      </span>
+    </a>
+
+    <button class="nav-toggle" aria-label="Abrir menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="primary-nav" aria-label="Navegação principal">
+      <a href="index.html" data-nav="empresa">Empresa</a>
+      <a href="produtos.html" data-nav="produtos">Produtos & Planos</a>
+      <a href="servicos.html" data-nav="servicos">Serviços</a>
+      <a href="index.html#contato" class="nav-cta">Falar com a Cactus Hub</a>
+    </nav>
+  </div>
+</header>
+
+      <main id="conteudo">
+
+<section class="section-dark sales-product-hero">
+  <div class="container compact-hero-grid">
+    <div class="compact-hero-copy reveal">
+      <span class="eyebrow">Produtos de gestão Cactus Hub</span>
+      <h1>Escolha o seu ramo, veja o produto e compare o plano na mesma tela.</h1>
+      <p>Uma experiência comercial mais direta: produto, demonstração, preço mensal ou anual e contratação sem trocar de página.</p>
+      <div class="hero-actions">
+        <a href="#catalogo" class="btn btn-primary">Explorar produtos</a>
+        <a href="index.html#contato" class="btn btn-ghost">Falar com a equipe</a>
+      </div>
+    </div>
+    <div class="hero-sales-proof reveal" data-delay="50">
+      <div><small>4</small><strong>produtos por segmento</strong></div>
+      <div><small>3</small><strong>níveis de contratação</strong></div>
+      <div><small>12</small><strong>meses no plano anual</strong></div>
+    </div>
+  </div>
+</section>
+
+<section class="section product-commerce-section" id="catalogo">
+  <div class="container">
+    <div class="commerce-topbar reveal">
+      <div>
+        <span class="eyebrow eyebrow-light">Escolha o produto</span>
+        <h2>Qual operação você quer <span>gerenciar?</span></h2>
+      </div>
+      <div class="commerce-billing-box">
+        <small>FORMA DE COBRANÇA</small>
+        <div class="billing-toggle" role="group" aria-label="Período de cobrança">
+          <button type="button" class="billing-btn active" data-billing="monthly">Mensal</button>
+          <button type="button" class="billing-btn" data-billing="annual">Anual <em>2 meses grátis</em></button>
+        </div>
+        <span class="billing-helper">No anual, você paga o equivalente a 10 mensalidades e utiliza 12 meses.</span>
+      </div>
+    </div>
+
+    <div class="product-quick-grid sales-product-selector">
+
+      <button class="product-quick-card buildhub active" type="button" data-product="buildhub">
+        <div class="quick-card-top">
+          <small>CONSTRUÇÃO & ENGENHARIA</small>
+          <span class="quick-card-status">PLANO A PARTIR DE</span>
+        </div>
+        <h3>BuildHub</h3>
+        <p>Gestão integrada de obras, contratos, medições, suprimentos, equipamentos, custos e produtividade.</p>
+        <div class="quick-card-price">
+          <small>R$</small>
+          <strong class="dynamic-price" data-monthly="490" data-annual="4.900">490</strong>
+          <span class="dynamic-period" data-monthly="/mês" data-annual="/ano">/mês</span>
+        </div>
+      </button>
+
+      <button class="product-quick-card minerhub" type="button" data-product="minerhub">
+        <div class="quick-card-top">
+          <small>MINERAÇÃO & BRITAGEM</small>
+          <span class="quick-card-status">PLANO A PARTIR DE</span>
+        </div>
+        <h3>MinerHub</h3>
+        <p>Produção mineral, britagem, balança, romaneios, expedição, frota, manutenção e custo por tonelada.</p>
+        <div class="quick-card-price">
+          <small>R$</small>
+          <strong class="dynamic-price" data-monthly="690" data-annual="6.900">690</strong>
+          <span class="dynamic-period" data-monthly="/mês" data-annual="/ano">/mês</span>
+        </div>
+      </button>
+
+      <button class="product-quick-card agrohub" type="button" data-product="agrohub">
+        <div class="quick-card-top">
+          <small>AGRONEGÓCIO</small>
+          <span class="quick-card-status">PLANO A PARTIR DE</span>
+        </div>
+        <h3>AgroHub</h3>
+        <p>Gestão de safra, colheita, lotes, qualidade, packing, estoque, expedição e rastreabilidade.</p>
+        <div class="quick-card-price">
+          <small>R$</small>
+          <strong class="dynamic-price" data-monthly="490" data-annual="4.900">490</strong>
+          <span class="dynamic-period" data-monthly="/mês" data-annual="/ano">/mês</span>
+        </div>
+      </button>
+
+      <button class="product-quick-card routehub" type="button" data-product="routehub">
+        <div class="quick-card-top">
+          <small>LOGÍSTICA & FROTA</small>
+          <span class="quick-card-status">PLANO A PARTIR DE</span>
+        </div>
+        <h3>RouteHub</h3>
+        <p>Gestão de frota, cargas, rotas, viagens, romaneios, manutenção, custos e performance operacional.</p>
+        <div class="quick-card-price">
+          <small>R$</small>
+          <strong class="dynamic-price" data-monthly="590" data-annual="5.900">590</strong>
+          <span class="dynamic-period" data-monthly="/mês" data-annual="/ano">/mês</span>
+        </div>
+      </button>
+
+    </div>
+
+    <div class="product-demo-area">
+
+      <article class="product-sales-panel buildhub active" id="product-detail-buildhub">
+        <div class="product-demo-panel">
+          <div class="product-demo-copy">
+            <span class="detail-badge">PRODUTO DE GESTÃO</span>
+            <div class="detail-logo">Build<b>Hub</b></div>
+            <h3>Construção & Engenharia</h3>
+            <p>Gestão integrada de obras, contratos, medições, suprimentos, equipamentos, custos e produtividade.</p>
+            <div class="detail-tags"><span>Obras</span><span>Medições</span><span>Suprimentos</span><span>Equipamentos</span></div>
+            <a class="btn btn-primary" href="index.html?interest=BuildHub#contato">Solicitar demonstração</a>
+          </div>
+          <div class="product-demo-visual">
+            <div class="demo-shell">
+              <div class="demo-shell-top"><i></i><i></i><i></i><span>BuildHub · Dashboard</span></div>
+              <div class="demo-widget-grid"><div class="demo-widget"><small>Obras ativas</small><strong>12</strong></div><div class="demo-widget"><small>Medições</small><strong>84%</strong></div><div class="demo-widget"><small>Compras</small><strong>37</strong></div><div class="demo-widget"><small>Equipamentos</small><strong>26</strong></div></div>
+              <div class="demo-lines"><div><span>Gestão de obras e contratos</span></div><div><span>Compras e almoxarifado</span></div><div><span>Custos, equipamentos e dashboards</span></div></div>
+            </div>
+          </div>
+        </div>
+
+        <section class="inline-product-plans" id="planos">
+          <div class="inline-plan-heading">
+            <div>
+              <span>PLANOS DO BUILDHUB</span>
+              <h3>Escolha o nível ideal para sua operação.</h3>
+            </div>
+            <p>Todos os planos incluem acesso ao produto. Implantação, migração de dados e integrações específicas são dimensionadas conforme o escopo.</p>
+          </div>
+
+          <div class="inline-pricing-grid">
+            <article class="inline-plan-card">
+              <span class="plan-kicker">ESSENCIAL</span>
+              <h4>Comece organizado</h4>
+              <div class="inline-price">
+                <small>R$</small>
+                <strong class="dynamic-price" data-monthly="490" data-annual="4.900">490</strong>
+                <span class="dynamic-period" data-monthly="/mês" data-annual="/ano">/mês</span>
+              </div>
+              <p class="dynamic-price-note"
+                 data-monthly="Cobrança mensal, com maior flexibilidade."
+                 data-annual="Economia de R$ 980 no ano.">Cobrança mensal, com maior flexibilidade.</p>
+              <ul>
+                <li>Até 5 usuários</li>
+                <li>1 unidade ou operação</li>
+                <li>Módulos centrais do produto</li>
+                <li>Dashboard padrão</li>
+                <li>Suporte remoto</li>
+              </ul>
+              <a href="index.html?interest=Plano Essencial - BuildHub#contato" class="btn btn-outline-dark">Quero o Essencial</a>
+            </article>
+
+            <article class="inline-plan-card featured">
+              <div class="recommended-label">MAIS ESCOLHIDO</div>
+              <span class="plan-kicker">PROFISSIONAL</span>
+              <h4>Mais controle e integração</h4>
+              <div class="inline-price">
+                <small>R$</small>
+                <strong class="dynamic-price" data-monthly="990" data-annual="9.900">990</strong>
+                <span class="dynamic-period" data-monthly="/mês" data-annual="/ano">/mês</span>
+              </div>
+              <p class="dynamic-price-note"
+                 data-monthly="Cobrança mensal, com suporte prioritário."
+                 data-annual="Economia de R$ 1.980 no ano.">Cobrança mensal, com suporte prioritário.</p>
+              <ul>
+                <li>Até 20 usuários</li>
+                <li>Até 3 unidades ou operações</li>
+                <li>Dashboards configuráveis</li>
+                <li>Fluxos e níveis de acesso</li>
+                <li>Suporte prioritário</li>
+              </ul>
+              <a href="index.html?interest=Plano Profissional - BuildHub#contato" class="btn btn-primary">Quero o Profissional</a>
+            </article>
+
+            <article class="inline-plan-card corporate">
+              <span class="plan-kicker">CORPORATIVO</span>
+              <h4>Projeto dedicado</h4>
+              <div class="corporate-price">Sob consulta</div>
+              <p>Contrato mensal, anual ou corporativo conforme operação.</p>
+              <ul>
+                <li>Usuários e unidades sob demanda</li>
+                <li>Integrações com sistemas existentes</li>
+                <li>Módulos e regras personalizadas</li>
+                <li>Dashboards por área</li>
+                <li>Acompanhamento dedicado</li>
+              </ul>
+              <a href="index.html?interest=Plano Corporativo - BuildHub#contato" class="btn btn-outline-dark">Solicitar proposta</a>
+            </article>
+          </div>
+        </section>
+      </article>
+
+      <article class="product-sales-panel minerhub" id="product-detail-minerhub" hidden>
+        <div class="product-demo-panel">
+          <div class="product-demo-copy">
+            <span class="detail-badge">PRODUTO DE GESTÃO</span>
+            <div class="detail-logo">Miner<b>Hub</b></div>
+            <h3>Mineração & Britagem</h3>
+            <p>Produção mineral, britagem, balança, romaneios, expedição, frota, manutenção e custo por tonelada.</p>
+            <div class="detail-tags"><span>Produção</span><span>Britagem</span><span>Expedição</span><span>Custo/t</span></div>
+            <a class="btn btn-primary" href="index.html?interest=MinerHub#contato">Solicitar demonstração</a>
+          </div>
+          <div class="product-demo-visual">
+            <div class="demo-shell">
+              <div class="demo-shell-top"><i></i><i></i><i></i><span>MinerHub · Dashboard</span></div>
+              <div class="demo-widget-grid"><div class="demo-widget"><small>Produção</small><strong>2.480 t</strong></div><div class="demo-widget"><small>Expedições</small><strong>62</strong></div><div class="demo-widget"><small>Balança</small><strong>Online</strong></div><div class="demo-widget"><small>Custo/t</small><strong>R$ 28,4</strong></div></div>
+              <div class="demo-lines"><div><span>Produção mineral e britagem</span></div><div><span>Romaneios, balança e transporte</span></div><div><span>Custos, manutenção e performance</span></div></div>
+            </div>
+          </div>
+        </div>
+
+        <section class="inline-product-plans" id="planos">
+          <div class="inline-plan-heading">
+            <div>
+              <span>PLANOS DO MINERHUB</span>
+              <h3>Escolha o nível ideal para sua operação.</h3>
+            </div>
+            <p>Todos os planos incluem acesso ao produto. Implantação, migração de dados e integrações específicas são dimensionadas conforme o escopo.</p>
+          </div>
+
+          <div class="inline-pricing-grid">
+            <article class="inline-plan-card">
+              <span class="plan-kicker">ESSENCIAL</span>
+              <h4>Comece organizado</h4>
+              <div class="inline-price">
+                <small>R$</small>
+                <strong class="dynamic-price" data-monthly="690" data-annual="6.900">690</strong>
+                <span class="dynamic-period" data-monthly="/mês" data-annual="/ano">/mês</span>
+              </div>
+              <p class="dynamic-price-note"
+                 data-monthly="Cobrança mensal, com maior flexibilidade."
+                 data-annual="Economia de R$ 1.380 no ano.">Cobrança mensal, com maior flexibilidade.</p>
+              <ul>
+                <li>Até 5 usuários</li>
+                <li>1 unidade ou operação</li>
+                <li>Módulos centrais do produto</li>
+                <li>Dashboard padrão</li>
+                <li>Suporte remoto</li>
+              </ul>
+              <a href="index.html?interest=Plano Essencial - MinerHub#contato" class="btn btn-outline-dark">Quero o Essencial</a>
+            </article>
+
+            <article class="inline-plan-card featured">
+              <div class="recommended-label">MAIS ESCOLHIDO</div>
+              <span class="plan-kicker">PROFISSIONAL</span>
+              <h4>Mais controle e integração</h4>
+              <div class="inline-price">
+                <small>R$</small>
+                <strong class="dynamic-price" data-monthly="1.290" data-annual="12.900">1.290</strong>
+                <span class="dynamic-period" data-monthly="/mês" data-annual="/ano">/mês</span>
+              </div>
+              <p class="dynamic-price-note"
+                 data-monthly="Cobrança mensal, com suporte prioritário."
+                 data-annual="Economia de R$ 2.580 no ano.">Cobrança mensal, com suporte prioritário.</p>
+              <ul>
+                <li>Até 20 usuários</li>
+                <li>Até 3 unidades ou operações</li>
+                <li>Dashboards configuráveis</li>
+                <li>Fluxos e níveis de acesso</li>
+                <li>Suporte prioritário</li>
+              </ul>
+              <a href="index.html?interest=Plano Profissional - MinerHub#contato" class="btn btn-primary">Quero o Profissional</a>
+            </article>
+
+            <article class="inline-plan-card corporate">
+              <span class="plan-kicker">CORPORATIVO</span>
+              <h4>Projeto dedicado</h4>
+              <div class="corporate-price">Sob consulta</div>
+              <p>Contrato mensal, anual ou corporativo conforme operação.</p>
+              <ul>
+                <li>Usuários e unidades sob demanda</li>
+                <li>Integrações com sistemas existentes</li>
+                <li>Módulos e regras personalizadas</li>
+                <li>Dashboards por área</li>
+                <li>Acompanhamento dedicado</li>
+              </ul>
+              <a href="index.html?interest=Plano Corporativo - MinerHub#contato" class="btn btn-outline-dark">Solicitar proposta</a>
+            </article>
+          </div>
+        </section>
+      </article>
+
+      <article class="product-sales-panel agrohub" id="product-detail-agrohub" hidden>
+        <div class="product-demo-panel">
+          <div class="product-demo-copy">
+            <span class="detail-badge">PRODUTO DE GESTÃO</span>
+            <div class="detail-logo">Agro<b>Hub</b></div>
+            <h3>Agronegócio</h3>
+            <p>Gestão de safra, colheita, lotes, qualidade, packing, estoque, expedição e rastreabilidade.</p>
+            <div class="detail-tags"><span>Safra</span><span>Lotes</span><span>Packing</span><span>Rastreabilidade</span></div>
+            <a class="btn btn-primary" href="index.html?interest=AgroHub#contato">Solicitar demonstração</a>
+          </div>
+          <div class="product-demo-visual">
+            <div class="demo-shell">
+              <div class="demo-shell-top"><i></i><i></i><i></i><span>AgroHub · Dashboard</span></div>
+              <div class="demo-widget-grid"><div class="demo-widget"><small>Lotes</small><strong>148</strong></div><div class="demo-widget"><small>Qualidade</small><strong>97%</strong></div><div class="demo-widget"><small>Packing</small><strong>12 linhas</strong></div><div class="demo-widget"><small>Expedição</small><strong>34 cargas</strong></div></div>
+              <div class="demo-lines"><div><span>Campo, colheita e apontamentos</span></div><div><span>Qualidade, packing e estoque</span></div><div><span>Expedição e rastreabilidade</span></div></div>
+            </div>
+          </div>
+        </div>
+
+        <section class="inline-product-plans" id="planos">
+          <div class="inline-plan-heading">
+            <div>
+              <span>PLANOS DO AGROHUB</span>
+              <h3>Escolha o nível ideal para sua operação.</h3>
+            </div>
+            <p>Todos os planos incluem acesso ao produto. Implantação, migração de dados e integrações específicas são dimensionadas conforme o escopo.</p>
+          </div>
+
+          <div class="inline-pricing-grid">
+            <article class="inline-plan-card">
+              <span class="plan-kicker">ESSENCIAL</span>
+              <h4>Comece organizado</h4>
+              <div class="inline-price">
+                <small>R$</small>
+                <strong class="dynamic-price" data-monthly="490" data-annual="4.900">490</strong>
+                <span class="dynamic-period" data-monthly="/mês" data-annual="/ano">/mês</span>
+              </div>
+              <p class="dynamic-price-note"
+                 data-monthly="Cobrança mensal, com maior flexibilidade."
+                 data-annual="Economia de R$ 980 no ano.">Cobrança mensal, com maior flexibilidade.</p>
+              <ul>
+                <li>Até 5 usuários</li>
+                <li>1 unidade ou operação</li>
+                <li>Módulos centrais do produto</li>
+                <li>Dashboard padrão</li>
+                <li>Suporte remoto</li>
+              </ul>
+              <a href="index.html?interest=Plano Essencial - AgroHub#contato" class="btn btn-outline-dark">Quero o Essencial</a>
+            </article>
+
+            <article class="inline-plan-card featured">
+              <div class="recommended-label">MAIS ESCOLHIDO</div>
+              <span class="plan-kicker">PROFISSIONAL</span>
+              <h4>Mais controle e integração</h4>
+              <div class="inline-price">
+                <small>R$</small>
+                <strong class="dynamic-price" data-monthly="890" data-annual="8.900">890</strong>
+                <span class="dynamic-period" data-monthly="/mês" data-annual="/ano">/mês</span>
+              </div>
+              <p class="dynamic-price-note"
+                 data-monthly="Cobrança mensal, com suporte prioritário."
+                 data-annual="Economia de R$ 1.780 no ano.">Cobrança mensal, com suporte prioritário.</p>
+              <ul>
+                <li>Até 20 usuários</li>
+                <li>Até 3 unidades ou operações</li>
+                <li>Dashboards configuráveis</li>
+                <li>Fluxos e níveis de acesso</li>
+                <li>Suporte prioritário</li>
+              </ul>
+              <a href="index.html?interest=Plano Profissional - AgroHub#contato" class="btn btn-primary">Quero o Profissional</a>
+            </article>
+
+            <article class="inline-plan-card corporate">
+              <span class="plan-kicker">CORPORATIVO</span>
+              <h4>Projeto dedicado</h4>
+              <div class="corporate-price">Sob consulta</div>
+              <p>Contrato mensal, anual ou corporativo conforme operação.</p>
+              <ul>
+                <li>Usuários e unidades sob demanda</li>
+                <li>Integrações com sistemas existentes</li>
+                <li>Módulos e regras personalizadas</li>
+                <li>Dashboards por área</li>
+                <li>Acompanhamento dedicado</li>
+              </ul>
+              <a href="index.html?interest=Plano Corporativo - AgroHub#contato" class="btn btn-outline-dark">Solicitar proposta</a>
+            </article>
+          </div>
+        </section>
+      </article>
+
+      <article class="product-sales-panel routehub" id="product-detail-routehub" hidden>
+        <div class="product-demo-panel">
+          <div class="product-demo-copy">
+            <span class="detail-badge">PRODUTO DE GESTÃO</span>
+            <div class="detail-logo">Route<b>Hub</b></div>
+            <h3>Logística & Frota</h3>
+            <p>Gestão de frota, cargas, rotas, viagens, romaneios, manutenção, custos e performance operacional.</p>
+            <div class="detail-tags"><span>Frota</span><span>Cargas</span><span>Rotas</span><span>Performance</span></div>
+            <a class="btn btn-primary" href="index.html?interest=RouteHub#contato">Solicitar demonstração</a>
+          </div>
+          <div class="product-demo-visual">
+            <div class="demo-shell">
+              <div class="demo-shell-top"><i></i><i></i><i></i><span>RouteHub · Dashboard</span></div>
+              <div class="demo-widget-grid"><div class="demo-widget"><small>Frota</small><strong>48</strong></div><div class="demo-widget"><small>Viagens</small><strong>112</strong></div><div class="demo-widget"><small>Rotas</small><strong>18</strong></div><div class="demo-widget"><small>Entrega</small><strong>94%</strong></div></div>
+              <div class="demo-lines"><div><span>Frota, ativos e manutenção</span></div><div><span>Cargas, rotas e romaneios</span></div><div><span>Custos, indicadores e performance</span></div></div>
+            </div>
+          </div>
+        </div>
+
+        <section class="inline-product-plans" id="planos">
+          <div class="inline-plan-heading">
+            <div>
+              <span>PLANOS DO ROUTEHUB</span>
+              <h3>Escolha o nível ideal para sua operação.</h3>
+            </div>
+            <p>Todos os planos incluem acesso ao produto. Implantação, migração de dados e integrações específicas são dimensionadas conforme o escopo.</p>
+          </div>
+
+          <div class="inline-pricing-grid">
+            <article class="inline-plan-card">
+              <span class="plan-kicker">ESSENCIAL</span>
+              <h4>Comece organizado</h4>
+              <div class="inline-price">
+                <small>R$</small>
+                <strong class="dynamic-price" data-monthly="590" data-annual="5.900">590</strong>
+                <span class="dynamic-period" data-monthly="/mês" data-annual="/ano">/mês</span>
+              </div>
+              <p class="dynamic-price-note"
+                 data-monthly="Cobrança mensal, com maior flexibilidade."
+                 data-annual="Economia de R$ 1.180 no ano.">Cobrança mensal, com maior flexibilidade.</p>
+              <ul>
+                <li>Até 5 usuários</li>
+                <li>1 unidade ou operação</li>
+                <li>Módulos centrais do produto</li>
+                <li>Dashboard padrão</li>
+                <li>Suporte remoto</li>
+              </ul>
+              <a href="index.html?interest=Plano Essencial - RouteHub#contato" class="btn btn-outline-dark">Quero o Essencial</a>
+            </article>
+
+            <article class="inline-plan-card featured">
+              <div class="recommended-label">MAIS ESCOLHIDO</div>
+              <span class="plan-kicker">PROFISSIONAL</span>
+              <h4>Mais controle e integração</h4>
+              <div class="inline-price">
+                <small>R$</small>
+                <strong class="dynamic-price" data-monthly="1.090" data-annual="10.900">1.090</strong>
+                <span class="dynamic-period" data-monthly="/mês" data-annual="/ano">/mês</span>
+              </div>
+              <p class="dynamic-price-note"
+                 data-monthly="Cobrança mensal, com suporte prioritário."
+                 data-annual="Economia de R$ 2.180 no ano.">Cobrança mensal, com suporte prioritário.</p>
+              <ul>
+                <li>Até 20 usuários</li>
+                <li>Até 3 unidades ou operações</li>
+                <li>Dashboards configuráveis</li>
+                <li>Fluxos e níveis de acesso</li>
+                <li>Suporte prioritário</li>
+              </ul>
+              <a href="index.html?interest=Plano Profissional - RouteHub#contato" class="btn btn-primary">Quero o Profissional</a>
+            </article>
+
+            <article class="inline-plan-card corporate">
+              <span class="plan-kicker">CORPORATIVO</span>
+              <h4>Projeto dedicado</h4>
+              <div class="corporate-price">Sob consulta</div>
+              <p>Contrato mensal, anual ou corporativo conforme operação.</p>
+              <ul>
+                <li>Usuários e unidades sob demanda</li>
+                <li>Integrações com sistemas existentes</li>
+                <li>Módulos e regras personalizadas</li>
+                <li>Dashboards por área</li>
+                <li>Acompanhamento dedicado</li>
+              </ul>
+              <a href="index.html?interest=Plano Corporativo - RouteHub#contato" class="btn btn-outline-dark">Solicitar proposta</a>
+            </article>
+          </div>
+        </section>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section class="section section-soft">
+  <div class="container">
+    <div class="cta-band reveal">
+      <div>
+        <span>NÃO ENCONTROU O QUE PRECISA?</span>
+        <h3>Também criamos sistemas e ferramentas totalmente personalizados.</h3>
+      </div>
+      <a class="btn btn-primary" href="servicos.html">Ver serviços sob medida <span>→</span></a>
+    </div>
+  </div>
+</section>
+
+      </main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <a class="brand" href="index.html">
+      <img class="brand-mark-img" src="assets/logo-soft.png" alt="Cactus Hub">
+      <span class="brand-copy">
+        <strong>CACTUS HUB</strong>
+        <small>TECNOLOGIA PARA OPERAÇÕES REAIS</small>
+      </span>
+    </a>
+
+    <div class="footer-links">
+      <a href="index.html">Empresa</a>
+      <a href="produtos.html">Produtos & Planos</a>
+      <a href="servicos.html">Serviços</a>
+      <a href="index.html#contato">Contato</a>
+    </div>
+
+    <div class="footer-copy">
+      <span>© <span id="year"></span> Cactus Hub</span>
+      <small>Produtos de gestão, sites, sistemas e soluções sob medida.</small>
+    </div>
+  </div>
+</footer>
+
+      <div class="mobile-sales-bar">
+        <a href="index.html#contato">Falar com a Cactus Hub</a>
+      </div>
+      <script src="script.js"></script>
+    </body>
+    </html>

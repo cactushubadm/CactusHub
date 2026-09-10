@@ -1,32 +1,39 @@
-# Cactus Hub — Site Institucional
+# Cactus Hub — V15 Atualizada / Pronta para Publicação
 
-Versão institucional responsiva alinhada ao Manual de Identidade Visual da Cactus Hub.
+Esta pasta usa o código enviado em `CactusHub.zip` como base e recebeu a atualização visual e comercial V15 desenvolvida nesta conversa.
 
-## Identidade aplicada
+## Estrutura atual
+- `index.html` — Empresa / apresentação institucional / contato
+- `produtos.html` — Produtos + planos integrados
+- `servicos.html` — Serviços personalizados e preços de entrada
+- `planos.html` — Redirecionamento de compatibilidade para Produtos & Planos
+- `styles.css` — identidade visual + responsividade + ajustes mobile V15
+- `script.js` — navegação, produtos, mensal/anual, formulário e interações
+- `assets/` — logos, parceiro e imagens
 
-- Cactus Green: #81BF20
-- Cactus Green Light: #9BD62E
-- Deep Navy: #17213A
-- Void Navy: #0E1524
-- Ice: #EDF1F7
-- Canvas: #F7F7F7
-- Tipografia: Montserrat / Poppins para títulos e Manrope para interface e textos.
+## Principais atualizações da V15
+- BuildHub, MinerHub, AgroHub e RouteHub com demonstração visual.
+- Planos específicos integrados ao respectivo produto.
+- Alternância Mensal / Anual na mesma tela.
+- Serviços personalizados precificados com valores de entrada.
+- Melhor enquadramento e espaçamento no mobile.
+- Barra comercial fixa no celular.
+- Equipe exibida com Lucas Carvalho e Enrico Vettore.
+- Parceiro Manga Bela mantido em formato compacto.
 
-## Logos
-
-Os três arquivos JPEG recebidos do cliente foram preservados em `assets/` como fontes originais.
-O site utiliza versões PNG transparentes derivadas diretamente desses mesmos arquivos para melhor integração sobre fundos claros e escuros:
-
-- `logo-primary.png` — símbolo verde oficial.
-- `logo-soft.png` — versão clara/multitonal para fundos escuros e elementos d'água.
-- `logo-alt.png` — segunda versão verde recebida.
-- `favicon.png` — favicon derivado do símbolo verde.
+## Formulário
+O formulário mantém a configuração Netlify Forms existente no código-base (`data-netlify=true`) e o envio assíncrono via `fetch`.
 
 ## Publicação
+Os arquivos desta pasta já estão na raiz correta do site. Para publicar, envie **o conteúdo desta pasta** para a raiz pública do seu servidor (por exemplo `public_html`) ou publique a pasta como diretório raiz do site.
 
-Envie o conteúdo desta pasta `web` para `public_html` no servidor/HostGator.
-O formulário atual é demonstrativo e pode ser integrado posteriormente a e-mail, CRM, WhatsApp ou API.
+Se a hospedagem não for Netlify, o formulário precisará ser apontado para o serviço de e-mail/API usado pelo servidor.
 
-## V3 — Posicionamento
-
-Nesta revisão, o site prioriza soluções tecnológicas personalizadas e software sob medida. IA, drones e visão computacional aparecem como capacidades que podem compor uma solução, e não como o foco principal da empresa.
+## Identidade visual
+- Cactus Green: #81BF20
+- Cactus Green Light: #9BD62E
+- Deep Navy: #0E1524
+- Surface Navy: #17213A
+- Ice: #EDF1F7
+- Canvas: #F7F7F7
+- Tipografia: Montserrat para títulos e Manrope para interface/textos.

@@ -1,112 +1,158 @@
-const header = document.querySelector(".site-header");
-const navToggle = document.querySelector(".nav-toggle");
-const nav = document.querySelector(".primary-nav");
-const year = document.querySelector("#year");
-const form = document.querySelector("#contact-form");
-const success = document.querySelector(".form-success");
 
-year.textContent = new Date().getFullYear();
+const header = document.querySelector('.site-header');
+const navToggle = document.querySelector('.nav-toggle');
+const nav = document.querySelector('.primary-nav');
+const year = document.querySelector('#year');
+const form = document.querySelector('#contact-form');
+const success = document.querySelector('.form-success');
 
-const onScroll = () => header.classList.toggle("scrolled", window.scrollY > 20);
-onScroll();
-window.addEventListener("scroll", onScroll, { passive: true });
+if (year) year.textContent = new Date().getFullYear();
 
-navToggle.addEventListener("click", () => {
-  const open = nav.classList.toggle("open");
-  navToggle.setAttribute("aria-expanded", String(open));
-});
-nav.querySelectorAll("a").forEach((a) =>
-  a.addEventListener("click", () => {
-    nav.classList.remove("open");
-    navToggle.setAttribute("aria-expanded", "false");
-  }),
-);
+if (header) {
+  const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 20);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+}
 
-const observer = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
+if (navToggle && nav) {
+  navToggle.addEventListener('click', () => {
+    const open = nav.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', String(open));
+  });
+
+  nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    nav.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', 'false');
+  }));
+}
+
+const pageName = document.body?.dataset.page;
+if (pageName && nav) {
+  const active = nav.querySelector(`[data-nav="${pageName}"]`);
+  if (active) active.classList.add('active');
+}
+
+if ('IntersectionObserver' in window) {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
       if (!entry.isIntersecting) return;
-      const delay = entry.target.dataset.delay || 0;
-      setTimeout(() => entry.target.classList.add("visible"), Number(delay));
+      const delay = Number(entry.target.dataset.delay || 0);
+      setTimeout(() => entry.target.classList.add('visible'), delay);
       observer.unobserve(entry.target);
     });
-  },
-  { threshold: 0.12 },
-);
+  }, { threshold: 0.1 });
 
-document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+} else {
+  document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+}
 
-form.addEventListener("submit", (event) => {
-  event.preventDefault(); // Continua impedindo o recarregamento da página
+if (form && success) {
+  const params = new URLSearchParams(window.location.search);
+  const interest = params.get('interest');
+  const select = form.querySelector('select[name="interesse"]');
 
-  const myForm = event.target;
-  const formData = new FormData(myForm);
+  if (interest && select) {
+    const existing = Array.from(select.options).find(opt => opt.text === interest);
+    if (existing) {
+      select.value = interest;
+    } else {
+      const option = new Option(interest, interest, true, true);
+      select.add(option);
+    }
+  }
 
-  // Pega o botão para podermos mudar o texto dele
-  const submitButton = form.querySelector('button[type="submit"]');
-  const originalText = submitButton.innerHTML;
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
 
-  // Muda o texto para "Enviando..." enquanto o Netlify processa
-  submitButton.textContent = "Enviando...";
+    const submitButton = form.querySelector('button[type="submit"]');
+    const originalText = submitButton ? submitButton.innerHTML : '';
+    const formData = new FormData(form);
 
-  // Envia os dados silenciosamente para o Netlify
-  fetch("/", {
-    method: "POST",
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: new URLSearchParams(formData).toString(),
-  })
-    .then(() => {
-      // Se der certo, mostra a sua mensagem verde e atualiza o botão
-      success.classList.add("show");
-      submitButton.textContent = "Contato enviado ✓";
-      myForm.reset(); // Limpa os campos do formulário após o envio
-    })
-    .catch((error) => {
-      // Se der erro, avisa o usuário e volta o botão ao normal
-      alert("Ops! Ocorreu um erro ao enviar. Tente novamente.");
-      submitButton.innerHTML = originalText;
-    });
-});
+    if (submitButton) {
+      submitButton.disabled = true;
+      submitButton.textContent = 'Enviando...';
+    }
 
-const productTabs = Array.from(
-  document.querySelectorAll(".variant-card[data-product]"),
-);
-const productPanels = Array.from(document.querySelectorAll(".product-detail"));
+    try {
+      const response = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(formData).toString()
+      });
+
+      if (!response.ok) throw new Error('Falha no envio');
+
+      success.classList.add('show');
+      if (submitButton) submitButton.textContent = 'Contato enviado ✓';
+      form.reset();
+    } catch (error) {
+      alert('Não foi possível enviar agora. Tente novamente ou entre em contato conosco diretamente.');
+      if (submitButton) {
+        submitButton.disabled = false;
+        submitButton.innerHTML = originalText;
+      }
+      return;
+    }
+
+    if (submitButton) submitButton.disabled = false;
+  });
+}
+
+const productTabs = Array.from(document.querySelectorAll('.product-quick-card[data-product]'));
+const productPanels = Array.from(document.querySelectorAll('.product-sales-panel'));
 
 if (productTabs.length && productPanels.length) {
   const activateProduct = (product) => {
-    productTabs.forEach((tab) => {
-      const isActive = tab.dataset.product === product;
-      tab.classList.toggle("active", isActive);
-      tab.setAttribute("aria-selected", String(isActive));
+    productTabs.forEach(tab => {
+      const active = tab.dataset.product === product;
+      tab.classList.toggle('active', active);
+      tab.setAttribute('aria-selected', String(active));
     });
 
-    productPanels.forEach((panel) => {
-      const isActive = panel.id === `product-detail-${product}`;
-      panel.classList.toggle("active", isActive);
-      panel.hidden = !isActive;
+    productPanels.forEach(panel => {
+      const active = panel.id === `product-detail-${product}`;
+      panel.hidden = !active;
+      panel.classList.toggle('active', active);
     });
   };
 
-  productTabs.forEach((tab) => {
-    tab.addEventListener("click", () => activateProduct(tab.dataset.product));
-    tab.addEventListener("keydown", (event) => {
-      const currentIndex = productTabs.indexOf(tab);
-      if (event.key === "ArrowRight" || event.key === "ArrowDown") {
-        event.preventDefault();
-        const next = productTabs[(currentIndex + 1) % productTabs.length];
-        next.focus();
-        activateProduct(next.dataset.product);
-      }
-      if (event.key === "ArrowLeft" || event.key === "ArrowUp") {
-        event.preventDefault();
-        const prev =
-          productTabs[
-            (currentIndex - 1 + productTabs.length) % productTabs.length
-          ];
-        prev.focus();
-        activateProduct(prev.dataset.product);
-      }
-    });
+  productTabs.forEach(tab => {
+    tab.addEventListener('click', () => activateProduct(tab.dataset.product));
   });
+}
+
+const billingButtons = Array.from(document.querySelectorAll('.billing-btn'));
+const dynamicPrices = Array.from(document.querySelectorAll('.dynamic-price'));
+const dynamicPeriods = Array.from(document.querySelectorAll('.dynamic-period'));
+const dynamicNotes = Array.from(document.querySelectorAll('.dynamic-price-note'));
+
+if (billingButtons.length) {
+  const updateBilling = (mode) => {
+    const annual = mode === 'annual';
+    document.body.classList.toggle('billing-annual', annual);
+    document.body.classList.toggle('billing-monthly', !annual);
+
+    billingButtons.forEach(button => {
+      button.classList.toggle('active', button.dataset.billing === mode);
+    });
+
+    dynamicPrices.forEach(item => {
+      item.textContent = annual ? item.dataset.annual : item.dataset.monthly;
+    });
+
+    dynamicPeriods.forEach(item => {
+      item.textContent = annual ? item.dataset.annual : item.dataset.monthly;
+    });
+
+    dynamicNotes.forEach(item => {
+      item.textContent = annual ? item.dataset.annual : item.dataset.monthly;
+    });
+  };
+
+  billingButtons.forEach(button => {
+    button.addEventListener('click', () => updateBilling(button.dataset.billing));
+  });
+
+  updateBilling('monthly');
 }
