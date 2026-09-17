@@ -1,0 +1,22 @@
+CACTUS EVENTOS — VALIDAÇÃO DO PACOTE WHITE LABEL v1
+
+VALIDAÇÕES EXECUTADAS NESTE EMPACOTAMENTO
+
+- 47 arquivos PHP verificados com `php -l`: 0 erros de sintaxe.
+- Referências locais estáticas do site verificadas: 0 arquivos ausentes.
+- Bundle local de QR Code `assets/vendor/cactus-qr.js` testado com Node.js: geração de SVG concluída com sucesso.
+- Identidade visual desacoplada da marca do projeto-base.
+- Placeholders próprios criados para logo e fotos.
+- Banco padrão: `storage/cactus-eventos.sqlite`.
+- Prefixo de novos pedidos: `EVT-`.
+- Prefixo de novos ingressos: `EV-`.
+- Payload QR: `CACTUS:TICKET:EV-...`.
+- Personalização de logo, fotos, cores, textos, endereço e contatos incluída no painel.
+- Instalador adaptado para solicitar a marca e a cidade do cliente.
+- Estrutura de publicação preparada para HostGator/cPanel.
+
+AUTOTESTE FUNCIONAL COM SQLITE
+
+O ambiente usado para empacotar este produto não possui a extensão `pdo_sqlite` carregada no PHP do sistema. Por isso, o autoteste funcional completo do banco não foi marcado como executado aqui.
+
+No Windows, execute `INICIAR_CACTUS_EVENTOS.bat` e depois `TESTAR_SISTEMA.bat`. O inicializador prepara o PHP portátil com SQLite habilitado. Em produção, confirme `PDO SQLite` no diagnóstico da HostGator antes da publicação.

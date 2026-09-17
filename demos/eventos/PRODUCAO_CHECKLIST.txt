@@ -1,0 +1,48 @@
+CACTUS EVENTOS — CHECKLIST ANTES DE PUBLICAR
+
+IDENTIDADE
+[ ] Nome da marca definido
+[ ] Logo do cliente enviada
+[ ] Foto principal enviada
+[ ] Fotos institucionais enviadas
+[ ] Cores revisadas
+[ ] Textos revisados
+
+DOMÍNIO / HOSPEDAGEM
+[ ] URL pública configurada
+[ ] HTTPS válido
+[ ] PHP 8.2+
+[ ] PDO SQLite ativo
+[ ] storage gravável
+[ ] assets/uploads gravável
+
+CONTATO / LEGAL
+[ ] Endereço
+[ ] Maps
+[ ] Telefone/WhatsApp
+[ ] Instagram
+[ ] E-mail de suporte
+[ ] Razão social
+[ ] CNPJ/CPF
+[ ] Endereço legal
+[ ] Termos e políticas revisados
+
+E-MAIL
+[ ] Remetente criado
+[ ] SMTP/PHP mail configurado
+[ ] E-mail de teste recebido
+
+PAGAMENTO
+[ ] Modo correto selecionado
+[ ] Access Token, se Mercado Pago
+[ ] Webhook Secret, se Mercado Pago
+[ ] Webhook cadastrado
+[ ] Compra de teste concluída
+
+OPERAÇÃO
+[ ] Cron agendado
+[ ] QR Code testado
+[ ] Check-in duplicado bloqueado
+[ ] Lista VIP testada
+[ ] Usuários administrativos criados
+[ ] Backup inicial salvo

@@ -1,0 +1,53 @@
+CACTUS EVENTOS — MATERIAL A SOLICITAR AO CLIENTE
+
+IDENTIDADE
+[ ] Nome comercial
+[ ] Logo em PNG transparente
+[ ] Cores da marca
+[ ] Slogan
+[ ] Cidade / UF
+[ ] Ano de início, se quiser exibir
+
+FOTOS
+[ ] Foto principal horizontal (recomendado 1920x1080)
+[ ] Foto institucional / fachada
+[ ] Foto ampla do ambiente / palco / pista
+[ ] Foto de galeria 01
+[ ] Foto de galeria 02
+[ ] Foto para localização
+
+CONTEÚDO
+[ ] Texto principal da home
+[ ] Texto sobre a empresa/local
+[ ] Texto sobre a experiência
+[ ] Texto da galeria
+[ ] Programação / observações
+
+CONTATO
+[ ] Endereço
+[ ] Link Google Maps
+[ ] Telefone
+[ ] WhatsApp
+[ ] Instagram
+[ ] E-mail de suporte
+[ ] E-mail LGPD
+
+DADOS LEGAIS
+[ ] Razão social
+[ ] CNPJ/CPF
+[ ] Endereço legal
+[ ] Política comercial específica, se houver
+
+INTEGRAÇÕES
+[ ] Domínio
+[ ] Hospedagem
+[ ] E-mail SMTP
+[ ] Access Token Mercado Pago
+[ ] Webhook Secret Mercado Pago
+
+OPERAÇÃO
+[ ] Responsáveis pelo painel
+[ ] Responsáveis pela portaria
+[ ] Regras da Lista VIP
+[ ] Tipos de ingresso padrão
+[ ] Política de reembolso/cancelamento

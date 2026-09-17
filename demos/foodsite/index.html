@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0b0b0d" />
+  <meta name="description" content="Site white-label para restaurantes, lanchonetes e delivery — produto Cactus." />
+  <title>Sua Marca | Cardápio e unidades</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+
+  <header class="topbar" id="topo">
+    <a class="brand brand--image" href="#topo" aria-label="Início">
+      <img id="siteLogo" src="assets/placeholders/client-logo.svg" alt="Logo da empresa" class="brand__custom-logo" />
+    </a>
+
+    <nav class="nav" aria-label="Navegação principal">
+      <a href="#cardapio">Cardápio</a>
+      <a href="#vitrine">Produtos</a>
+      <a href="#promocoes">Promoções</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#unidades">Unidades</a>
+      <a id="navInstagram" href="#" target="_blank" rel="noreferrer" hidden>Instagram ↗</a>
+    </nav>
+
+    <a class="unit-pill" href="#cardapio" aria-label="Ir para o cardápio por unidade">
+      <span class="unit-pill__dot"></span><span>Escolher unidade</span><span aria-hidden="true">↓</span>
+    </a>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero__copy">
+        <div class="eyebrow"><span></span><b id="heroEyebrow">SEU NEGÓCIO, SUA IDENTIDADE</b></div>
+        <h1><span id="heroTitle1">SEU SABOR</span><br><em id="heroTitle2">EM DESTAQUE.</em></h1>
+        <p id="heroText">Apresente sua marca, seus produtos e suas unidades em um site rápido, moderno e conectado ao seu sistema de pedidos.</p>
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="#cardapio"><span>VER CARDÁPIO</span><b>↓</b></a>
+          <a class="btn btn--ghost" href="#unidades">CONHECER UNIDADES</a>
+        </div>
+        <div class="hero__stats">
+          <div><strong id="statUnits">2</strong><span>unidades</span></div>
+          <div><strong>100%</strong><span>personalizável</span></div>
+          <div><strong>↗</strong><span>pedido externo</span></div>
+        </div>
+      </div>
+
+      <div class="hero__visual" aria-label="Fotos da marca">
+        <div class="hero__photo hero__photo--main" data-image-slot="heroMain"></div>
+        <div class="hero__photo hero__photo--small" data-image-slot="heroSmall"></div>
+        <div class="stamp"><span id="stampBrand">SUA MARCA</span><strong>SEU<br>SITE</strong><span id="stampSubname">SEU JEITO</span></div>
+        <div class="hero__scribble" id="heroSocial">@seuinstagram</div>
+      </div>
+    </section>
+
+    <section class="ticker" aria-label="Destaques">
+      <div class="ticker__track">
+        <span>Sua marca ✦</span><span>Seus produtos ✦</span><span>Suas promoções ✦</span><span>Pedido online ✦</span><span>Suas unidades ✦</span><span>Sua marca ✦</span><span>Seus produtos ✦</span><span>Pedido online ✦</span>
+      </div>
+    </section>
+
+    <section class="section food-showcase" id="vitrine">
+      <div class="section-head food-showcase__head">
+        <div>
+          <div class="eyebrow"><span></span><b id="showcaseEyebrow">COLOQUE SUAS FOTOS AQUI</b></div>
+          <h2><span id="showcaseTitle1">MOSTRE SEUS</span> <em id="showcaseTitle2">PRODUTOS.</em></h2>
+        </div>
+        <p id="showcaseText">Use fotos reais do seu cardápio para criar uma vitrine visual forte. Todas as imagens podem ser trocadas pelo painel administrativo.</p>
+      </div>
+
+      <div class="food-mosaic" id="showcaseGrid">
+        <figure class="food-shot food-shot--hero"><img data-image-slot="showcase1" src="assets/placeholders/showcase-1.svg" alt="Produto em destaque"><figcaption><strong data-showcase-title="0">PRODUTO 01</strong><span data-showcase-subtitle="0">Coloque seu produto aqui</span></figcaption></figure>
+        <figure class="food-shot food-shot--tall"><img data-image-slot="showcase2" src="assets/placeholders/showcase-2.svg" alt="Produto em destaque"><figcaption><strong data-showcase-title="1">PRODUTO 02</strong><span data-showcase-subtitle="1">Coloque seu produto aqui</span></figcaption></figure>
+        <figure class="food-shot"><img data-image-slot="showcase3" src="assets/placeholders/showcase-3.svg" alt="Produto em destaque"><figcaption><strong data-showcase-title="2">PRODUTO 03</strong><span data-showcase-subtitle="2">Coloque seu produto aqui</span></figcaption></figure>
+        <figure class="food-shot"><img data-image-slot="showcase4" src="assets/placeholders/showcase-4.svg" alt="Produto em destaque"><figcaption><strong data-showcase-title="3">PRODUTO 04</strong><span data-showcase-subtitle="3">Coloque seu produto aqui</span></figcaption></figure>
+        <figure class="food-shot food-shot--wide"><img data-image-slot="showcase5" src="assets/placeholders/showcase-5.svg" alt="Produto em destaque"><figcaption><strong data-showcase-title="4">PRODUTO 05</strong><span data-showcase-subtitle="4">Coloque seu produto aqui</span></figcaption></figure>
+        <figure class="food-shot"><img data-image-slot="showcase6" src="assets/placeholders/showcase-6.svg" alt="Produto em destaque"><figcaption><strong data-showcase-title="5">PRODUTO 06</strong><span data-showcase-subtitle="5">Coloque seu produto aqui</span></figcaption></figure>
+      </div>
+
+      <div class="food-strip" id="foodGallery" aria-label="Galeria de produtos"></div>
+      <div class="food-showcase__cta"><a class="btn btn--primary" href="#cardapio">VER CARDÁPIO DA MINHA UNIDADE <b>↓</b></a></div>
+    </section>
+
+    <section class="section promotions" id="promocoes">
+      <div class="section-head promotions__head">
+        <div>
+          <div class="eyebrow"><span></span> OFERTAS FIXAS DA SEMANA</div>
+          <h2>SEGUNDA A SEXTA, <em>TEM OFERTA.</em></h2>
+        </div>
+        <p>Use esta área como mostrador das promoções fixas. Cada botão pode levar diretamente à oferta no sistema de pedidos que seu negócio já utiliza.</p>
+      </div>
+      <div class="promotions__layout">
+        <aside class="promotions__aside">
+          <span class="promotions__mini">PROMOÇÕES DA SEMANA</span>
+          <strong>5 DIAS.<br>5 OFERTAS.<br><em>1 CLIQUE.</em></strong>
+          <p>O cliente vê a promoção e segue para o seu canal oficial de pedidos.</p>
+          <a href="#cardapio" class="promotions__all">VER TODAS AS UNIDADES ↓</a>
+        </aside>
+        <div class="promotion-column" id="promoList" aria-label="Promoções de segunda a sexta"></div>
+      </div>
+    </section>
+
+    <section class="section order-hub" id="cardapio">
+      <div class="section-head">
+        <div><div class="eyebrow"><span></span> CARDÁPIO ONLINE</div><h2>ESCOLHA SUA <em>UNIDADE</em></h2></div>
+        <p>O site não precisa processar o pedido. Cada unidade pode direcionar o cliente para PedAI, Anota AI, iFood, WhatsApp, sistema próprio ou qualquer outro link.</p>
+      </div>
+      <div class="unit-grid" id="unitGrid"></div>
+      <div class="order-note"><span>↗</span><p>Ao clicar em <strong>ABRIR CARDÁPIO</strong>, o cliente é direcionado ao link oficial configurado para aquela unidade.</p></div>
+    </section>
+
+    <section class="feature-banner">
+      <div class="feature-banner__photo" data-image-slot="featureBanner"></div>
+      <div class="feature-banner__copy">
+        <div class="eyebrow eyebrow--light"><span></span> PERSONALIZE O DESTAQUE</div>
+        <h2>SUA CAMPANHA.<br><em>SUA IMAGEM.</em></h2>
+        <p>Use este banner para destacar lançamentos, combos, eventos, happy hour, delivery ou qualquer campanha importante do negócio.</p>
+        <a class="btn btn--light" href="#cardapio">ESCOLHER UNIDADE <b>↓</b></a>
+      </div>
+    </section>
+
+    <section class="section about" id="sobre">
+      <div class="about__copy">
+        <div class="eyebrow"><span></span><b id="aboutEyebrow">CONTE A SUA HISTÓRIA</b></div>
+        <h2><span id="aboutTitle1">SUA MARCA.</span><br><em id="aboutTitle2">SEU JEITO.</em></h2>
+        <p id="aboutText">Use este espaço para contar a história do negócio, destacar diferenciais, atendimento, tradição, ingredientes, ambiente ou qualquer mensagem importante para seus clientes.</p>
+        <div class="about__badges"><span id="badge1">✦ Destaque seu diferencial</span><span id="badge2">✦ Fale sobre sua experiência</span><span id="badge3">✦ Direcione para o pedido online</span></div>
+      </div>
+      <div class="about__image">
+        <div class="about__image-layer" data-image-slot="aboutImage"></div>
+        <div class="about__caption">COLOQUE SUA<br><strong>FOTO AQUI.</strong></div>
+      </div>
+    </section>
+
+    <section class="section locations" id="unidades">
+      <div class="section-head">
+        <div><div class="eyebrow"><span></span> ONDE ENCONTRAR</div><h2>SUAS <em>UNIDADES</em></h2></div>
+        <a class="instagram-link" id="instagramLink" href="#" target="_blank" rel="noreferrer" hidden>@seuinstagram ↗</a>
+      </div>
+      <div class="location-list" id="locationList"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__brand footer__brand--custom"><img id="footerLogo" src="assets/placeholders/client-logo.svg" alt="Logo da empresa" /></div>
+    <p id="footerText">Seu negócio apresentado de forma profissional, rápida e fácil de atualizar.</p>
+    <div class="footer__actions"><a href="#topo">VOLTAR AO TOPO ↑</a><span class="powered-cactus">Produto white-label por <strong>CACTUS</strong></span></div>
+  </footer>
+
+  <a class="floating-menu" href="#cardapio" aria-label="Ir para o cardápio"><span class="floating-menu__icon">☰</span><span><small>QUERO PEDIR</small><strong>CARDÁPIO</strong></span><b>↓</b></a>
+
+  <script src="app.js"></script>
+</body>
+</html>

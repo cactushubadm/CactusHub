@@ -254,8 +254,8 @@ body{font-family:"Manrope",ui-sans-serif,system-ui,-apple-system,BlinkMacSystemF
 .detail-card strong{display:block;color:#fff;font-size:16px;line-height:1.2;margin-bottom:10px}
 .detail-card ul{margin:0;padding-left:18px;color:#b8c4d5;font-size:13px;line-height:1.7}
 .detail-card li+li{margin-top:5px}
-.team-grid-compact{grid-template-columns:repeat(2,minmax(0,280px));justify-content:start}
-@media(max-width:1020px){.product-family{grid-template-columns:1fr;gap:24px}.product-family-visual{grid-template-columns:repeat(2,1fr)}.product-variants{grid-template-columns:repeat(2,1fr)}.product-detail{grid-template-columns:1fr}.detail-grid{grid-template-columns:1fr 1fr}}
+.team-grid-compact{grid-template-columns:repeat(4,minmax(0,1fr));justify-content:start}
+@media(max-width:1020px){.product-family{grid-template-columns:1fr;gap:24px}.product-family-visual{grid-template-columns:repeat(2,1fr)}.product-variants{grid-template-columns:repeat(2,1fr)}.product-detail{grid-template-columns:1fr}.detail-grid{grid-template-columns:1fr 1fr}.team-grid-compact{grid-template-columns:repeat(2,minmax(0,280px))}}
 @media(max-width:560px){.product-family-visual,.product-variants,.detail-grid{grid-template-columns:1fr}.products-instruction{display:flex;border-radius:16px;line-height:1.55}.product-detail{padding:20px}.detail-logo{font-size:34px}.variant-card{min-height:auto}.team-grid-compact{grid-template-columns:1fr 1fr}}
 
 /* V8 — Parceiros compactos, retomando a proporção da versão anterior */
@@ -1459,4 +1459,125 @@ body.billing-annual .quick-card-price{color:#5e9517}
     padding-top:42px;
     padding-bottom:56px
   }
+}
+
+
+/* V18 — demos reais dos sites já criados */
+.whitelabel-grid-v18{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:22px;
+}
+.whitelabel-card-demo{
+  display:grid;
+  grid-template-columns:1.08fr .92fr;
+  align-items:stretch;
+  overflow:hidden;
+}
+.whitelabel-demo-showcase{
+  padding:20px;
+  background:linear-gradient(180deg,#0f1728 0%, #15223b 100%);
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+.whitelabel-demo-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+.demo-live-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 12px;
+  border-radius:999px;
+  background:rgba(129,191,32,.14);
+  border:1px solid rgba(129,191,32,.26);
+  color:var(--green-light);
+  font-size:8px;
+  font-weight:900;
+  letter-spacing:1.2px;
+}
+.demo-live-badge:before{
+  content:"";
+  width:8px;height:8px;border-radius:50%;background:var(--green);
+  box-shadow:0 0 0 4px rgba(129,191,32,.16);
+}
+.demo-open-link{
+  color:#d7e1ef;
+  font-size:10px;
+  font-weight:800;
+}
+.demo-browser-frame{
+  background:#0b1120;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:18px;
+  overflow:hidden;
+  box-shadow:0 20px 60px rgba(0,0,0,.28);
+}
+.demo-browser-frame iframe{
+  display:block;
+  width:100%;
+  height:460px;
+  border:0;
+  background:#fff;
+}
+.whitelabel-card-demo .preview-browser-bar{
+  position:relative;
+  height:38px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:0 14px;
+  background:#111b30;
+  border-bottom:1px solid rgba(255,255,255,.07);
+}
+.whitelabel-card-demo .preview-browser-bar i{
+  width:9px;height:9px;border-radius:50%;display:block;
+}
+.whitelabel-card-demo .preview-browser-bar i:nth-child(1){background:#ff6b6b}
+.whitelabel-card-demo .preview-browser-bar i:nth-child(2){background:#ffd166}
+.whitelabel-card-demo .preview-browser-bar i:nth-child(3){background:#78d46b}
+.whitelabel-card-demo .preview-browser-bar span{
+  margin-left:8px;
+  color:#9cb0c8;
+  font-size:10px;
+  font-weight:700;
+}
+.whitelabel-bottom-actions{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:10px;
+}
+.whitelabel-secondary{
+  min-height:50px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.whitelabel-card-demo .whitelabel-content{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+.whitelabel-card-demo .whitelabel-features{
+  margin:18px 0 16px;
+}
+.whitelabel-card-demo .whitelabel-delivery{
+  margin:0 0 18px;
+}
+@media (max-width: 1020px){
+  .whitelabel-card-demo{
+    grid-template-columns:1fr;
+  }
+  .demo-browser-frame iframe{height:420px}
+}
+@media (max-width: 600px){
+  .whitelabel-demo-showcase{padding:14px}
+  .whitelabel-demo-header{flex-direction:column;align-items:flex-start}
+  .demo-browser-frame iframe{height:360px}
+  .whitelabel-bottom-actions{grid-template-columns:1fr}
 }

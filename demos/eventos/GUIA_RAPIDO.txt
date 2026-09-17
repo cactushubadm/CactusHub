@@ -1,0 +1,33 @@
+CACTUS EVENTOS — WHITE LABEL v1
+GUIA RÁPIDO
+
+1. Extraia o ZIP.
+2. Para testar no Windows, execute INICIAR_CACTUS_EVENTOS.bat.
+3. Conclua install.php informando:
+   - nome da marca/casa;
+   - cidade/UF;
+   - administrador;
+   - e-mail;
+   - senha.
+4. Entre no painel.
+5. Abra PERSONALIZAÇÃO.
+6. Troque:
+   - COLOQUE SUA LOGO AQUI;
+   - COLOQUE SUA FOTO PRINCIPAL AQUI;
+   - demais fotos;
+   - textos;
+   - cores;
+   - endereço;
+   - contatos.
+7. Crie os eventos e lotes.
+8. Configure e-mail.
+9. Configure Mercado Pago, se o cliente usar venda online.
+10. Abra PRODUÇÃO e finalize o checklist.
+
+PARA HOSTGATOR:
+- enviar o conteúdo do projeto para public_html;
+- usar PHP 8.2/8.3;
+- garantir permissão de escrita em storage e assets/uploads;
+- ativar SSL;
+- configurar cron;
+- testar o sistema completo antes de abrir vendas.

@@ -1,0 +1,6 @@
+<?php require __DIR__.'/../lib/bootstrap.php';require_admin();if($_SERVER['REQUEST_METHOD']!=='POST')redirect('events.php');verify_csrf();$id=(int)($_POST['id']??0);$action=$_POST['action']??'';$event=event_by_id($id);if(!$event)redirect('events.php');
+try{
+ if($action==='close'){db()->prepare("UPDATE events SET status='closed',updated_at=CURRENT_TIMESTAMP WHERE id=?")->execute([$id]);audit_log('event.closed','event',$id);flash('success','Evento encerrado.');}
+ elseif($action==='delete'){$st=db()->prepare('SELECT COUNT(*) FROM orders WHERE event_id=?');$st->execute([$id]);$oc=(int)$st->fetchColumn();$st=db()->prepare('SELECT COUNT(*) FROM vip_entries WHERE event_id=?');$st->execute([$id]);$vc=(int)$st->fetchColumn();if($oc||$vc)throw new RuntimeException('Este evento possui pedidos ou nomes VIP. Encerre-o em vez de excluir.');if(!empty($event['cover_image'])&&str_starts_with($event['cover_image'],'assets/uploads/')){@unlink(__DIR__.'/../'.$event['cover_image']);}db()->prepare('DELETE FROM events WHERE id=?')->execute([$id]);audit_log('event.deleted','event',$id,['title'=>$event['title']]);flash('success','Evento excluído.');}
+}catch(Throwable $e){flash('error',$e->getMessage());}
+redirect('events.php');

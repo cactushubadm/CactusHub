@@ -1,0 +1,5 @@
+<?php require __DIR__.'/../lib/bootstrap.php';require_admin();if($_SERVER['REQUEST_METHOD']!=='POST')redirect('vip.php');verify_csrf();$id=(int)($_POST['id']??0);$action=$_POST['action']??'';$st=db()->prepare('SELECT event_id,status FROM vip_entries WHERE id=?');$st->execute([$id]);$row=$st->fetch();if(!$row)redirect('vip.php');
+if($action==='checkin'&&$row['status']==='active'){db()->prepare('UPDATE vip_entries SET status="checked_in",checked_in_at=CURRENT_TIMESTAMP,updated_at=CURRENT_TIMESTAMP WHERE id=?')->execute([$id]);audit_log('vip.checkin','vip',$id);flash('success','Entrada VIP confirmada.');}
+elseif($action==='remove'){db()->prepare('UPDATE vip_entries SET status="removed",updated_at=CURRENT_TIMESTAMP WHERE id=?')->execute([$id]);audit_log('vip.removed','vip',$id);flash('success','Nome removido da Lista VIP.');}
+elseif($action==='restore'){db()->prepare('UPDATE vip_entries SET status="active",checked_in_at=NULL,updated_at=CURRENT_TIMESTAMP WHERE id=?')->execute([$id]);audit_log('vip.restored','vip',$id);flash('success','Entrada desfeita / nome reativado.');}
+redirect('vip.php?event='.(int)$row['event_id']);

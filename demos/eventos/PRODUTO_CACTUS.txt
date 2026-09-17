@@ -1,0 +1,42 @@
+CACTUS EVENTOS
+SITE + INGRESSOS + LISTA VIP + PORTARIA DIGITAL
+
+PROPOSTA DO PRODUTO
+Uma plataforma white label para operações de entretenimento que precisam divulgar eventos, vender ingressos, administrar Lista VIP e controlar a entrada em um único sistema.
+
+INDICADO PARA
+- casas de shows;
+- bares e pubs;
+- baladas;
+- festivais;
+- arenas;
+- festas recorrentes;
+- produtores de eventos;
+- clubes e espaços de entretenimento.
+
+DIFERENCIAIS
+- identidade totalmente personalizável;
+- cliente troca logo, fotos, cores e textos sem programador;
+- eventos ilimitados conforme capacidade da hospedagem;
+- lotes e estoque por evento;
+- Mercado Pago preparado;
+- Lista VIP dentro de cada evento;
+- QR Code individual;
+- leitor pela câmera do celular;
+- painel administrativo;
+- e-mails automáticos;
+- relatórios e backups;
+- hospedável em HostGator/cPanel;
+- produto replicável para novos clientes Cactus.
+
+MODELO DE IMPLANTAÇÃO
+1. Duplicar o pacote limpo.
+2. Instalar no domínio do cliente.
+3. Solicitar materiais pelo arquivo PERSONALIZACAO_CLIENTE.txt.
+4. Personalizar pelo painel.
+5. Configurar e-mail e Mercado Pago.
+6. Homologar.
+7. Entregar credenciais administrativas ao cliente.
+
+MENSAGEM COMERCIAL SUGERIDA
+"Tenha seu próprio site de eventos com a identidade da sua marca. Publique sua agenda, venda ingressos online, gerencie Lista VIP e valide entradas por QR Code — tudo em um único painel." 

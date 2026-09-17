@@ -1,0 +1,82 @@
+{
+  "brand": {
+    "businessName": "SUA MARCA",
+    "businessSubname": "RESTAURANTE & DELIVERY",
+    "categoryLabel": "SEU NEGÓCIO, SUA IDENTIDADE",
+    "heroTitle1": "SEU SABOR",
+    "heroTitle2": "EM DESTAQUE.",
+    "heroText": "Apresente sua marca, seus produtos e suas unidades em um site rápido, moderno e conectado ao seu sistema de pedidos.",
+    "showcaseEyebrow": "COLOQUE SUAS FOTOS AQUI",
+    "showcaseTitle1": "MOSTRE SEUS",
+    "showcaseTitle2": "PRODUTOS.",
+    "showcaseText": "Use fotos reais do seu cardápio para criar uma vitrine visual forte. Todas as imagens podem ser trocadas pelo painel administrativo.",
+    "aboutEyebrow": "CONTE A SUA HISTÓRIA",
+    "aboutTitle1": "SUA MARCA.",
+    "aboutTitle2": "SEU JEITO.",
+    "aboutText": "Use este espaço para contar a história do negócio, destacar diferenciais, atendimento, tradição, ingredientes, ambiente ou qualquer mensagem importante para seus clientes.",
+    "aboutBadge1": "✦ Destaque seu diferencial",
+    "aboutBadge2": "✦ Fale sobre sua experiência",
+    "aboutBadge3": "✦ Direcione para o pedido online",
+    "footerText": "Seu negócio apresentado de forma profissional, rápida e fácil de atualizar.",
+    "instagramHandle": "@seuinstagram",
+    "instagramUrl": "",
+    "logo": "assets/placeholders/client-logo.svg",
+    "accentColor": "#ff8a00",
+    "accentColor2": "#ff3b30"
+  },
+  "units": [
+    {
+      "id": "unidade-1",
+      "name": "Unidade 01",
+      "address": "Coloque o endereço da unidade aqui",
+      "phoneDisplay": "(00) 00000-0000",
+      "maps": "",
+      "orderUrl": "",
+      "enabled": true
+    },
+    {
+      "id": "unidade-2",
+      "name": "Unidade 02",
+      "address": "Coloque o endereço da unidade aqui",
+      "phoneDisplay": "(00) 00000-0000",
+      "maps": "",
+      "orderUrl": "",
+      "enabled": true
+    }
+  ],
+  "promotions": [
+    {"weekday":1,"day":"SEG","fullDay":"Segunda-feira","title":"Promoção de Segunda","description":"Descreva aqui a oferta fixa do dia.","price":"R$ 00,00","orderUrl":"","direct":false,"enabled":true},
+    {"weekday":2,"day":"TER","fullDay":"Terça-feira","title":"Promoção de Terça","description":"Descreva aqui a oferta fixa do dia.","price":"R$ 00,00","orderUrl":"","direct":false,"enabled":true},
+    {"weekday":3,"day":"QUA","fullDay":"Quarta-feira","title":"Promoção de Quarta","description":"Descreva aqui a oferta fixa do dia.","price":"R$ 00,00","orderUrl":"","direct":false,"enabled":true},
+    {"weekday":4,"day":"QUI","fullDay":"Quinta-feira","title":"Promoção de Quinta","description":"Descreva aqui a oferta fixa do dia.","price":"R$ 00,00","orderUrl":"","direct":false,"enabled":true},
+    {"weekday":5,"day":"SEX","fullDay":"Sexta-feira","title":"Promoção de Sexta","description":"Descreva aqui a oferta fixa do dia.","price":"R$ 00,00","orderUrl":"","direct":false,"enabled":true}
+  ],
+  "images": {
+    "heroMain": "assets/placeholders/hero-main.svg",
+    "heroSmall": "assets/placeholders/hero-small.svg",
+    "featureBanner": "assets/placeholders/banner.svg",
+    "aboutImage": "assets/placeholders/about.svg",
+    "showcase1": "assets/placeholders/showcase-1.svg",
+    "showcase2": "assets/placeholders/showcase-2.svg",
+    "showcase3": "assets/placeholders/showcase-3.svg",
+    "showcase4": "assets/placeholders/showcase-4.svg",
+    "showcase5": "assets/placeholders/showcase-5.svg",
+    "showcase6": "assets/placeholders/showcase-6.svg"
+  },
+  "showcase": [
+    {"slot":"showcase1","title":"PRODUTO 01","subtitle":"Coloque seu produto aqui"},
+    {"slot":"showcase2","title":"PRODUTO 02","subtitle":"Coloque seu produto aqui"},
+    {"slot":"showcase3","title":"PRODUTO 03","subtitle":"Coloque seu produto aqui"},
+    {"slot":"showcase4","title":"PRODUTO 04","subtitle":"Coloque seu produto aqui"},
+    {"slot":"showcase5","title":"PRODUTO 05","subtitle":"Coloque seu produto aqui"},
+    {"slot":"showcase6","title":"PRODUTO 06","subtitle":"Coloque seu produto aqui"}
+  ],
+  "gallery": [
+    {"id":"demo-1","src":"assets/placeholders/gallery-1.svg","title":"Sua foto 01"},
+    {"id":"demo-2","src":"assets/placeholders/gallery-2.svg","title":"Sua foto 02"},
+    {"id":"demo-3","src":"assets/placeholders/gallery-3.svg","title":"Sua foto 03"},
+    {"id":"demo-4","src":"assets/placeholders/gallery-4.svg","title":"Sua foto 04"},
+    {"id":"demo-5","src":"assets/placeholders/gallery-5.svg","title":"Sua foto 05"},
+    {"id":"demo-6","src":"assets/placeholders/gallery-6.svg","title":"Sua foto 06"}
+  ]
+}

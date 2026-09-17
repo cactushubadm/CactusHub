@@ -1,0 +1,47 @@
+<?php
+return [
+    'site_name' => 'SUA MARCA',
+    'site_tagline' => 'Seu evento. Sua experiência. Sua marca.',
+    'timezone' => 'America/Sao_Paulo',
+    'currency' => 'BRL',
+    'currency_symbol' => 'R$',
+    'contact_phone' => '',
+    'contact_whatsapp' => '',
+    'contact_instagram' => '@seuinstagram',
+    'instagram_url' => '',
+    'address' => 'COLOQUE SEU ENDEREÇO AQUI',
+    'maps_url' => '',
+    'database' => [
+        'driver' => 'sqlite',
+        'path' => getenv('CACTUS_DB_PATH') ?: (__DIR__ . '/storage/cactus-eventos.sqlite'),
+    ],
+    'orders' => [
+        'reservation_minutes' => 20,
+        'max_tickets_per_order' => 8,
+    ],
+    'public' => [
+        'base_url' => '',
+        'support_email' => '',
+        'privacy_email' => '',
+        'legal_name' => '',
+        'legal_document' => '',
+        'legal_address' => '',
+    ],
+    'smtp' => [
+        'transport' => getenv('MAIL_TRANSPORT') ?: 'phpmail',
+        'host' => getenv('SMTP_HOST') ?: '',
+        'port' => getenv('SMTP_PORT') ?: '465',
+        'encryption' => getenv('SMTP_ENCRYPTION') ?: 'ssl',
+        'username' => getenv('SMTP_USERNAME') ?: '',
+        'password' => getenv('SMTP_PASSWORD') ?: '',
+        'from_email' => getenv('SMTP_FROM_EMAIL') ?: '',
+        'from_name' => getenv('SMTP_FROM_NAME') ?: 'SUA MARCA',
+        'reply_to' => getenv('SMTP_REPLY_TO') ?: '',
+    ],
+    'payment' => [
+        'mode' => getenv('PAYMENT_MODE') ?: 'manual',
+        'mercadopago_access_token' => getenv('MP_ACCESS_TOKEN') ?: '',
+        'mercadopago_webhook_secret' => getenv('MP_WEBHOOK_SECRET') ?: '',
+        'base_url' => getenv('APP_BASE_URL') ?: '',
+    ],
+];

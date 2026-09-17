@@ -1,0 +1,15 @@
+THIRD-PARTY COMPONENTS
+
+1) QRCode for JavaScript core
+Copyright (c) 2009 Kazuhiko Arase
+URL: http://www.d-project.com/
+License: MIT
+The word "QR Code" is a registered trademark of DENSO WAVE INCORPORATED.
+
+The local file assets/vendor/cactus-qr.js contains a browser bundle derived from the QRCode core distributed with qrcode-terminal. The original license copy is included as assets/vendor/qrcode-terminal-LICENSE.txt.
+
+2) html5-qrcode
+Used only as an optional browser fallback loaded from CDN when the native BarcodeDetector API is unavailable.
+Project: https://github.com/mebjas/html5-qrcode
+License: Apache-2.0
+Version referenced: 2.3.8
