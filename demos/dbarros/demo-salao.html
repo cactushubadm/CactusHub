@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#181311">
+  <title>D'barros Pizzas | Pedido no Salão</title>
+  <meta name="description" content="Pedido no salão D'barros Pizzas">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+<script>window.DBARROS_BASE_PATH=".";window.DBARROS_BOOTSTRAP={"basePath":".","mesa":"07","catalog":[{"id":"obarros-especial","category":"salgadas","tag":"SALGADA","name":"D'barros Especial","desc":"Muçarela, carne seca desfiada, cubos dourados e toque da casa.","image":"assets/custom/pizza-especial.webp","sizes":[["P",39.9],["M",49.9],["G",59.9]],"active":true,"promoActive":false,"promoPct":0},{"id":"calabresa","category":"salgadas","tag":"SALGADA","name":"Calabresa Crocante","desc":"Calabresa, queijo, cebola e cobertura gratinada.","image":"assets/custom/pizza-calabresa.webp","sizes":[["P",36.9],["M",45.9],["G",54.9]],"active":true,"promoActive":true,"promoPct":10},{"id":"frango","category":"salgadas","tag":"SALGADA","name":"Frango Cremoso","desc":"Frango desfiado, creme especial e bastante queijo.","image":"assets/custom/pizza-frango.webp","sizes":[["P",38.9],["M",47.9],["G",57.9]],"active":true,"promoActive":false,"promoPct":0},{"id":"branca","category":"salgadas","tag":"SALGADA","name":"Branca Especial","desc":"Massa alta, queijo marcante e finalização com ervas.","image":"assets/custom/pizza-branca.webp","sizes":[["P",37.9],["M",46.9],["G",56.9]],"active":true,"promoActive":false,"promoPct":0},{"id":"doce-casa","category":"doces","tag":"DOCE","name":"Doce da Casa","desc":"Base doce com calda cremosa e acabamento marcante.","image":"assets/custom/pizza-doce-caramelo.webp","sizes":[["M",37.9],["G",44.9]],"active":true,"promoActive":false,"promoPct":0},{"id":"choco","category":"doces","tag":"DOCE","name":"Choco D'barros","desc":"Chocolate e doce de leite em uma pizza de sobremesa.","image":"assets/custom/pizza-doce-chocolate.webp","sizes":[["M",39.9],["G",47.9]],"active":true,"promoActive":false,"promoPct":0},{"id":"combo-casal","category":"combos","tag":"COMBO","name":"Combo Casal","desc":"1 pizza salgada + 1 pizza doce + refrigerante.","image":"assets/custom/banner.webp","fixedPrice":89.9,"active":true,"promoActive":true,"promoPct":8},{"id":"guarana","category":"bebidas","tag":"BEBIDA","name":"Guaraná 600ml","desc":"Bebida gelada para completar o pedido.","image":"assets/custom/about.webp","fixedPrice":7.9,"active":true,"promoActive":false,"promoPct":0}],"delivery":null,"isGestor":false,"demoMode":true};</script></head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#topo">
+      <span class="dbarros-wordmark" aria-label="D\'barros Pizzas"><b>D\'BARROS</b><small>PIZZAS</small></span>
+      <div>
+        <strong>D'barros Pizzas</strong>
+        <span><i></i> Aberto agora</span>
+      </div>
+    </a>
+
+    <div class="top-actions">
+      <div class="table-chip">
+        <small>MESA</small>
+        <strong id="tableNumber">--</strong>
+      </div>
+      <button class="cart-button" id="cartButton">Pedido <b id="cartBadge">0</b></button>
+    </div>
+  </header>
+
+  <main id="topo">
+    <section class="hero">
+      <video autoplay muted loop playsinline poster="assets/custom/hero-poster.webp">
+        <source src="./assets/custom/hero-video.mp4" type="video/mp4">
+      </video>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <span>PEDIDO NO SALÃO</span>
+        <h1>Escolha, personalize e envie seu pedido para a cozinha.</h1>
+        <p>Seu pedido fica identificado pela mesa e segue direto para a operação.</p>
+        <div class="hero-actions">
+          <a href="#cardapio" class="primary-btn">Começar pedido</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="menu-toolbar" id="cardapio">
+      <div class="search-box">
+        <span>⌕</span>
+        <input id="searchInput" type="search" placeholder="Buscar pizza, combo, bebida...">
+      </div>
+
+      <div class="categories" id="categories">
+        <button class="active" data-category="all">Todos</button>
+        <button data-category="salgadas">Salgadas</button>
+        <button data-category="doces">Doces</button>
+        <button data-category="combos">Combos</button>
+        <button data-category="bebidas">Bebidas</button>
+      </div>
+    </section>
+
+    <section class="content-grid">
+      <div>
+        <div class="section-title">
+          <div>
+            <small>CARDÁPIO</small>
+            <h2 id="menuTitle">Todos os itens</h2>
+          </div>
+          <span id="resultCount"></span>
+        </div>
+
+        <div class="products-grid" id="productsGrid"></div>
+      </div>
+
+      <aside class="cart-panel">
+        <div class="cart-head">
+          <div>
+            <small>SEU PEDIDO</small>
+            <h3>Resumo</h3><span class="cart-table-label">Mesa <b id="cartTableNumber">--</b></span>
+          </div>
+          <span id="cartCount">0</span>
+        </div>
+
+        <div class="cart-items" id="cartItems">
+          <div class="empty-cart">
+            <b>🍕</b>
+            <strong>Seu pedido está vazio</strong>
+            <p>Adicione um item para começar.</p>
+          </div>
+        </div>
+
+        <div class="cart-footer">
+          <div class="total-row">
+            <span>Total</span>
+            <strong id="cartTotal">R$ 0,00</strong>
+          </div>
+          <button class="primary-btn full" id="checkoutButton" disabled>Continuar pedido</button>
+        </div>
+      </aside>
+    </section>
+
+    <section class="qr-strip"><div><small>PEDIDO NO SALÃO</small><h2>Pedido identificado pela mesa e pronto para seguir para a cozinha.</h2><p>Na versão final, o pedido entra no painel e pode disparar a impressão automática da comanda.</p></div></section>
+  </main>
+
+  <div class="mobile-order-bar">
+    <div>
+      <span id="mobileItems">0 itens</span>
+      <strong id="mobileTotal">R$ 0,00</strong>
+    </div>
+    <button id="mobileCartButton">Ver pedido</button>
+  </div>
+
+  <div class="modal" id="productModal" hidden>
+    <div class="modal-overlay" data-close-product></div>
+    <div class="modal-card product-modal-card">
+      <button class="modal-close" data-close-product>×</button>
+      <img id="modalImage" alt="">
+      <div class="modal-body">
+        <small id="modalTag"></small>
+        <h2 id="modalName"></h2>
+        <p id="modalDescription"></p>
+
+        <div class="option-section" id="sizeSection">
+          <div class="option-title">
+            <strong>Tamanho</strong>
+            <span>Escolha 1</span>
+          </div>
+          <div id="sizeOptions" class="option-list"></div>
+        </div>
+
+        <div class="option-section">
+          <div class="option-title">
+            <strong>Borda</strong>
+            <span>Opcional</span>
+          </div>
+          <div class="option-list">
+            <label><input type="radio" name="border" value="Sem borda" data-extra="0" checked><span>Sem borda</span><b>+ R$ 0</b></label>
+            <label><input type="radio" name="border" value="Catupiry" data-extra="8"><span>Catupiry</span><b>+ R$ 8</b></label>
+            <label><input type="radio" name="border" value="Cheddar" data-extra="8"><span>Cheddar</span><b>+ R$ 8</b></label>
+          </div>
+        </div>
+
+        <label class="note-field">
+          <span>Observação</span>
+          <textarea id="itemNote" placeholder="Ex.: sem cebola, assar mais..."></textarea>
+        </label>
+
+        <div class="modal-action-row">
+          <div class="qty-control">
+            <button id="qtyMinus">−</button>
+            <strong id="qtyValue">1</strong>
+            <button id="qtyPlus">+</button>
+          </div>
+          <button class="primary-btn full" id="addItemButton">Adicionar <span id="configuredPrice">R$ 0,00</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="cartModal" hidden>
+    <div class="modal-overlay" data-close-cart></div>
+    <div class="modal-card compact-modal">
+      <button class="modal-close" data-close-cart>×</button>
+      <div class="modal-body">
+        <small>SEU PEDIDO</small>
+        <h2>Revise os itens</h2>
+        <div class="cart-items cart-items-mobile" id="cartModalItems"></div>
+        <div class="total-row modal-total">
+          <span>Total</span>
+          <strong id="cartModalTotal">R$ 0,00</strong>
+        </div>
+        <button class="primary-btn full" id="finishDemoButton">Enviar pedido para cozinha</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="./config.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>

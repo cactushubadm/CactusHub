@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#171210">
+  <title>D'barros | Demonstração para Investidores</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{--dark:#171210;--dark2:#211914;--paper:#fff;--bg:#f4f0eb;--accent:#d96d22;--muted:#786e67;--line:#e8dfd8}
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0}
+    body{font-family:Inter,sans-serif;background:var(--dark);color:#fff;overflow:hidden}
+    button,a{font:inherit}
+    .app{height:100dvh;display:grid;grid-template-rows:auto 1fr}
+    .top{
+      position:relative;z-index:20;padding:max(10px,env(safe-area-inset-top)) 10px 10px;
+      background:rgba(23,18,16,.98);border-bottom:1px solid rgba(255,255,255,.08);
+      box-shadow:0 10px 30px rgba(0,0,0,.22)
+    }
+    .topline{display:flex;align-items:center;justify-content:space-between;gap:10px}
+    .brand{display:flex;align-items:center;gap:9px;min-width:0}
+    .mark{width:35px;height:35px;display:grid;place-items:center;border-radius:10px;background:var(--accent);font-family:"Barlow Condensed";font-weight:800;font-size:18px}
+    .brand div{display:flex;flex-direction:column;min-width:0}
+    .brand strong{font-family:"Barlow Condensed";font-size:20px;line-height:.95;white-space:nowrap}
+    .brand span{font-size:8px;color:#b9aea7;margin-top:4px;letter-spacing:.9px}
+    .share{border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.07);color:#fff;border-radius:10px;padding:9px 11px;font-size:9px;font-weight:800}
+    .tabs{display:flex;gap:7px;margin-top:10px;overflow-x:auto;scrollbar-width:none}
+    .tabs::-webkit-scrollbar{display:none}
+    .tab{flex:0 0 auto;border:1px solid rgba(255,255,255,.1);background:#231b17;color:#bfb3ab;border-radius:11px;padding:10px 12px;font-size:9px;font-weight:900}
+    .tab.active{background:#fff;color:var(--dark);border-color:#fff}
+    .stage{position:relative;background:#e9e4df;overflow:hidden}
+    iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:#fff}
+    .intro{
+      position:absolute;inset:0;z-index:10;display:flex;flex-direction:column;justify-content:space-between;
+      padding:24px 18px max(24px,env(safe-area-inset-bottom));overflow:auto;
+      background:
+        linear-gradient(180deg,rgba(16,12,10,.18),rgba(16,12,10,.88)),
+        url('__BASE__/assets/custom/hero-poster.webp') center/cover
+    }
+    .intro.hidden{display:none}
+    .intro-copy{margin-top:auto}
+    .eyebrow{font-size:9px;font-weight:900;letter-spacing:1.4px;color:#ffc9a4}
+    .intro h1{font-family:"Barlow Condensed";font-size:46px;line-height:.92;margin:9px 0 11px;max-width:500px}
+    .intro p{font-size:12px;line-height:1.65;color:#e3d9d2;margin:0;max-width:530px}
+    .choices{display:grid;gap:8px;margin-top:20px}
+    .choice{
+      width:100%;display:grid;grid-template-columns:42px 1fr auto;gap:11px;align-items:center;
+      padding:11px;border:1px solid rgba(255,255,255,.13);border-radius:15px;background:rgba(28,21,18,.84);
+      backdrop-filter:blur(8px);color:#fff;text-align:left
+    }
+    .choice b:first-child{display:grid;place-items:center;width:42px;height:42px;border-radius:12px;background:rgba(255,255,255,.08);font-size:16px}
+    .choice strong{display:block;font-size:11px}.choice small{display:block;color:#bdb0a8;font-size:8px;margin-top:3px;line-height:1.4}
+    .choice>span{color:#ef9b61}
+    .demo-badge{
+      position:absolute;right:10px;bottom:max(10px,env(safe-area-inset-bottom));z-index:8;
+      padding:7px 9px;border-radius:999px;background:rgba(23,18,16,.82);backdrop-filter:blur(8px);
+      color:#fff;font-size:7px;font-weight:900;letter-spacing:1px;pointer-events:none
+    }
+    .toast{
+      position:absolute;z-index:50;left:50%;bottom:max(18px,env(safe-area-inset-bottom));transform:translateX(-50%);
+      background:#fff;color:#171210;border-radius:11px;padding:10px 13px;font-size:9px;font-weight:800;box-shadow:0 15px 40px rgba(0,0,0,.25)
+    }
+    @media(min-width:800px){
+      body{background:#0f0c0a}
+      .app{width:430px;height:min(900px,calc(100dvh - 30px));margin:15px auto;border-radius:30px;overflow:hidden;border:8px solid #2e2926;box-shadow:0 35px 100px rgba(0,0,0,.5)}
+    }
+  </style>
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <div class="topline">
+      <div class="brand">
+        <div class="mark">D</div>
+        <div><strong>D'BARROS</strong><span>DEMO PARA INVESTIDORES</span></div>
+      </div>
+      <button class="share" id="shareButton">Compartilhar</button>
+    </div>
+
+    <nav class="tabs" aria-label="Áreas da demonstração">
+      <button class="tab active" data-view="intro">Visão geral</button>
+      <button class="tab" data-view="delivery">Cliente / Delivery</button>
+      <button class="tab" data-view="salao">Pedido no salão</button>
+      <button class="tab" data-view="gestor">Gestor</button>
+    </nav>
+  </header>
+
+  <main class="stage">
+    <section class="intro" id="intro">
+      <div class="intro-copy">
+        <span class="eyebrow">UMA OPERAÇÃO, QUATRO EXPERIÊNCIAS</span>
+        <h1>Mostre a plataforma inteira pelo celular.</h1>
+        <p>Use este modo de apresentação para navegar entre a experiência do cliente, pedido por QR Code no salão e painel de gestão sem precisar explicar a estrutura técnica.</p>
+
+        <div class="choices">
+          <button class="choice" data-open="delivery">
+            <b>🛵</b><div><strong>Cliente / Delivery</strong><small>Vitrine de produtos e CTA para o Anota AI.</small></div><span>→</span>
+          </button>
+          <button class="choice" data-open="salao">
+            <b>🍕</b><div><strong>Pedido no salão</strong><small>Cardápio da Mesa 07, carrinho e envio para cozinha.</small></div><span>→</span>
+          </button>
+          <button class="choice" data-open="gestor">
+            <b>📊</b><div><strong>Painel do gestor</strong><small>Mesas, caixa, termômetro, cardápio e impressão de comandas.</small></div><span>→</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <iframe id="frame" title="Demonstração D'barros" hidden></iframe>
+    <div class="demo-badge" id="demoBadge" hidden>MODO INVESTIDOR</div>
+    <div class="toast" id="toast" hidden>Link copiado</div>
+  </main>
+</div>
+
+<script>
+const BASE = '__BASE__';
+const frame = document.getElementById('frame');
+const intro = document.getElementById('intro');
+const badge = document.getElementById('demoBadge');
+const tabs = [...document.querySelectorAll('.tab')];
+
+const routes = {
+  delivery: BASE + '/',
+  salao: BASE + '/mesa/07?demo=1',
+  gestor: BASE + '/demo/gestor'
+};
+
+function select(view){
+  tabs.forEach(t=>t.classList.toggle('active', t.dataset.view===view));
+  if(view==='intro'){
+    intro.classList.remove('hidden');
+    frame.hidden=true;
+    badge.hidden=true;
+    frame.removeAttribute('src');
+    return;
+  }
+  intro.classList.add('hidden');
+  frame.hidden=false;
+  badge.hidden=false;
+  frame.src=routes[view];
+}
+
+tabs.forEach(t=>t.addEventListener('click',()=>select(t.dataset.view)));
+document.querySelectorAll('[data-open]').forEach(b=>b.addEventListener('click',()=>select(b.dataset.open)));
+
+document.getElementById('shareButton').addEventListener('click',async()=>{
+  const url=location.href;
+  try{
+    if(navigator.share){
+      await navigator.share({title:"D'barros - Demonstração",text:"Demonstração da plataforma D'barros",url});
+    }else{
+      await navigator.clipboard.writeText(url);
+      const toast=document.getElementById('toast');
+      toast.hidden=false;setTimeout(()=>toast.hidden=true,1800);
+    }
+  }catch(e){}
+});
+</script>
+</body>
+</html>

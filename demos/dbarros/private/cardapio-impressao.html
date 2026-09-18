@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>D'barros Pizzas | Cardápio para impressão</title>
+  <style>
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Arial,sans-serif;color:#181311;background:#f2eee8}
+    .page{width:min(900px,calc(100% - 28px));margin:24px auto;background:white;padding:34px;border-radius:22px}
+    .head{display:flex;align-items:center;justify-content:space-between;gap:20px;border-bottom:2px solid #181311;padding-bottom:18px}
+    .head img{width:130px}
+    h1{margin:0;font-size:40px}.sub{color:#6e655e;margin:5px 0 0}
+    .qr{display:flex;align-items:center;gap:14px}.qr img{width:135px;height:135px;border:1px solid #ddd;padding:6px}.qr strong{display:block;font-size:18px}.qr span{display:block;color:#777;font-size:12px;max-width:190px;margin-top:5px}
+    .section{margin-top:26px}.section h2{font-size:23px;border-bottom:1px solid #ddd;padding-bottom:7px;margin:0 0 12px}
+    .item{display:grid;grid-template-columns:1fr auto;gap:18px;padding:8px 0;border-bottom:1px dashed #ddd}
+    .item strong{display:block}.item small{color:#777}.price{font-weight:bold;white-space:nowrap}
+    .foot{margin-top:26px;padding:16px;background:#181311;color:#fff;border-radius:14px;text-align:center}
+    .demo-note{font-size:10px;color:#a04d1a;text-align:center;margin-top:10px}
+    @media print{
+      body{background:white}.page{width:100%;margin:0;padding:12mm;border-radius:0}.demo-note{display:none}
+    }
+  
+    .dbarros-wordmark{display:inline-flex;flex-direction:column;align-items:center;line-height:.8}
+    .dbarros-wordmark b{font-size:30px;font-weight:900}
+    .dbarros-wordmark small{font-size:12px;letter-spacing:5px;margin-top:7px}
+  </style>
+</head>
+<body>
+  <main class="page">
+    <div class="head">
+      <div>
+        <span class="dbarros-wordmark" aria-label="D\'barros Pizzas"><b>D\'BARROS</b><small>PIZZAS</small></span>
+        <h1>Cardápio</h1>
+        <p class="sub">Pizza boa. Pedido simples.</p>
+      </div>
+
+      <div class="qr">
+        <img src="assets/custom/qr-cardapio-demo.png" alt="QR Code do cardápio digital">
+        <div>
+          <strong>Aponte a câmera</strong>
+          <span>Abra o cardápio digital e siga para o pedido online.</span>
+        </div>
+      </div>
+    </div>
+
+    <section class="section">
+      <h2>Pizzas salgadas</h2>
+      <div class="item"><div><strong>D'barros Especial</strong><small>Muçarela, carne seca, cubos dourados e toque da casa.</small></div><div class="price">a partir de R$ 39,90</div></div>
+      <div class="item"><div><strong>Calabresa Crocante</strong><small>Calabresa, queijo, cebola e cobertura gratinada.</small></div><div class="price">a partir de R$ 36,90</div></div>
+      <div class="item"><div><strong>Frango Cremoso</strong><small>Frango desfiado, creme especial e bastante queijo.</small></div><div class="price">a partir de R$ 38,90</div></div>
+      <div class="item"><div><strong>Branca Especial</strong><small>Queijo marcante e finalização com ervas.</small></div><div class="price">a partir de R$ 37,90</div></div>
+    </section>
+
+    <section class="section">
+      <h2>Pizzas doces</h2>
+      <div class="item"><div><strong>Doce da Casa</strong><small>Calda cremosa e acabamento marcante.</small></div><div class="price">a partir de R$ 37,90</div></div>
+      <div class="item"><div><strong>Choco D'barros</strong><small>Chocolate e doce de leite.</small></div><div class="price">a partir de R$ 39,90</div></div>
+    </section>
+
+    <section class="section">
+      <h2>Combos e bebidas</h2>
+      <div class="item"><div><strong>Combo Casal</strong><small>Pizza salgada + pizza doce + refrigerante.</small></div><div class="price">R$ 89,90</div></div>
+      <div class="item"><div><strong>Guaraná 600ml</strong></div><div class="price">R$ 7,90</div></div>
+    </section>
+
+    <div class="foot">
+      Escaneie o QR Code para abrir o cardápio digital e fazer seu pedido.
+    </div>
+    <p class="demo-note">QR CODE DEMO — atualizar o endereço público antes de imprimir a versão final.</p>
+  </main>
+</body>
+</html>

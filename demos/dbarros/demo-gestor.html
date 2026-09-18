@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#15110f">
+  <title>D'barros Pizzas | Painel do Gestor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./gestor.css">
+<script>window.DBARROS_BASE_PATH=".";window.DBARROS_BOOTSTRAP={"basePath":".","mesa":null,"catalog":[{"id":"obarros-especial","category":"salgadas","tag":"SALGADA","name":"D'barros Especial","desc":"Muçarela, carne seca desfiada, cubos dourados e toque da casa.","image":"assets/custom/pizza-especial.webp","sizes":[["P",39.9],["M",49.9],["G",59.9]],"active":true,"promoActive":false,"promoPct":0},{"id":"calabresa","category":"salgadas","tag":"SALGADA","name":"Calabresa Crocante","desc":"Calabresa, queijo, cebola e cobertura gratinada.","image":"assets/custom/pizza-calabresa.webp","sizes":[["P",36.9],["M",45.9],["G",54.9]],"active":true,"promoActive":true,"promoPct":10},{"id":"frango","category":"salgadas","tag":"SALGADA","name":"Frango Cremoso","desc":"Frango desfiado, creme especial e bastante queijo.","image":"assets/custom/pizza-frango.webp","sizes":[["P",38.9],["M",47.9],["G",57.9]],"active":true,"promoActive":false,"promoPct":0},{"id":"branca","category":"salgadas","tag":"SALGADA","name":"Branca Especial","desc":"Massa alta, queijo marcante e finalização com ervas.","image":"assets/custom/pizza-branca.webp","sizes":[["P",37.9],["M",46.9],["G",56.9]],"active":true,"promoActive":false,"promoPct":0},{"id":"doce-casa","category":"doces","tag":"DOCE","name":"Doce da Casa","desc":"Base doce com calda cremosa e acabamento marcante.","image":"assets/custom/pizza-doce-caramelo.webp","sizes":[["M",37.9],["G",44.9]],"active":true,"promoActive":false,"promoPct":0},{"id":"choco","category":"doces","tag":"DOCE","name":"Choco D'barros","desc":"Chocolate e doce de leite em uma pizza de sobremesa.","image":"assets/custom/pizza-doce-chocolate.webp","sizes":[["M",39.9],["G",47.9]],"active":true,"promoActive":false,"promoPct":0},{"id":"combo-casal","category":"combos","tag":"COMBO","name":"Combo Casal","desc":"1 pizza salgada + 1 pizza doce + refrigerante.","image":"assets/custom/banner.webp","fixedPrice":89.9,"active":true,"promoActive":true,"promoPct":8},{"id":"guarana","category":"bebidas","tag":"BEBIDA","name":"Guaraná 600ml","desc":"Bebida gelada para completar o pedido.","image":"assets/custom/about.webp","fixedPrice":7.9,"active":true,"promoActive":false,"promoPct":0}],"delivery":{"anotaUrl":"","featuredProductId":"obarros-especial","showcaseIds":["obarros-especial","calabresa","frango","doce-casa"],"showcaseCount":4,"promoDayActive":true,"promoDayProductId":"calabresa","promoDayTitle":"Promoção do dia","promoDayText":"Pizza selecionada com preço especial hoje.","promoDayPrice":"R$ 49,90"},"isGestor":true,"demoMode":true};</script></head>
+<body>
+  <aside class="sidebar">
+    <a class="brand" href="demo-gestor.html">
+      <span class="dbarros-wordmark" aria-label="D\'barros Pizzas"><b>D\'BARROS</b><small>PIZZAS</small></span>
+      <div><strong>D'barros</strong><span>Gestão</span></div>
+    </a>
+
+    <nav>
+      <a class="active" href="#visao-geral"><span>◫</span> Visão geral</a>
+      <a href="#mesas"><span>▦</span> Mesas</a>
+      <a href="#cardapio-admin"><span>☰</span> Cardápio</a>
+      <a href="#site-delivery"><span>↗</span> Site delivery</a>
+      <a href="#caixa"><span>R$</span> Caixa do dia</a>
+      <a href="#impressao"><span>▤</span> Comandas</a>
+    </nav>
+
+    <a class="logout-link" href="./gestor/logout">Sair do painel</a><div class="sidebar-status">
+      <i></i>
+      <div><strong>Operação online</strong><span>Impressora conectada</span></div>
+    </div>
+  </aside>
+
+  <main>
+    <header class="topbar">
+      <div>
+        <small>QUINTA-FEIRA · TURNO DA NOITE</small>
+        <h1>Painel do Gestor</h1>
+      </div>
+      <div class="top-actions">
+        <button id="simulateOrder" class="btn secondary">+ Simular novo pedido</button>
+        <button id="closeCashButton" class="btn primary" disabled>Fechar dia</button>
+      </div>
+    </header>
+
+    <section class="content" id="visao-geral">
+      <div class="summary-grid">
+        <article class="summary-card featured">
+          <small>VENDAS DO DIA</small>
+          <strong id="salesToday">R$ 3.842,70</strong>
+          <span>Meta diária: R$ 5.000,00</span>
+          <div class="progress"><i style="width:77%"></i></div>
+          <b>77% da meta</b>
+        </article>
+
+        <article class="summary-card">
+          <small>MESAS EM CONSUMO</small>
+          <strong><span id="occupiedTables">7</span>/10</strong>
+          <span id="openTablesNote">Feche todas as mesas para encerrar o dia</span>
+        </article>
+
+        <article class="summary-card">
+          <small>TICKET MÉDIO</small>
+          <strong>R$ 64,04</strong>
+          <span>60 pedidos no dia</span>
+        </article>
+
+        <article class="summary-card">
+          <small>TEMPO MÉDIO</small>
+          <strong>19 min</strong>
+          <span>Da entrada até a produção</span>
+        </article>
+      </div>
+
+      <div class="overview-grid">
+        <section class="panel thermometer">
+          <div class="panel-head">
+            <div><small>TERMÔMETRO DO RESTAURANTE</small><h2>Movimento agora</h2></div>
+            <span class="live-dot">AO VIVO</span>
+          </div>
+
+          <div class="thermo-body">
+            <div class="thermo-gauge">
+              <div class="gauge-ring" style="--value:74">
+                <div>
+                  <strong>74</strong>
+                  <span>/100</span>
+                </div>
+              </div>
+              <div class="thermo-label">
+                <b>QUENTE</b>
+                <span>Movimento alto, operação estável.</span>
+              </div>
+            </div>
+
+            <div class="thermo-metrics">
+              <div><span>Ocupação</span><strong>70%</strong><i><b style="width:70%"></b></i></div>
+              <div><span>Meta de vendas</span><strong>77%</strong><i><b style="width:77%"></b></i></div>
+              <div><span>Carga da cozinha</span><strong>68%</strong><i><b style="width:68%"></b></i></div>
+              <div><span>Pedidos no prazo</span><strong>91%</strong><i><b style="width:91%"></b></i></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel printer-panel" id="impressao">
+          <div class="panel-head">
+            <div><small>IMPRESSORA DE COMANDAS</small><h2>Fila de impressão</h2></div>
+            <span class="printer-state"><i></i> COZINHA-01</span>
+          </div>
+
+          <div class="printer-demo">
+            <div class="printer-icon" id="printerIcon">
+              <div class="printer-slot"></div>
+              <div class="printer-paper" id="printerPaper">
+                <b>D'BARROS</b>
+                <span>COMANDA</span>
+                <strong>#2417 · MESA 07</strong>
+              </div>
+            </div>
+            <div class="print-status">
+              <small>ÚLTIMA IMPRESSÃO</small>
+              <strong id="lastPrint">Pedido #2417 · Mesa 07</strong>
+              <span id="lastPrintStatus">✓ Impresso às 19:18</span>
+              <a href="comanda-exemplo-80mm.pdf" target="_blank">Ver comanda em PDF →</a>
+            </div>
+          </div>
+
+          <div class="print-queue" id="printQueue">
+            <div class="queue-row printed">
+              <span>#2417</span><b>Mesa 07</b><small>Impresso</small>
+            </div>
+            <div class="queue-row printed">
+              <span>#2416</span><b>Mesa 03</b><small>Impresso</small>
+            </div>
+            <div class="queue-row printed">
+              <span>#2415</span><b>Mesa 05</b><small>Impresso</small>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <section class="panel tables-panel" id="mesas">
+        <div class="panel-head tables-head">
+          <div><small>SALÃO</small><h2>Mapa das mesas</h2></div>
+          <div class="tables-actions">
+            <div class="legend">
+              <span><i class="free"></i>Livre</span>
+              <span><i class="busy"></i>Em consumo</span>
+              <span><i class="bill"></i>Fechar mesa</span>
+            </div>
+            <a class="btn secondary qr-manager-button" href="qrs-mesas.html" target="_blank">QR Codes das mesas</a>
+          </div>
+        </div>
+
+        <div class="tables-grid" id="tablesGrid"></div>
+      </section>
+
+
+      <section class="menu-admin-section" id="cardapio-admin">
+        <div class="panel catalog-panel">
+          <div class="panel-head menu-admin-head">
+            <div><small>GESTÃO DO CARDÁPIO DO SALÃO</small><h2>Sabores, preços e promoções</h2></div>
+            <div class="menu-admin-actions">
+              <a class="btn secondary" href="demo-salao.html" target="_blank">Ver cardápio</a>
+              <button class="btn secondary" id="newProductButton">+ Novo item</button>
+            </div>
+          </div>
+          <div class="catalog-toolbar">
+            <div class="catalog-search"><span>⌕</span><input id="catalogSearch" type="search" placeholder="Buscar sabor..."></div>
+            <select id="catalogCategoryFilter">
+              <option value="all">Todas as categorias</option><option value="salgadas">Salgadas</option><option value="doces">Doces</option><option value="combos">Combos</option><option value="bebidas">Bebidas</option>
+            </select>
+          </div>
+          <div class="catalog-list" id="catalogList"></div>
+        </div>
+
+        <aside class="panel product-editor" id="productEditor">
+          <div class="panel-head"><div><small>CADASTRO</small><h2 id="editorTitle">Novo item</h2></div><button class="editor-reset" id="cancelEditButton" type="button">Limpar</button></div>
+          <form id="productForm">
+            <input type="hidden" id="productId">
+            <label><span>Nome</span><input id="productName" required placeholder="Ex.: Portuguesa Especial"></label>
+            <div class="form-grid-2">
+              <label><span>Categoria</span><select id="productCategory"><option value="salgadas">Pizza salgada</option><option value="doces">Pizza doce</option><option value="combos">Combo</option><option value="bebidas">Bebida</option></select></label>
+              <label><span>Status</span><select id="productActive"><option value="true">Disponível</option><option value="false">Indisponível</option></select></label>
+            </div>
+            <label><span>Descrição</span><textarea id="productDesc" rows="3" placeholder="Ingredientes e descrição curta"></textarea></label>
+            <div class="price-editor">
+              <div class="field-title"><strong>Preços</strong><span>P/M/G para pizzas ou preço único.</span></div>
+              <div class="form-grid-4">
+                <label><span>P</span><input id="priceP" inputmode="decimal" placeholder="39,90"></label>
+                <label><span>M</span><input id="priceM" inputmode="decimal" placeholder="49,90"></label>
+                <label><span>G</span><input id="priceG" inputmode="decimal" placeholder="59,90"></label>
+                <label><span>Único</span><input id="fixedPrice" inputmode="decimal" placeholder="7,90"></label>
+              </div>
+            </div>
+            <div class="promo-box">
+              <label class="promo-check"><input id="promoActive" type="checkbox"><span><strong>Promoção no salão</strong><small>O desconto aparece no cardápio da mesa.</small></span></label>
+              <label><span>Desconto (%)</span><input id="promoPct" type="number" min="0" max="90" placeholder="10"></label>
+            </div>
+            <label><span>Imagem</span><select id="productImage">
+              <option value="assets/custom/pizza-especial.webp">Pizza Especial</option><option value="assets/custom/pizza-calabresa.webp">Calabresa</option><option value="assets/custom/pizza-frango.webp">Frango</option><option value="assets/custom/pizza-branca.webp">Pizza Branca</option><option value="assets/custom/pizza-doce-caramelo.webp">Doce Caramelo</option><option value="assets/custom/pizza-doce-chocolate.webp">Doce Chocolate</option><option value="assets/custom/banner.webp">Combo</option><option value="assets/custom/about.webp">Bebida / genérica</option>
+            </select></label>
+            <button class="btn primary full" type="submit">Salvar no cardápio</button>
+            <button class="btn danger-outline full" id="deleteProductButton" type="button" hidden>Excluir item</button>
+          </form>
+          <div class="sync-note"><i></i><div><strong>Sincronizado com o salão</strong><span>Nesta demo, o cadastro é salvo no navegador e aparece automaticamente no cardápio das mesas.</span></div></div>
+        </aside>
+      </section>
+
+      <section class="delivery-admin-section" id="site-delivery">
+        <div class="panel delivery-site-form">
+          <div class="panel-head"><div><small>SITE DE DELIVERY</small><h2>Conteúdo e link do Anota AI</h2></div><a class="btn secondary" href="demo-site.html" target="_blank">Abrir site</a></div>
+          <form id="deliverySiteForm">
+            <label><span>Link da loja no Anota AI</span><input id="anotaUrl" type="url" placeholder="https://pedido.anota.ai/..."></label>
+            <div class="form-grid-2">
+              <label><span>Pizza em destaque</span><select id="featuredProduct"></select></label>
+              <label><span>Quantidade de sabores na vitrine</span><select id="showcaseCount"><option value="4">4 produtos</option><option value="6">6 produtos</option><option value="8">8 produtos</option></select></label>
+            </div>
+            <div class="site-products-picker"><strong>Sabores exibidos no site</strong><span>Marque quais itens devem aparecer na vitrine do delivery.</span><div id="deliveryProductsPicker"></div></div>
+            <div class="promo-day-editor">
+              <label class="promo-check"><input id="promoDayActive" type="checkbox"><span><strong>Promoção do dia</strong><small>Exibe um quadrado por cima da pizza em destaque.</small></span></label>
+              <div class="form-grid-2">
+                <label><span>Produto da promoção</span><select id="promoDayProduct"></select></label>
+                <label><span>Preço / chamada</span><input id="promoDayPrice" placeholder="Ex.: R$ 49,90"></label>
+              </div>
+              <label><span>Título da promoção</span><input id="promoDayTitle" placeholder="Ex.: Quinta da D'barros"></label>
+              <label><span>Texto curto</span><input id="promoDayText" placeholder="Ex.: Pizza G selecionada com preço especial hoje."></label>
+            </div>
+            <button class="btn primary full" type="submit">Salvar alterações do site</button>
+          </form>
+        </div>
+        <aside class="panel delivery-preview-panel">
+          <div class="panel-head"><div><small>PRÉVIA</small><h2>Pizza em destaque</h2></div></div>
+          <div class="delivery-mini-preview">
+            <div class="mini-featured"><img id="previewFeaturedImage" src="./assets/custom/pizza-especial.webp" alt=""><div class="mini-promo" id="previewPromo"><small>PROMOÇÃO DO DIA</small><strong id="previewPromoTitle">Oferta de hoje</strong><span id="previewPromoPrice">R$ 49,90</span></div></div>
+            <div class="mini-featured-copy"><small>DESTAQUE DA CASA</small><strong id="previewFeaturedName">D'barros Especial</strong><span id="previewFeaturedDesc">Carne seca, queijo e toque especial da casa.</span></div>
+          </div>
+        </aside>
+      </section>
+
+      <section class="cash-section" id="caixa">
+        <div class="cash-main panel">
+          <div class="panel-head">
+            <div><small>CONTROLE DE CAIXA</small><h2>Caixa do dia</h2></div>
+            <span class="cash-open">CAIXA ABERTO · 17:00</span>
+          </div>
+
+          <div class="cash-summary">
+            <div><small>ABERTURA</small><strong>R$ 300,00</strong></div>
+            <div><small>DINHEIRO</small><strong id="cashMoney">R$ 985,70</strong></div>
+            <div><small>PIX</small><strong id="cashPix">R$ 1.516,00</strong></div>
+            <div><small>CARTÃO</small><strong id="cashCard">R$ 1.341,00</strong></div>
+            <div><small>MESAS ABERTAS</small><strong id="openTablesValue">R$ 0,00</strong></div>
+            <div class="cash-total"><small>TOTAL RECEBIDO</small><strong id="cashReceived">R$ 3.842,70</strong></div>
+          </div>
+          <div class="day-close-rule" id="dayCloseRule"><span>!</span><div><strong>O dia só pode ser encerrado com todas as mesas fechadas.</strong><small id="dayCloseRuleText">Ainda existem mesas em consumo.</small></div></div>
+
+          <div class="sales-chart">
+            <div class="chart-head"><span>Vendas por hora</span><b>17h - 23h</b></div>
+            <div class="bars">
+              <div><i style="height:30%"></i><span>17h</span><b>310</b></div>
+              <div><i style="height:48%"></i><span>18h</span><b>480</b></div>
+              <div><i style="height:72%"></i><span>19h</span><b>720</b></div>
+              <div><i style="height:100%"></i><span>20h</span><b>998</b></div>
+              <div><i style="height:82%"></i><span>21h</span><b>820</b></div>
+              <div><i style="height:51%"></i><span>22h</span><b>514</b></div>
+              <div><i style="height:8%"></i><span>23h</span><b>-</b></div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="panel transactions">
+          <div class="panel-head">
+            <div><small>MOVIMENTAÇÕES</small><h2>Últimos lançamentos</h2></div>
+          </div>
+
+          <div class="transaction-list">
+            <div><i class="pix">P</i><span><strong>Mesa 02</strong><small>PIX · 19:14</small></span><b>R$ 118,50</b></div>
+            <div><i class="card">C</i><span><strong>Mesa 09</strong><small>Cartão · 19:02</small></span><b>R$ 84,90</b></div>
+            <div><i class="cash">D</i><span><strong>Mesa 04</strong><small>Dinheiro · 18:51</small></span><b>R$ 96,00</b></div>
+            
+            <div><i class="pix">P</i><span><strong>Pedido balcão</strong><small>PIX · 18:22</small></span><b>R$ 72,90</b></div>
+          </div>
+        </aside>
+      </section>
+    </section>
+  </main>
+
+  <div class="modal" id="tableModal" hidden>
+    <div class="modal-overlay" data-close-modal></div>
+    <div class="modal-card">
+      <button class="modal-close" data-close-modal>×</button>
+      <small>MESA <span id="modalTableNumber"></span></small>
+      <h2 id="modalTableTitle">Consumo da mesa</h2>
+      <div class="table-order-list" id="modalOrderList"></div>
+      <div class="modal-total"><span>Total da mesa</span><strong id="modalTableTotal"></strong></div>
+
+      <div class="payment-methods">
+        <span>Forma de pagamento</span>
+        <div>
+          <button class="payment active" data-payment="PIX">PIX</button>
+          <button class="payment" data-payment="Cartão">Cartão</button>
+          <button class="payment" data-payment="Dinheiro">Dinheiro</button>
+        </div>
+      </div>
+
+      <button id="finishTableButton" class="btn primary full">Fechar mesa</button>
+    </div>
+  </div>
+
+  <div class="modal" id="cashModal" hidden>
+    <div class="modal-overlay" data-close-cash></div>
+    <div class="modal-card compact">
+      <button class="modal-close" data-close-cash>×</button><small>FECHAMENTO DO DIA</small><h2>Encerrar operação</h2>
+      <div class="closing-lines"><div><span>Dinheiro</span><b id="closeMoney">R$ 0,00</b></div><div><span>PIX</span><b id="closePix">R$ 0,00</b></div><div><span>Cartão</span><b id="closeCard">R$ 0,00</b></div><div class="highlight"><span>Total recebido</span><b id="closeTotal">R$ 0,00</b></div></div>
+      <p class="close-warning">Ao confirmar, o caixa e o movimento do dia serão encerrados.</p>
+      <button class="btn primary full" id="confirmCloseDay">Confirmar fechamento do dia</button>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" hidden></div>
+
+  <script src="./gestor.js"></script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+{
+  "anotaUrl": "",
+  "featuredProductId": "obarros-especial",
+  "showcaseIds": [
+    "obarros-especial",
+    "calabresa",
+    "frango",
+    "doce-casa"
+  ],
+  "showcaseCount": 4,
+  "promoDayActive": true,
+  "promoDayProductId": "calabresa",
+  "promoDayTitle": "Promoção do dia",
+  "promoDayText": "Pizza selecionada com preço especial hoje.",
+  "promoDayPrice": "R$ 49,90"
+}

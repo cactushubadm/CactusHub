@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#171210">
+<title>D'barros | Demonstração Completa</title>
+<style>
+:root{--dark:#171210;--accent:#d96d22}
+*{box-sizing:border-box}html,body{height:100%;margin:0}body{background:#171210;color:#fff;font-family:Arial,sans-serif;overflow:hidden}
+.app{height:100dvh;display:grid;grid-template-rows:auto 1fr}.top{padding:max(8px,env(safe-area-inset-top)) 10px 8px;background:#171210;border-bottom:1px solid rgba(255,255,255,.08);z-index:5}
+.line{display:flex;justify-content:space-between;align-items:center;gap:10px}.brand{font-size:17px;font-weight:900;letter-spacing:.02em}.brand span{color:#f08b46}.badge{font-size:7px;color:#a99e97;letter-spacing:.08em}
+.tabs{display:flex;gap:6px;overflow:auto;margin-top:7px;scrollbar-width:none}.tabs::-webkit-scrollbar{display:none}.tab{flex:0 0 auto;border:1px solid rgba(255,255,255,.09);background:#251d19;color:#c9bdb5;border-radius:9px;padding:8px 11px;font-size:8px;font-weight:800}.tab.active{background:#fff;color:#171210}
+.stage{position:relative;overflow:hidden;background:#eee}iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:#fff}.hint{position:absolute;right:8px;bottom:8px;z-index:3;padding:6px 8px;border-radius:999px;background:rgba(23,18,16,.82);font-size:7px}
+@media(min-width:900px){.app{width:min(1450px,calc(100% - 30px));height:calc(100dvh - 30px);margin:15px auto;border-radius:20px;overflow:hidden;border:1px solid rgba(255,255,255,.08);box-shadow:0 25px 80px rgba(0,0,0,.35)}}
+</style>
+</head>
+<body>
+<div class="app">
+<header class="top">
+<div class="line">
+      <div class="brand">D'<span>BARROS</span></div>
+      <div class="badge">DEMONSTRAÇÃO · CACTUS FOODSITE</div>
+    </div>
+<nav class="tabs">
+<button class="tab active" data-src="../demo-site.html">Cliente</button>
+<button class="tab" data-src="../demo-salao.html">Salão</button>
+<button class="tab" data-src="../demo-gestor.html">Gestor</button>
+</nav>
+</header>
+<main class="stage"><iframe id="frame" src="../demo-site.html" title="Demonstração D'barros"></iframe><div class="hint">Troque de painel pelas abas acima</div></main>
+</div>
+<script>
+const frame=document.getElementById('frame');
+document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+  b.classList.add('active');
+  frame.src=b.dataset.src;
+}));
+</script>
+</body>
+</html>

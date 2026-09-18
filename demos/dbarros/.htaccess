@@ -1,0 +1,29 @@
+Options -Indexes
+RewriteEngine On
+
+# Protect internal folders
+RewriteRule ^(?:views|data|private)(?:/|$) - [F,L]
+
+# Keep real public files/directories available
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Single-domain routes
+# Investor demonstration routes
+RewriteRule ^demo/?$ index.php?route=demo [QSA,L]
+RewriteRule ^demo/gestor/?$ index.php?route=demo_gestor [QSA,L]
+RewriteRule ^demo/qrs/?$ index.php?route=demo_qrs [QSA,L]
+RewriteRule ^demo/comanda/?$ index.php?route=demo_comanda [QSA,L]
+
+RewriteRule ^gestor/?$ index.php?route=gestor [QSA,L]
+RewriteRule ^gestor/logout/?$ index.php?route=logout [QSA,L]
+RewriteRule ^gestor/qrs/?$ index.php?route=qrs [QSA,L]
+RewriteRule ^gestor/comanda/?$ index.php?route=comanda [QSA,L]
+RewriteRule ^gestor/cardapio-impressao/?$ index.php?route=cardapio_impressao [QSA,L]
+RewriteRule ^mesa/([0-9A-Za-z-]+)/?$ index.php?route=salao&mesa=$1 [QSA,L]
+RewriteRule ^delivery/?$ index.php?route=site [QSA,L]
+RewriteRule ^$ index.php?route=site [QSA,L]
+
+# Unknown paths return to public site
+RewriteRule ^ index.php?route=site [QSA,L]

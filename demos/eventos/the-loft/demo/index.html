@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>The Loft | Demonstração Completa</title>
+<style>
+:root{--dark:#08070b;--purple:#7c3cff;--pink:#ff3f9c}
+*{box-sizing:border-box}html,body{height:100%;margin:0}body{background:#08070b;color:#fff;font-family:Arial,sans-serif;overflow:hidden}
+.app{height:100dvh;display:grid;grid-template-rows:auto 1fr}.top{background:#0d0a12;border-bottom:1px solid rgba(255,255,255,.08);padding:max(10px,env(safe-area-inset-top)) 10px 10px;z-index:10}.line{display:flex;align-items:center;justify-content:space-between;gap:10px}.brand{font-weight:900;font-size:18px}.brand span{color:#aa85ff}.badge{font-size:8px;color:#d2c5df}.tabs{display:flex;gap:7px;overflow:auto;margin-top:10px;scrollbar-width:none}.tabs::-webkit-scrollbar{display:none}.tab{flex:0 0 auto;border:1px solid rgba(255,255,255,.1);background:#17121e;color:#bfb3c9;border-radius:10px;padding:10px 12px;font-size:9px;font-weight:800}.tab.active{background:linear-gradient(135deg,var(--purple),var(--pink));color:#fff;border-color:transparent}
+.stage{position:relative;background:#111;overflow:hidden}iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:#fff}.hint{position:absolute;right:8px;bottom:8px;z-index:4;padding:6px 8px;border-radius:999px;background:rgba(10,7,14,.82);font-size:7px;color:#fff}
+@media(min-width:900px){.app{width:min(1450px,calc(100% - 30px));height:calc(100dvh - 30px);margin:15px auto;border:1px solid rgba(255,255,255,.08);border-radius:20px;overflow:hidden;box-shadow:0 25px 80px rgba(0,0,0,.35)}}
+</style>
+</head>
+<body>
+<div class="app">
+<header class="top">
+<div class="line"><div class="brand">THE <span>LOFT</span> · DEMO</div><div class="badge">CACTUS EVENTOS</div></div>
+<nav class="tabs">
+<button class="tab active" data-src="../index.html">Site / Cliente</button>
+<button class="tab" data-src="../cliente.html">Área do Cliente</button>
+<button class="tab" data-src="../admin.html">Gestor / Administrador</button>
+<button class="tab" data-src="../checkin.html">Portaria / Check-in</button>
+</nav>
+</header>
+<main class="stage"><iframe id="frame" src="../index.html" title="Demonstração The Loft"></iframe><div class="hint">Troque de painel pelas abas acima</div></main>
+</div>
+<script>
+const f=document.getElementById('frame');document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));b.classList.add('active');f.src=b.dataset.src});
+</script>
+</body>
+</html>

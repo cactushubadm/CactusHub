@@ -1,0 +1,168 @@
+[
+  {
+    "id": "obarros-especial",
+    "category": "salgadas",
+    "tag": "SALGADA",
+    "name": "D'barros Especial",
+    "desc": "Muçarela, carne seca desfiada, cubos dourados e toque da casa.",
+    "image": "assets/custom/pizza-especial.webp",
+    "sizes": [
+      [
+        "P",
+        39.9
+      ],
+      [
+        "M",
+        49.9
+      ],
+      [
+        "G",
+        59.9
+      ]
+    ],
+    "active": true,
+    "promoActive": false,
+    "promoPct": 0
+  },
+  {
+    "id": "calabresa",
+    "category": "salgadas",
+    "tag": "SALGADA",
+    "name": "Calabresa Crocante",
+    "desc": "Calabresa, queijo, cebola e cobertura gratinada.",
+    "image": "assets/custom/pizza-calabresa.webp",
+    "sizes": [
+      [
+        "P",
+        36.9
+      ],
+      [
+        "M",
+        45.9
+      ],
+      [
+        "G",
+        54.9
+      ]
+    ],
+    "active": true,
+    "promoActive": true,
+    "promoPct": 10
+  },
+  {
+    "id": "frango",
+    "category": "salgadas",
+    "tag": "SALGADA",
+    "name": "Frango Cremoso",
+    "desc": "Frango desfiado, creme especial e bastante queijo.",
+    "image": "assets/custom/pizza-frango.webp",
+    "sizes": [
+      [
+        "P",
+        38.9
+      ],
+      [
+        "M",
+        47.9
+      ],
+      [
+        "G",
+        57.9
+      ]
+    ],
+    "active": true,
+    "promoActive": false,
+    "promoPct": 0
+  },
+  {
+    "id": "branca",
+    "category": "salgadas",
+    "tag": "SALGADA",
+    "name": "Branca Especial",
+    "desc": "Massa alta, queijo marcante e finalização com ervas.",
+    "image": "assets/custom/pizza-branca.webp",
+    "sizes": [
+      [
+        "P",
+        37.9
+      ],
+      [
+        "M",
+        46.9
+      ],
+      [
+        "G",
+        56.9
+      ]
+    ],
+    "active": true,
+    "promoActive": false,
+    "promoPct": 0
+  },
+  {
+    "id": "doce-casa",
+    "category": "doces",
+    "tag": "DOCE",
+    "name": "Doce da Casa",
+    "desc": "Base doce com calda cremosa e acabamento marcante.",
+    "image": "assets/custom/pizza-doce-caramelo.webp",
+    "sizes": [
+      [
+        "M",
+        37.9
+      ],
+      [
+        "G",
+        44.9
+      ]
+    ],
+    "active": true,
+    "promoActive": false,
+    "promoPct": 0
+  },
+  {
+    "id": "choco",
+    "category": "doces",
+    "tag": "DOCE",
+    "name": "Choco D'barros",
+    "desc": "Chocolate e doce de leite em uma pizza de sobremesa.",
+    "image": "assets/custom/pizza-doce-chocolate.webp",
+    "sizes": [
+      [
+        "M",
+        39.9
+      ],
+      [
+        "G",
+        47.9
+      ]
+    ],
+    "active": true,
+    "promoActive": false,
+    "promoPct": 0
+  },
+  {
+    "id": "combo-casal",
+    "category": "combos",
+    "tag": "COMBO",
+    "name": "Combo Casal",
+    "desc": "1 pizza salgada + 1 pizza doce + refrigerante.",
+    "image": "assets/custom/banner.webp",
+    "fixedPrice": 89.9,
+    "active": true,
+    "promoActive": true,
+    "promoPct": 8
+  },
+  {
+    "id": "guarana",
+    "category": "bebidas",
+    "tag": "BEBIDA",
+    "name": "Guaraná 600ml",
+    "desc": "Bebida gelada para completar o pedido.",
+    "image": "assets/custom/about.webp",
+    "fixedPrice": 7.9,
+    "active": true,
+    "promoActive": false,
+    "promoPct": 0
+  }
+]
