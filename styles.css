@@ -1581,3 +1581,187 @@ body.billing-annual .quick-card-price{color:#5e9517}
   .demo-browser-frame iframe{height:360px}
   .whitelabel-bottom-actions{grid-template-columns:1fr}
 }
+
+
+/* V32 — demos mais visuais */
+.dbarros-visual-reel{
+  position:relative;
+  display:block;
+  height:370px;
+  overflow:hidden;
+  border-radius:0 0 18px 18px;
+  background:#130d09;
+  color:#fff;
+}
+.dbarros-visual-reel video{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transform:scale(1.02);
+}
+.dbarros-visual-overlay{
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(90deg,rgba(16,10,7,.92) 0%,rgba(16,10,7,.55) 52%,rgba(16,10,7,.18) 100%),
+    linear-gradient(0deg,rgba(16,10,7,.7),transparent 58%);
+}
+.dbarros-visual-content{
+  position:absolute;
+  z-index:2;
+  left:24px;
+  right:24px;
+  bottom:24px;
+  max-width:520px;
+}
+.dbarros-case-kicker{
+  display:inline-flex;
+  padding:6px 9px;
+  border-radius:999px;
+  background:#dc332f;
+  color:#fff;
+  font:800 9px "JetBrains Mono",monospace;
+  letter-spacing:.06em;
+}
+.dbarros-visual-content>strong{
+  display:block;
+  margin-top:10px;
+  font:800 clamp(30px,4vw,48px) Montserrat,sans-serif;
+  line-height:.95;
+  letter-spacing:-.03em;
+}
+.dbarros-visual-content>p{
+  max-width:430px;
+  margin:9px 0 13px;
+  color:#f4e7df;
+  font-size:12px;
+  line-height:1.55;
+}
+.dbarros-mini-flow{
+  display:flex;
+  align-items:center;
+  gap:7px;
+  flex-wrap:wrap;
+  margin-bottom:14px;
+}
+.dbarros-mini-flow span{
+  padding:6px 9px;
+  border-radius:999px;
+  background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.16);
+  font-size:9px;
+  font-weight:800;
+}
+.dbarros-mini-flow i{
+  font-style:normal;
+  color:#ff8e77;
+}
+.dbarros-visual-content>b{
+  display:inline-flex;
+  padding:10px 13px;
+  border-radius:11px;
+  background:#fff;
+  color:#1a100c;
+  font-size:10px;
+}
+@media(max-width:760px){
+  .dbarros-visual-reel{height:310px}
+  .dbarros-visual-content{left:17px;right:17px;bottom:17px}
+}
+
+
+/* V33 — The Loft exibida apenas dentro do card do Cactus Eventos */
+.loft-visual-reel{
+  position:relative;
+  display:block;
+  height:370px;
+  overflow:hidden;
+  border-radius:0 0 18px 18px;
+  background:#0d0913;
+  color:#fff;
+}
+.loft-visual-reel>img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  filter:saturate(1.15) contrast(1.05);
+  transform:scale(1.02);
+}
+.loft-visual-overlay{
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(90deg,rgba(10,6,16,.92) 0%,rgba(10,6,16,.62) 52%,rgba(10,6,16,.20) 100%),
+    linear-gradient(0deg,rgba(10,6,16,.74),transparent 58%);
+}
+.loft-visual-content{
+  position:absolute;
+  z-index:2;
+  left:24px;
+  right:24px;
+  bottom:24px;
+  max-width:520px;
+}
+.loft-case-kicker{
+  display:inline-flex;
+  padding:6px 9px;
+  border-radius:999px;
+  background:#6f3cff;
+  color:#fff;
+  font:800 9px "JetBrains Mono",monospace;
+  letter-spacing:.06em;
+}
+.loft-visual-content>strong{
+  display:block;
+  margin-top:10px;
+  font:800 clamp(32px,4vw,50px) Montserrat,sans-serif;
+  line-height:.95;
+  letter-spacing:-.03em;
+}
+.loft-visual-content>p{
+  max-width:430px;
+  margin:9px 0 13px;
+  color:#ece5f7;
+  font-size:12px;
+  line-height:1.55;
+}
+.loft-mini-flow{
+  display:flex;
+  align-items:center;
+  gap:7px;
+  flex-wrap:wrap;
+  margin-bottom:14px;
+}
+.loft-mini-flow span{
+  padding:6px 9px;
+  border-radius:999px;
+  background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.16);
+  font-size:9px;
+  font-weight:800;
+}
+.loft-mini-flow i{
+  font-style:normal;
+  color:#bd9cff;
+}
+.loft-visual-content>b{
+  display:inline-flex;
+  padding:10px 13px;
+  border-radius:11px;
+  background:#fff;
+  color:#120b18;
+  font-size:10px;
+}
+@media(max-width:760px){
+  .loft-visual-reel{height:310px}
+  .loft-visual-content{left:17px;right:17px;bottom:17px}
+}
+
+/* V34 — demos com navegação entre todos os painéis */
+.demo-live-badge{
+  box-shadow:0 8px 22px rgba(0,0,0,.16);
+}
