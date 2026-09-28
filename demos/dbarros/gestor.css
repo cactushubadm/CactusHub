@@ -256,3 +256,116 @@ a[href="qrs-mesas.html"]{
 }
 
 .table-config-actions{display:flex;align-items:center;justify-content:flex-end;gap:7px;flex-wrap:wrap}.table-config-actions .btn{min-height:40px;display:inline-flex;align-items:center;justify-content:center}@media(max-width:760px){.table-config-actions{width:100%;display:grid;grid-template-columns:1fr 1fr}.table-config-actions .qr-manager-button{grid-column:1/-1;width:100%}}
+
+/* V44 — gestor responsivo mobile */
+@media (max-width:760px){
+  body{overflow-x:hidden}
+  .sidebar{
+    position:sticky;
+    inset:auto;
+    top:0;
+    z-index:45;
+    width:100%;
+    height:auto;
+    padding:7px 8px;
+    display:block;
+    background:var(--dark);
+  }
+  .sidebar .brand,
+  .sidebar .logout-link,
+  .sidebar .sidebar-status{display:none!important}
+  .sidebar nav{
+    margin:0;
+    display:flex;
+    flex-direction:row;
+    gap:6px;
+    overflow-x:auto;
+    padding:0 0 2px;
+    scrollbar-width:none;
+  }
+  .sidebar nav::-webkit-scrollbar{display:none}
+  .sidebar nav a,
+  .sidebar nav a:not(.active){
+    flex:0 0 auto;
+    min-width:44px;
+    min-height:44px;
+    padding:7px 9px;
+    font-size:0;
+    justify-content:center;
+    border-radius:10px;
+  }
+  .sidebar nav a span{
+    width:30px;
+    height:30px;
+    font-size:11px;
+  }
+  main{margin-left:0!important;width:100%}
+  .topbar{
+    position:sticky;
+    top:58px;
+    min-height:74px;
+    padding:11px 12px;
+    gap:10px;
+  }
+  .topbar>div:first-child{min-width:0}
+  .topbar h1{
+    font-size:28px!important;
+    white-space:normal;
+    line-height:1!important;
+  }
+  .topbar small{
+    font-size:7px!important;
+    line-height:1.25!important;
+  }
+  .top-actions{flex:0 0 auto}
+  .top-actions .primary{
+    min-height:40px;
+    padding:0 10px;
+    font-size:8px;
+    white-space:nowrap;
+  }
+  .content{padding:10px!important}
+  .panel{border-radius:15px;padding:12px}
+  .panel-head{
+    align-items:flex-start!important;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+  .panel-head>div,.tables-head>div{text-align:left!important}
+  .panel-head h2,.tables-head h2{
+    text-align:left!important;
+    font-size:25px!important;
+  }
+  .printer-demo{
+    grid-template-columns:112px minmax(0,1fr);
+    gap:10px;
+    padding:9px;
+  }
+  .printer-icon{height:122px}
+  .print-last{min-width:0}
+  .tables-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  .table-card{min-width:0;padding:11px}
+  .table-number{font-size:29px}
+  .table-config-actions{
+    width:100%;
+    grid-template-columns:1fr 1fr;
+    gap:7px;
+  }
+  .table-config-actions .btn{width:100%;padding:0 8px}
+  .table-config-actions .qr-manager-button{grid-column:1/-1}
+  .investor-demo-banner{
+    left:8px!important;
+    right:8px!important;
+    bottom:8px;
+    max-width:none;
+  }
+}
+@media (max-width:390px){
+  .topbar{top:58px;padding:10px}
+  .topbar h1{font-size:25px!important}
+  .printer-demo{grid-template-columns:96px minmax(0,1fr)}
+  .printer-icon{height:112px}
+  .printer-paper{transform:scale(.88);transform-origin:center top}
+  .tables-grid{grid-template-columns:1fr 1fr}
+  .table-card{padding:9px}
+}
