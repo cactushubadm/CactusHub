@@ -444,3 +444,11 @@ a[href="qrs-mesas.html"]{
   main{margin-left:108px!important;width:calc(100% - 108px)!important}
   .investor-demo-banner{left:116px!important}
 }
+
+.field-help{
+  display:block;
+  margin-top:5px;
+  font-size:8px;
+  line-height:1.4;
+  color:#8a7d74;
+}
