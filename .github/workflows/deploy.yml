@@ -24,9 +24,4 @@ jobs:
       #     npm run build
 
       - name: Deploy para o Netlify
-        run: npx netlify-cli deploy --prod --dir=. --message "Deploy via GH Actions"
-        # ATENÇÃO: Se o seu build gera uma pasta específica, mude o --dir=.
-        # para --dir=dist ou --dir=build
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        run: npx netlify-cli deploy --prod --dir=. --site ${{ secrets.NETLIFY_SITE_ID }} --auth ${{ secrets.NETLIFY_AUTH_TOKEN }} --message "Deploy via GH Actions"
