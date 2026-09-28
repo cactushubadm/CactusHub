@@ -290,3 +290,92 @@ img,video{max-width:100%;display:block}
   font-weight:700;
   letter-spacing:5px;
 }
+
+/* V43 — correção responsiva cliente na mesa */
+@media (max-width:680px){
+  .topbar{
+    min-height:58px;
+    padding:7px 10px;
+    gap:8px;
+  }
+  .brand{min-width:0;gap:0}
+  .brand>div{display:none}
+  .dbarros-wordmark b{font-size:22px}
+  .dbarros-wordmark small{font-size:9px;letter-spacing:3.5px;margin-top:5px}
+  .top-actions{gap:6px;flex:0 0 auto}
+  .table-chip{min-width:54px;padding:7px 8px}
+  .table-chip strong{font-size:18px}
+  .cart-button{min-height:40px;padding:8px 10px;font-size:10px}
+  .cart-button>span{display:inline}
+  .cart-button b{min-width:23px;height:23px;padding:0 6px}
+
+  .hero{
+    width:calc(100% - 20px);
+    height:auto;
+    min-height:270px;
+    margin-top:10px;
+    border-radius:18px;
+  }
+  .hero-content{
+    min-height:270px;
+    height:auto;
+    padding:20px;
+    justify-content:flex-end;
+  }
+  .hero-content h1{
+    max-width:100%;
+    margin:7px 0 8px;
+    font-size:clamp(30px,9vw,38px);
+    line-height:.98;
+    overflow-wrap:normal;
+    word-break:normal;
+  }
+  .hero-content p{
+    max-width:96%;
+    margin-bottom:15px;
+    font-size:12px;
+    line-height:1.4;
+  }
+  .hero-actions{width:100%}
+  .primary-btn,.secondary-btn{min-height:43px;padding:0 16px;font-size:10px}
+
+  .menu-toolbar{
+    top:58px;
+    width:calc(100% - 20px);
+    margin-top:8px;
+  }
+  .search-box{height:48px}
+  .categories{padding-bottom:2px}
+  .categories button{padding:10px 15px;font-size:11px}
+
+  .content-grid{
+    width:calc(100% - 20px);
+    margin-bottom:88px;
+  }
+  .section-title h2{font-size:34px}
+  .product-card{
+    grid-template-columns:108px minmax(0,1fr);
+    min-height:132px;
+  }
+  .product-image img{min-height:132px}
+  .product-info{min-width:0;padding:13px}
+  .product-info h3{font-size:21px;line-height:1}
+  .product-info p{font-size:10px;line-height:1.35}
+
+  .mobile-order-bar{
+    left:8px;
+    right:8px;
+    bottom:max(8px,env(safe-area-inset-bottom));
+  }
+}
+
+@media (max-width:390px){
+  .dbarros-wordmark b{font-size:20px}
+  .dbarros-wordmark small{font-size:8px;letter-spacing:3px}
+  .table-chip{min-width:48px}
+  .cart-button>span{display:none}
+  .hero{min-height:285px}
+  .hero-content{min-height:285px;padding:18px}
+  .hero-content h1{font-size:31px}
+  .product-card{grid-template-columns:100px minmax(0,1fr)}
+}

@@ -31,7 +31,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $orders[] = $record;
     if (count($orders) > 500) $orders = array_slice($orders, -500);
     if (!db_write_json('orders.json', $orders)) db_json_response(['ok'=>false,'error'=>'write_failed'], 500);
-    db_json_response(['ok'=>true,'order'=>$record], 201);
+
+    // Enfileira automaticamente a comanda para a impressora da cozinha.
+    $jobs = db_read_json('print_jobs.json', []);
+    $jobs[] = [
+        'id' => 'print-' . bin2hex(random_bytes(8)),
+        'orderId' => $record['id'],
+        'orderNumber' => $record['number'],
+        'mesa' => $record['mesa'],
+        'items' => $record['items'],
+        'total' => $record['total'],
+        'status' => 'pending',
+        'createdAt' => date(DATE_ATOM),
+        'printerModel' => DBARROS_PRINTER_MODEL,
+        'paperMm' => DBARROS_PRINTER_PAPER_MM,
+    ];
+    if (count($jobs) > 1000) $jobs = array_slice($jobs, -1000);
+    db_write_json('print_jobs.json', $jobs);
+
+    db_json_response(['ok'=>true,'order'=>$record,'printQueued'=>true], 201);
 }
 
 db_json_response(['ok'=>false,'error'=>'method_not_allowed'], 405);

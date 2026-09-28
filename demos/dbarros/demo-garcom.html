@@ -1,0 +1,55 @@
+﻿<!doctype html>
+<html lang="pt-BR"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>D'barros | Garçom / Salão</title>
+<style>
+:root{--bg:#f4f0eb;--paper:#fff;--dark:#171210;--accent:#d96d22;--green:#2f9f58;--yellow:#d49b28;--muted:#776d66;--line:#e7ded7}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:#1b1714;font-family:Arial,sans-serif;padding-bottom:74px}button,input,textarea{font:inherit}
+.top{position:sticky;top:0;z-index:20;background:#171210;color:#fff;padding:11px 12px}.topline{display:flex;justify-content:space-between;align-items:center}.brand{font-weight:900}.brand span{color:#f08b46}.user{font-size:8px;color:#c7bbb4}
+.wrap{width:min(1100px,calc(100% - 22px));margin:14px auto}.hero{display:flex;justify-content:flex-start;align-items:center;gap:10px}.hero>div{text-align:left}.hero small{display:block;color:var(--accent);font-size:7px;font-weight:900}.hero h1{margin:5px 0 0;font-size:28px}
+.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0}.sum,.table,.panel{background:#fff;border:1px solid var(--line);border-radius:14px}.sum{padding:11px;text-align:center}.sum small{font-size:7px;color:var(--muted)}.sum strong{display:block;font-size:22px;margin-top:4px}
+.tables{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.table{padding:11px;min-height:135px;display:flex;flex-direction:column;text-align:center}.busy{background:#f0f8f2}.bill{background:#fff8e7}.tabletop{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}.num{font-size:27px;font-weight:900;line-height:1}.status{display:flex;align-items:center;justify-content:center;text-align:center;min-width:72px;min-height:26px;font-size:6px;font-weight:900;padding:5px 9px;border-radius:999px;background:#eee;line-height:1.15}.busy .status{background:#dff2e4;color:#276e45}.bill .status{background:#ffebba;color:#805e07}.table small{margin-top:8px;color:var(--muted);font-size:8px;text-align:center}.table strong{margin-top:3px;font-size:13px;text-align:center}.actions{margin-top:auto;display:grid;grid-template-columns:1fr 1fr;gap:5px}.actions button{border:0;border-radius:8px;padding:8px 5px;font-size:7px;font-weight:900}.order{background:#171210;color:#fff}.close{background:#d96d22;color:#fff}.free .close{display:none}
+.panel{margin-top:12px;padding:13px}.panel h2{font-size:18px;margin:0 0 10px}.recent{display:grid;gap:6px}.recent div{display:grid;grid-template-columns:55px 1fr auto;gap:8px;padding:8px;background:#faf7f4;border-radius:9px}.recent span,.recent b,.recent strong{font-size:8px}
+.modal{position:fixed;inset:0;z-index:50;background:rgba(20,15,12,.5);display:grid;place-items:end center}.sheet{width:min(620px,100%);max-height:92vh;overflow:auto;background:#fff;border-radius:20px 20px 0 0;padding:16px}.head{display:flex;justify-content:space-between;align-items:center}.head h2{margin:4px 0 0;font-size:24px}.head small{font-size:7px;color:var(--accent);font-weight:900}.x{width:34px;height:34px;border:0;border-radius:50%}
+.menu{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:12px}.item{display:grid;grid-template-columns:56px 1fr auto;gap:7px;align-items:center;border:1px solid var(--line);border-radius:11px;padding:7px}.item img{width:56px;height:56px;object-fit:cover;border-radius:8px}.item b{font-size:9px}.item span{display:block;color:var(--muted);font-size:8px;margin-top:3px}.item button{width:30px;height:30px;border:0;border-radius:50%;background:var(--accent);color:#fff;font-size:18px}
+.cart{margin-top:12px;border-top:1px solid var(--line);padding-top:10px}.line{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid #eee;font-size:8px}.total{display:flex;justify-content:space-between;margin:12px 0}.total strong{font-size:20px}.note{width:100%;min-height:60px;border:1px solid var(--line);border-radius:9px;padding:9px;margin-top:8px}.primary{width:100%;border:0;border-radius:10px;background:var(--accent);color:#fff;padding:12px;font-size:9px;font-weight:900}
+.pay{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:10px 0}.pay button{border:1px solid var(--line);background:#fff;border-radius:9px;padding:10px;font-size:8px;font-weight:900}.pay button.active{background:#171210;color:#fff}
+.toast{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);background:#171210;color:#fff;padding:10px 13px;border-radius:10px;font-size:8px}
+[hidden]{display:none!important}
+@media(max-width:760px){.tables{grid-template-columns:1fr 1fr}.menu{grid-template-columns:1fr}}
+@media(min-width:900px){.modal{place-items:center}.sheet{border-radius:20px}}
+</style></head><body>
+<header class="top"><div class="topline"><div class="brand">D'<span>BARROS</span> · SALÃO</div><div class="user">GARÇOM · JOÃO</div></div></header>
+<main class="wrap">
+<section class="hero"><div><small>SISTEMA DO GARÇOM</small><h1>Mesas</h1></div></section>
+<section class="summary"><div class="sum"><small>MESAS ABERTAS</small><strong id="count">7</strong></div><div class="sum"><small>EM PREPARO</small><strong>4</strong></div><div class="sum"><small>MINHAS VENDAS</small><strong>R$ 642</strong></div></section>
+<section class="tables" id="tables"></section>
+<section class="panel"><h2>Últimos pedidos enviados</h2><div class="recent" id="recent"><div><span>#2451</span><b>Mesa 07 · D'barros Especial G</b><strong>19:24</strong></div><div><span>#2450</span><b>Mesa 03 · Calabresa G</b><strong>19:21</strong></div></div></section>
+</main>
+
+<div class="modal" id="orderModal" hidden><div class="sheet"><div class="head"><div><small>PEDIDO · MESA <span id="orderTable">--</span></small><h2>Adicionar itens</h2></div><button class="x" data-close>×</button></div><div class="menu" id="menu"></div><div class="cart"><div id="cart"></div><textarea class="note" placeholder="Observação: sem cebola, bem assada..."></textarea><div class="total"><span>Total</span><strong id="orderTotal">R$ 0,00</strong></div><button class="primary" id="send">Enviar para cozinha</button></div></div></div>
+
+<div class="modal" id="closeModal" hidden><div class="sheet"><div class="head"><div><small>FECHAR · MESA <span id="closeTable">--</span></small><h2>Fechar mesa</h2></div><button class="x" data-close>×</button></div><div id="bill"></div><div class="total"><span>Total da mesa</span><strong id="billTotal">R$ 0,00</strong></div><div class="pay"><button class="active" data-pay="PIX">PIX</button><button data-pay="Cartão">Cartão</button><button data-pay="Dinheiro">Dinheiro</button></div><button class="primary" id="confirmClose">Confirmar pagamento e fechar mesa</button></div></div>
+<div class="toast" id="toast" hidden></div>
+
+<script>
+const brl=new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'});
+const P=[["D'barros Especial G",59.9,"assets/custom/pizza-especial.webp"],["Calabresa G",54.9,"assets/custom/pizza-calabresa.webp"],["Frango Cremoso M",47.9,"assets/custom/pizza-frango.webp"],["Doce da Casa M",39.9,"assets/custom/pizza-doce-caramelo.webp"],["Refrigerante 1L",12,"assets/custom/about.webp"]];
+const T=[["01","busy",126.5],["02","free",0],["03","busy",89.9],["04","busy",74.8],["05","busy",158.4],["06","free",0],["07","busy",112.7],["08","busy",83.9],["09","bill",96],["10","busy",72.7]];
+let table=null,cart=[],pay='PIX',seq=2452;
+const q=s=>document.querySelector(s);
+function render(){q('#tables').innerHTML=T.map(t=>`<article class="table ${t[1]}"><div class="tabletop"><span class="num">${t[0]}</span><span class="status">${t[1]==='free'?'Livre':t[1]==='bill'?'Fechar':'Em consumo'}</span></div><small>${t[1]==='free'?'Disponível':'Consumo atual'}</small><strong>${t[1]==='free'?'-':brl.format(t[2])}</strong><div class="actions"><button class="order" data-order="${t[0]}">${t[1]==='free'?'Abrir mesa':'Adicionar pedido'}</button><button class="close" data-close-table="${t[0]}">Fechar mesa</button></div></article>`).join('');q('#count').textContent=T.filter(t=>t[1]!=='free').length}
+function menu(){q('#menu').innerHTML=P.map((p,i)=>`<div class="item"><img src="${p[2]}"><div><b>${p[0]}</b><span>${brl.format(p[1])}</span></div><button data-add="${i}">+</button></div>`).join('')}
+function cartRender(){q('#cart').innerHTML=cart.length?cart.map(i=>`<div class="line"><span>${i[0]}</span><b>${brl.format(i[1])}</b></div>`).join(''):'<small>Nenhum item.</small>';q('#orderTotal').textContent=brl.format(cart.reduce((s,i)=>s+i[1],0))}
+function toast(t){q('#toast').textContent=t;q('#toast').hidden=false;setTimeout(()=>q('#toast').hidden=true,2000)}
+function openOrder(n){table=T.find(t=>t[0]===n);cart=[];q('#orderTable').textContent=n;cartRender();q('#orderModal').hidden=false}
+function openClose(n){table=T.find(t=>t[0]===n);if(!table||table[1]==='free')return;q('#closeTable').textContent=n;q('#bill').innerHTML=`<div class="line"><span>Consumo da mesa</span><b>${brl.format(table[2])}</b></div>`;q('#billTotal').textContent=brl.format(table[2]);q('#closeModal').hidden=false}
+document.addEventListener('click',e=>{let n=e.target.dataset.order;if(n)openOrder(n);n=e.target.dataset.closeTable;if(n)openClose(n);let a=e.target.dataset.add;if(a!==undefined){cart.push(P[+a]);cartRender()}if(e.target.matches('[data-close]'))document.querySelectorAll('.modal').forEach(m=>m.hidden=true)});
+document.querySelectorAll('[data-pay]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-pay]').forEach(x=>x.classList.remove('active'));b.classList.add('active');pay=b.dataset.pay});
+q('#send').onclick=async()=>{if(!cart.length){toast('Adicione pelo menos um item.');return}let v=cart.reduce((s,i)=>s+i[1],0),orderNo=seq++;try{const payload={mesa:table[0],items:cart.map(i=>({name:i[0],qty:1,unitPrice:i[1],subtotal:i[1]})),total:v,source:'garcom'};const r=await fetch('api/orders.php',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});if(r.ok){const d=await r.json();if(d?.order?.number)orderNo=d.order.number}}catch(e){}table[2]+=v;table[1]='busy';q('#orderModal').hidden=true;q('#recent').insertAdjacentHTML('afterbegin',`<div><span>#${orderNo}</span><b>Mesa ${table[0]} · ${cart[0][0]}</b><strong>agora</strong></div>`);render();toast('Pedido enviado para cozinha e fila de impressão')};
+q('#confirmClose').onclick=()=>{let v=table[2];table[1]='free';table[2]=0;q('#closeModal').hidden=true;render();toast(`Mesa ${table[0]} fechada · ${pay} · ${brl.format(v)}`)};
+menu();render();cartRender();
+</script><script>
+try{const cfg=JSON.parse(localStorage.getItem('dbarros_tables_v1'));const count=Math.max(1,Math.min(99,Number(cfg?.count)||10));if(Array.isArray(window.T)){while(T.length<count)T.push([String(T.length+1).padStart(2,'0'),'free',0]);while(T.length>count)T.pop();if(typeof render==='function')render();}}catch(e){}
+</script></body></html>
+
