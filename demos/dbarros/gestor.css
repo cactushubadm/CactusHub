@@ -369,3 +369,78 @@ a[href="qrs-mesas.html"]{
   .tables-grid{grid-template-columns:1fr 1fr}
   .table-card{padding:9px}
 }
+
+/* V45 — gestor mobile com menu lateral e legendas */
+@media (max-width:760px){
+  .sidebar{
+    position:fixed!important;
+    inset:0 auto 0 0!important;
+    top:0!important;
+    width:118px!important;
+    height:100vh!important;
+    padding:10px 8px!important;
+    display:flex!important;
+    flex-direction:column!important;
+  }
+  .sidebar .brand{
+    display:flex!important;
+    justify-content:center!important;
+    padding:4px 2px 12px!important;
+  }
+  .sidebar .brand>div{display:none!important}
+  .sidebar .dbarros-wordmark b{font-size:18px!important}
+  .sidebar .dbarros-wordmark small{font-size:7px!important;letter-spacing:2.4px!important}
+  .sidebar nav{
+    margin-top:10px!important;
+    display:flex!important;
+    flex-direction:column!important;
+    gap:5px!important;
+    overflow:visible!important;
+    padding:0!important;
+  }
+  .sidebar nav a,
+  .sidebar nav a:not(.active){
+    width:100%!important;
+    min-width:0!important;
+    min-height:44px!important;
+    padding:7px 8px!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:flex-start!important;
+    gap:7px!important;
+    font-size:9px!important;
+    line-height:1.1!important;
+    white-space:normal!important;
+  }
+  .sidebar nav a span{
+    flex:0 0 28px!important;
+    width:28px!important;
+    height:28px!important;
+    font-size:10px!important;
+  }
+  .sidebar .logout-link{
+    display:block!important;
+    margin-top:auto!important;
+    padding:8px 6px!important;
+    text-align:center!important;
+    font-size:8px!important;
+  }
+  .sidebar .sidebar-status{display:none!important}
+  main{
+    margin-left:118px!important;
+    width:calc(100% - 118px)!important;
+  }
+  .topbar{top:0!important}
+  .investor-demo-banner{
+    left:126px!important;
+    right:8px!important;
+  }
+}
+@media (max-width:390px){
+  .sidebar{width:108px!important;padding:8px 6px!important}
+  .sidebar nav a,
+  .sidebar nav a:not(.active){font-size:8px!important;padding:6px!important;gap:5px!important}
+  .sidebar nav a span{flex-basis:26px!important;width:26px!important;height:26px!important}
+  main{margin-left:108px!important;width:calc(100% - 108px)!important}
+  .investor-demo-banner{left:116px!important}
+}

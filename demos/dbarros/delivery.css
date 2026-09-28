@@ -465,3 +465,17 @@ body:has(.demo-page-label) .hero{
     width:100%;
   }
 }
+
+/* V45 — corrige badge de promoção fora do card */
+.promo-card-media .promo-badge{
+  position:absolute;
+  z-index:2;
+  left:14px;
+  top:14px;
+}
+.product-body .promo-badge{
+  position:static!important;
+  left:auto!important;
+  top:auto!important;
+  z-index:auto!important;
+}
