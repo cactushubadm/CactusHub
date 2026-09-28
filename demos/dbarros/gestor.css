@@ -452,3 +452,6 @@ a[href="qrs-mesas.html"]{
   line-height:1.4;
   color:#8a7d74;
 }
+
+/* V47 - centralizaÃ§Ã£o de aÃ§Ãµes do gestor */
+.center-fix{display:inline-flex!important;align-items:center!important;justify-content:center!important;text-align:center!important;line-height:1.15!important}

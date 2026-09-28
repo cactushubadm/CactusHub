@@ -479,3 +479,9 @@ body:has(.demo-page-label) .hero{
   top:auto!important;
   z-index:auto!important;
 }
+
+/* V47 - vitrine padronizada: categoria no corpo e promoÃ§Ã£o sobre a imagem */
+.product-card .product-media{position:relative;overflow:hidden}
+.product-card .product-media>img{display:block;width:100%;height:100%;object-fit:cover}
+.product-card .product-promo-badge{position:absolute!important;top:12px!important;right:12px!important;left:auto!important;z-index:3!important;margin:0!important;display:inline-flex!important;padding:5px 8px!important;border-radius:999px!important;background:#fff0c6!important;color:#956600!important;font-size:7px!important;font-weight:900!important;letter-spacing:.04em!important}
+.product-card .product-body>small{display:block;color:#d96d22;font-size:8px;font-weight:900;letter-spacing:.14em;margin-bottom:8px}

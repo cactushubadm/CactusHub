@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8">
@@ -49,14 +49,11 @@
         <article class="summary-card featured">
           <small>VENDAS DO DIA</small>
           <strong id="salesToday">R$ 3.842,70</strong>
-          <span>Meta diária: R$ 5.000,00</span>
-          <div class="progress"><i style="width:77%"></i></div>
-          <b>77% da meta</b>
         </article>
 
         <article class="summary-card">
           <small>MESAS EM CONSUMO</small>
-          <strong class="ratio-count"><span id="occupiedTables">7</span><span class="slash">/</span><span id="totalTables">10</span></strong>
+          <strong id="tablesRatio">7/10</strong>
           <span id="openTablesNote">Feche todas as mesas para encerrar o dia</span>
         </article>
 
@@ -96,7 +93,7 @@
 
             <div class="thermo-metrics">
               <div><span>Ocupação</span><strong>70%</strong><i><b style="width:70%"></b></i></div>
-              <div><span>Meta de vendas</span><strong>77%</strong><i><b style="width:77%"></b></i></div>
+              
               <div><span>Carga da cozinha</span><strong>68%</strong><i><b style="width:68%"></b></i></div>
               <div><span>Pedidos no prazo</span><strong>91%</strong><i><b style="width:91%"></b></i></div>
             </div>
@@ -166,7 +163,7 @@
           <div class="panel-head menu-admin-head">
             <div><small>GESTÃO DO CARDÁPIO DO SALÃO</small><h2>Sabores, preços e promoções</h2></div>
             <div class="menu-admin-actions">
-              <a class="btn secondary" href="demo-salao.html" target="_blank">Ver cardápio</a>
+              <a class="btn secondary center-fix" href="demo-salao.html" target="_blank">Ver cardápio</a>
               <button class="btn secondary" id="newProductButton">+ Novo item</button>
             </div>
           </div>
@@ -214,7 +211,7 @@
 
       <section class="delivery-admin-section" id="site-delivery">
         <div class="panel delivery-site-form">
-          <div class="panel-head"><div><small>SITE DE DELIVERY</small><h2>Conteúdo e link do Anota AI</h2></div><a class="btn secondary" href="demo-site.html" target="_blank">Abrir site</a></div>
+          <div class="panel-head"><div><small>SITE DE DELIVERY</small><h2>Conteúdo e link do Anota AI</h2></div><a class="btn secondary center-fix" href="demo-site.html" target="_blank">Abrir site</a></div>
           <form id="deliverySiteForm">
             <label><span>Link da loja no Anota AI</span><input id="anotaUrl" type="url" placeholder="https://pedido.anota.ai/..."></label><label><span>VÃ­deo de fundo do site</span><input id="heroVideoFile" type="file" accept="video/mp4,video/webm,video/ogg"><small class="field-help">Envie o arquivo de vÃ­deo diretamente. MP4 ou WebM recomendado.</small></label><div class="hero-video-file-status" id="heroVideoFileStatus">VÃ­deo padrÃ£o em uso</div>
             <div class="form-grid-2">
@@ -328,6 +325,8 @@
   <script src="./gestor.js"></script>
 </body>
 </html>
+
+
 
 
 
