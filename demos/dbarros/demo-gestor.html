@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8">
@@ -28,7 +28,7 @@
 
     <a class="logout-link" href="./gestor/logout">Sair do painel</a><div class="sidebar-status">
       <i></i>
-      <div><strong>Operação online</strong><span>Impressora conectada</span></div>
+      <div><strong>Operação online</strong><span>Bematech MP-4200 TH pronta</span></div>
     </div>
   </aside>
 
@@ -122,7 +122,7 @@
               <small>ÚLTIMA IMPRESSÃO</small>
               <strong id="lastPrint">Pedido #2417 · Mesa 07</strong>
               <span id="lastPrintStatus">✓ Impresso às 19:18</span>
-              <a href="comanda-exemplo-80mm.pdf" target="_blank">Ver comanda em PDF →</a>
+              <a href="comanda-exemplo-80mm.pdf" target="_blank" rel="noopener">Ver comanda em PDF →</a>
             </div>
           </div>
 
@@ -149,7 +149,11 @@
               <span><i class="busy"></i>Em consumo</span>
               <span><i class="bill"></i>Fechar mesa</span>
             </div>
-            <a class="btn secondary qr-manager-button" href="qrs-mesas.html" target="_blank">QR Codes das mesas</a>
+            <div class="table-config-actions">
+              <button class="btn secondary" id="addTableButton" type="button">+ Adicionar mesa</button>
+              <button class="btn secondary" id="removeTableButton" type="button">− Remover mesa</button>
+              <a class="btn secondary qr-manager-button" href="qrs-mesas.html" target="_blank" rel="noopener">QR Codes das Mesas</a>
+            </div>
           </div>
         </div>
 
