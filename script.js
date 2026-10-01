@@ -248,3 +248,22 @@ if (runtimePlanPrices.length) {
   billingButtons.forEach(button => button.addEventListener('click', refreshRuntimePrices));
   refreshRuntimePrices();
 }
+
+
+const tierPlanPrices = {
+  BASIC: { monthly: 29000, annual: 290000 },
+  INTERMEDIATE: { monthly: 49000, annual: 490000 },
+  ADVANCED: { monthly: 60000, annual: 600000 }
+};
+const tierPriceCards = Array.from(document.querySelectorAll('.corporate-price[data-plan-tier]'));
+const renderTierPlanPrices = () => {
+  const annual = document.body.classList.contains('billing-annual');
+  tierPriceCards.forEach(node => {
+    const tier = tierPlanPrices[node.dataset.planTier];
+    if (!tier) return;
+    const minor = annual ? tier.annual : tier.monthly;
+    node.textContent = (minor / 100).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) + (annual ? '/ano' : '/mês');
+  });
+};
+billingButtons.forEach(button => button.addEventListener('click', renderTierPlanPrices));
+renderTierPlanPrices();
