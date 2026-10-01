@@ -221,3 +221,30 @@ checkoutLinks.forEach(link => {
     window.location.href = 'checkout.html?' + params.toString();
   });
 });
+
+
+const runtimePlanPrices = Array.from(document.querySelectorAll('.plan-runtime-price[data-commerce-product][data-commerce-plan]'));
+if (runtimePlanPrices.length) {
+  const formatMoney = minor => (minor / 100).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+  const refreshRuntimePrices = async () => {
+    try {
+      const response = await fetch('/api/commerce/catalog', { headers: { Accept: 'application/json' }, cache: 'no-store' });
+      if (!response.ok) return;
+      const catalog = await response.json();
+      runtimePlanPrices.forEach(node => {
+        const product = catalog.products?.find(item => item.id === node.dataset.commerceProduct);
+        const plan = product?.plans?.find(item => item.plan === node.dataset.commercePlan);
+        if (!plan || plan.quoteOnly) return;
+        const annual = document.body.classList.contains('billing-annual');
+        const price = annual ? plan.annual : plan.monthly;
+        if (price?.amountMinor) {
+          node.textContent = formatMoney(price.amountMinor) + (annual ? '/ano' : '/mês');
+        } else {
+          node.textContent = 'Valor em definição';
+        }
+      });
+    } catch {}
+  };
+  billingButtons.forEach(button => button.addEventListener('click', refreshRuntimePrices));
+  refreshRuntimePrices();
+}
