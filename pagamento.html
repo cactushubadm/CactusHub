@@ -39,15 +39,15 @@
    if(!r.ok)throw new Error(b?.error?.message||'Não foi possível consultar o pedido.');
    const status=b.status;
    if(status==='ONLINE'){
-    title.textContent='Seu AgroHub está pronto';
+    title.textContent='Seu Cactus One Agro está pronto';
     msg.textContent='Pagamento confirmado e ambiente criado.';
-    detail.innerHTML='<h3>Primeiro acesso</h3><p>Use o botão abaixo para definir o administrador e a senha.</p><p><a class="btn btn-primary" href="'+b.firstAccessUrl.replace(/"/g,'&quot;')+'">Acessar meu AgroHub</a></p>';
+    detail.innerHTML='<h3>Primeiro acesso</h3><p>Use o botão abaixo para definir o administrador e a senha.</p><p><a class="btn btn-primary" href="'+b.firstAccessUrl.replace(/"/g,'&quot;')+'">Acessar meu Cactus One Agro</a></p>';
     return;
    }
    if(status==='AWAITING_PAYMENT'){title.textContent='Aguardando confirmação do pagamento';msg.textContent='Assim que o Mercado Pago confirmar a aprovação, a criação do ambiente começa automaticamente.';}
    else if(status==='PAYMENT_REVIEW_REQUIRED'){title.textContent='Pagamento em revisão';msg.textContent='O pedido precisa de conferência antes de continuar.';}
    else if(status==='FAILED'||status==='VALIDATION_FAILED'){title.textContent='Não foi possível concluir automaticamente';msg.textContent='Seu pedido foi preservado para análise da equipe Cactus Hub.';}
-   else {title.textContent='Configurando seu AgroHub';msg.textContent='Pagamento confirmado. A Factory está preparando seu ambiente: '+status+'.';}
+   else {title.textContent='Configurando seu Cactus One Agro';msg.textContent='Pagamento confirmado. A Factory está preparando seu ambiente: '+status+'.';}
    detail.textContent='Pedido: '+b.orderId+' • Status: '+status;
    setTimeout(poll,5000);
   }catch(err){title.textContent='Consultando seu pedido';msg.textContent=err.message;setTimeout(poll,10000);}
