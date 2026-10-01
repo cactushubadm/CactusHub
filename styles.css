@@ -703,7 +703,7 @@ body{padding-bottom:0}
 .inline-plan-card li{position:relative;padding-left:18px;color:#526076;font-size:11px;line-height:1.45}
 .inline-plan-card li:before{content:"✓";position:absolute;left:0;color:var(--accent);font-weight:900}
 .inline-plan-card .btn{margin-top:auto;width:100%}
-.corporate-price{font-family:"Montserrat",sans-serif;color:var(--navy);font-size:30px;font-weight:800;line-height:1;margin:8px 0 8px}
+.corporate-price{font-family:"Montserrat",sans-serif;color:var(--navy);font-size:clamp(23px,2vw,30px);font-weight:800;line-height:1.05;letter-spacing:-.7px;margin:8px 0 8px;max-width:100%;white-space:nowrap}
 .product-sales-panel.buildhub{--accent:#4d8ef7}
 .product-sales-panel.minerhub{--accent:#d9a441}
 .product-sales-panel.agrohub{--accent:#69bd49}
@@ -1798,3 +1798,10 @@ body.billing-annual .quick-card-price{color:#5e9517}
     letter-spacing:-1px;
   }
 }
+
+/* pricing-card overflow guard */
+.inline-plan-card{min-width:0;overflow:hidden}
+.inline-plan-card h4,.inline-plan-card>p,.inline-plan-card li{overflow-wrap:anywhere}
+.inline-plan-card .corporate-price{max-width:100%;text-wrap:nowrap}
+@media(max-width:1180px) and (min-width:821px){.inline-pricing-grid{gap:12px}.inline-plan-card{padding:20px 17px}.inline-plan-card .corporate-price{font-size:24px;letter-spacing:-1px}}
+@media(max-width:600px){.inline-plan-card .corporate-price{font-size:30px;white-space:normal}}
