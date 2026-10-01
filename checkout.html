@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0E1524">
+<title>Assinar AgroHub — Cactus Hub</title>
+<meta name="description" content="Finalize a contratação do AgroHub com checkout seguro.">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="site-header">
+<div class="container nav-wrap">
+<a aria-label="Cactus Hub" class="brand" href="index.html">
+<img alt="Cactus Hub" class="brand-mark-img" src="assets/logo-primary.png">
+<span class="brand-copy"><strong>CACTUS HUB</strong><small>SOLUÇÕES TECNOLÓGICAS</small></span>
+</a>
+<nav class="primary-nav"><a href="produtos.html">Voltar aos produtos</a></nav>
+</div>
+</header>
+<main id="conteudo">
+<section class="section-dark sales-product-hero">
+<div class="container compact-hero-grid">
+<div class="compact-hero-copy">
+<span class="eyebrow">Contratação online</span>
+<h1>Configure seu AgroHub e siga para o pagamento seguro.</h1>
+<p>O valor é conferido no servidor da Cactus Hub. Nenhum preço enviado pelo navegador é aceito como fonte de cobrança.</p>
+</div>
+</div>
+</section>
+<section class="section">
+<div class="container" style="max-width:820px">
+<div id="checkout-status" class="form-note">Carregando disponibilidade...</div>
+<form id="checkout-form" class="contact-form" hidden>
+<div class="field-row">
+<label>Nome do responsável<input name="name" required maxlength="120" autocomplete="name"></label>
+<label>Fazenda / empresa<input name="company" required maxlength="180" autocomplete="organization"></label>
+</div>
+<div class="field-row">
+<label>E-mail<input type="email" name="email" required maxlength="180" autocomplete="email"></label>
+<label>WhatsApp<input name="phone" maxlength="40" autocomplete="tel"></label>
+</div>
+<div class="field-row">
+<label>Plano<select name="plan"><option value="STARTER">Essencial</option><option value="PRO">Profissional</option></select></label>
+<label>Cobrança<select name="billing"><option value="monthly">Mensal</option><option value="annual">Anual — equivalente a 10 mensalidades</option></select></label>
+</div>
+<div id="checkout-summary" class="form-note"></div>
+<input type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">
+<button type="submit" class="btn btn-primary btn-submit">Ir para pagamento seguro</button>
+<p class="form-note">Após a aprovação do pagamento, a Factory inicia a criação do seu ambiente AgroHub automaticamente.</p>
+</form>
+</div>
+</section>
+</main>
+<script>
+(() => {
+  const form=document.querySelector('#checkout-form');
+  const status=document.querySelector('#checkout-status');
+  const summary=document.querySelector('#checkout-summary');
+  const params=new URLSearchParams(location.search);
+  const plan=params.get('plan');
+  const billing=params.get('billing');
+  if(plan && ['STARTER','PRO'].includes(plan)) form.plan.value=plan;
+  if(billing && ['monthly','annual'].includes(billing)) form.billing.value=billing;
+  let catalog=null;
+  const money=v=>(v/100).toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+  function render(){
+    if(!catalog)return;
+    const agro=catalog.products.find(x=>x.id==='agrohub');
+    const selected=agro.plans.find(x=>x.plan===form.plan.value);
+    const period=form.billing.value;
+    summary.textContent='AgroHub '+selected.label+' — '+money(selected[period].amountMinor)+' '+(period==='annual'?'por ano':'por mês');
+  }
+  fetch('/api/commerce/catalog',{headers:{Accept:'application/json'}}).then(r=>r.json().then(b=>({r,b}))).then(({r,b})=>{
+    if(!r.ok)throw new Error('Catálogo indisponível');
+    catalog=b; render();
+    if(!b.checkoutReady){
+      status.textContent='A contratação online está preparada, mas o pagamento ainda aguarda a ativação das credenciais de produção do Mercado Pago. Você pode solicitar contato comercial enquanto isso.';
+      return;
+    }
+    status.textContent='Checkout disponível.';
+    form.hidden=false;
+  }).catch(()=>{status.textContent='Não foi possível consultar o checkout agora. Tente novamente mais tarde.';});
+  form.plan.addEventListener('change',render); form.billing.addEventListener('change',render);
+  form.addEventListener('submit',async e=>{
+    e.preventDefault();
+    const btn=form.querySelector('button[type=submit]'); btn.disabled=true; btn.textContent='Preparando checkout...';
+    try{
+      const data=Object.fromEntries(new FormData(form).entries());
+      if(data.website)return;
+      const payload={
+        requestId:crypto.randomUUID(),product:'agrohub',plan:data.plan,billingPeriod:data.billing,
+        customer:{displayName:data.company,contactName:data.name,email:data.email,phone:data.phone}
+      };
+      const r=await fetch('/api/commerce/checkout',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(payload)});
+      const b=await r.json();
+      if(!r.ok)throw new Error(b?.error?.message||'Não foi possível iniciar o pagamento.');
+      location.href=b.checkoutUrl;
+    }catch(err){alert(err.message||'Não foi possível iniciar o pagamento.');btn.disabled=false;btn.textContent='Ir para pagamento seguro';}
+  });
+})();
+</script>
+</body>
+</html>
