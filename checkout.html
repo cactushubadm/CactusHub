@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#0E1524">
-<title>Assinar AgroHub — Cactus Hub</title>
-<meta name="description" content="Finalize a contratação do AgroHub com checkout seguro.">
+<title>Assinar Cactus One Agro — Cactus Hub</title>
+<meta name="description" content="Finalize a contratação do Cactus One Agro com checkout seguro.">
 <link rel="icon" type="image/png" href="assets/favicon.png">
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -24,7 +24,7 @@
 <div class="container compact-hero-grid">
 <div class="compact-hero-copy">
 <span class="eyebrow">Contratação online</span>
-<h1>Configure seu AgroHub e siga para o pagamento seguro.</h1>
+<h1>Configure seu Cactus One Agro e siga para o pagamento seguro.</h1>
 <p>O valor é conferido no servidor da Cactus Hub. Nenhum preço enviado pelo navegador é aceito como fonte de cobrança.</p>
 </div>
 </div>
@@ -48,7 +48,7 @@
 <div id="checkout-summary" class="form-note"></div>
 <input type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">
 <button type="submit" class="btn btn-primary btn-submit">Ir para pagamento seguro</button>
-<p class="form-note">Após a aprovação do pagamento, a Factory inicia a criação do seu ambiente AgroHub automaticamente.</p>
+<p class="form-note">Após a aprovação do pagamento, a Factory inicia a criação do seu ambiente Cactus One Agro automaticamente.</p>
 </form>
 </div>
 </section>
@@ -71,15 +71,15 @@
     const selected=agro.plans.find(x=>x.plan===form.plan.value);
     const period=form.billing.value;
     const price=selected?.[period];
-    summary.textContent=price?.amountMinor ? 'AgroHub '+selected.label+' — '+money(price.amountMinor)+' '+(period==='annual'?'por ano':'por mês') : 'AgroHub '+(selected?.label||'')+' — valor em definição';
+    summary.textContent=price?.amountMinor ? 'Cactus One Agro '+selected.label+' — '+money(price.amountMinor)+' '+(period==='annual'?'por ano':'por mês') : 'Cactus One Agro '+(selected?.label||'')+' — valor em definição';
   }
   fetch('/api/commerce/catalog',{headers:{Accept:'application/json'}}).then(r=>r.json().then(b=>({r,b}))).then(({r,b})=>{
     if(!r.ok)throw new Error('Catálogo indisponível');
     catalog=b; render();
     if(!b.checkoutReady){
       status.innerHTML=!b.pricingReady
-        ? 'A nova estrutura de planos já está ativa. Os valores ainda serão definidos; enquanto isso, <a href="index.html?interest=AgroHub - Nova tabela de planos#contato">solicite contato comercial</a>.'
-        : 'A tabela comercial está configurada, mas o pagamento ainda aguarda a ativação das credenciais de produção do Mercado Pago. <a href="index.html?interest=AgroHub - Contratação#contato">Fale com a Cactus Hub</a>.';
+        ? 'A nova estrutura de planos já está ativa. Os valores ainda serão definidos; enquanto isso, <a href="index.html?interest=Cactus One Agro - Nova tabela de planos#contato">solicite contato comercial</a>.'
+        : 'A tabela comercial está configurada, mas o pagamento ainda aguarda a ativação das credenciais de produção do Mercado Pago. <a href="index.html?interest=Cactus One Agro - Contratação#contato">Fale com a Cactus Hub</a>.';
       return;
     }
     status.textContent='Checkout disponível.';
