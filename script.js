@@ -92,10 +92,11 @@ if (form && success) {
     }
 
     try {
-      const response = await fetch('/', {
+      const payload = Object.fromEntries(formData.entries());
+      const response = await fetch('/api/commerce/contact', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(formData).toString()
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(payload)
       });
 
       if (!response.ok) throw new Error('Falha no envio');
@@ -205,3 +206,18 @@ if (catalogSwitches.length && catalogPanes.length) {
   const initialTarget = window.location.hash === '#sites-prontos' ? 'sites-prontos' : 'gestao-produtos';
   activateCatalog(initialTarget, false);
 }
+
+
+const checkoutLinks = Array.from(document.querySelectorAll('[data-checkout-product][data-checkout-plan]'));
+checkoutLinks.forEach(link => {
+  link.addEventListener('click', event => {
+    event.preventDefault();
+    const billing = document.body.classList.contains('billing-annual') ? 'annual' : 'monthly';
+    const params = new URLSearchParams({
+      product: link.dataset.checkoutProduct,
+      plan: link.dataset.checkoutPlan,
+      billing
+    });
+    window.location.href = 'checkout.html?' + params.toString();
+  });
+});
