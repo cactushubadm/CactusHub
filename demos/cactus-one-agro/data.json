@@ -1,0 +1,631 @@
+{
+  "meta": {
+    "app_name": "Cactus One Agro",
+    "brand_line": "Fazenda Manga Bela",
+    "release": "Demo de referência",
+    "notice": "Todos os dados desta demonstração são fictícios e foram importados da base demonstrativa Manga Bela exclusivamente para avaliação do Cactus One Agro."
+  },
+  "kpis": [
+    {
+      "section": "dashboard",
+      "key": "revenue",
+      "label": "Faturamento projetado safra",
+      "value": 18450000,
+      "unit": "R$",
+      "trend": 12.4,
+      "note": "Safra 2026/27"
+    },
+    {
+      "section": "dashboard",
+      "key": "ebitda",
+      "label": "EBITDA projetado",
+      "value": 6420000,
+      "unit": "R$",
+      "trend": 9.8,
+      "note": "Margem operacional da safra"
+    },
+    {
+      "section": "dashboard",
+      "key": "export",
+      "label": "Volume para exportação",
+      "value": 2780,
+      "unit": "t",
+      "trend": 15.2,
+      "note": "Contratos já mapeados"
+    },
+    {
+      "section": "dashboard",
+      "key": "cash",
+      "label": "Caixa disponível",
+      "value": 3180000,
+      "unit": "R$",
+      "trend": 6.1,
+      "note": "Posição consolidada"
+    },
+    {
+      "section": "finance",
+      "key": "receivable",
+      "label": "Contas a receber",
+      "value": 4860000,
+      "unit": "R$",
+      "trend": 8.7,
+      "note": "Próximos 90 dias"
+    },
+    {
+      "section": "finance",
+      "key": "payable",
+      "label": "Contas a pagar",
+      "value": 2110000,
+      "unit": "R$",
+      "trend": -3.2,
+      "note": "Compromissos programados"
+    },
+    {
+      "section": "finance",
+      "key": "margin",
+      "label": "Margem operacional",
+      "value": 34.8,
+      "unit": "%",
+      "trend": 2.4,
+      "note": "Meta anual"
+    },
+    {
+      "section": "finance",
+      "key": "costbox",
+      "label": "Custo por caixa",
+      "value": 18.6,
+      "unit": "R$",
+      "trend": -1.8,
+      "note": "Manga Tommy + Palmer"
+    },
+    {
+      "section": "purchases",
+      "key": "open",
+      "label": "Solicitações abertas",
+      "value": 26,
+      "unit": "un",
+      "trend": 4,
+      "note": "Compras em andamento"
+    },
+    {
+      "section": "purchases",
+      "key": "saving",
+      "label": "Saving acumulado",
+      "value": 184000,
+      "unit": "R$",
+      "trend": 11.3,
+      "note": "Negociações do ciclo"
+    },
+    {
+      "section": "purchases",
+      "key": "critical",
+      "label": "Itens críticos",
+      "value": 5,
+      "unit": "un",
+      "trend": -16,
+      "note": "Insumos com prazo curto"
+    },
+    {
+      "section": "inventory",
+      "key": "value",
+      "label": "Valor em estoque",
+      "value": 1740000,
+      "unit": "R$",
+      "trend": 5.6,
+      "note": "Câmara fria + insumos"
+    },
+    {
+      "section": "inventory",
+      "key": "coverage",
+      "label": "Cobertura de estoque",
+      "value": 42,
+      "unit": "dias",
+      "trend": 3.1,
+      "note": "Média geral"
+    },
+    {
+      "section": "inventory",
+      "key": "critical",
+      "label": "Itens críticos",
+      "value": 7,
+      "unit": "un",
+      "trend": -12.5,
+      "note": "Abaixo do mínimo"
+    },
+    {
+      "section": "fleet",
+      "key": "availability",
+      "label": "Disponibilidade da frota",
+      "value": 93.4,
+      "unit": "%",
+      "trend": 1.9,
+      "note": "Máquinas e caminhões"
+    },
+    {
+      "section": "fleet",
+      "key": "fuel",
+      "label": "Consumo mensal diesel",
+      "value": 18600,
+      "unit": "L",
+      "trend": -2.1,
+      "note": "Operação otimizada"
+    },
+    {
+      "section": "fleet",
+      "key": "cost",
+      "label": "Custo mensal da frota",
+      "value": 286000,
+      "unit": "R$",
+      "trend": -1.4,
+      "note": "Preventiva + combustível"
+    },
+    {
+      "section": "sales",
+      "key": "pipeline",
+      "label": "Pipeline comercial",
+      "value": 9230000,
+      "unit": "R$",
+      "trend": 14.1,
+      "note": "Mercado interno + exportação"
+    },
+    {
+      "section": "sales",
+      "key": "contracts",
+      "label": "Contratos em negociação",
+      "value": 6,
+      "unit": "un",
+      "trend": 20,
+      "note": "Distribuição e varejo"
+    },
+    {
+      "section": "sales",
+      "key": "avg",
+      "label": "Ticket médio por contrato",
+      "value": 1540000,
+      "unit": "R$",
+      "trend": 7,
+      "note": "Projeção comercial"
+    },
+    {
+      "section": "farming",
+      "key": "planted",
+      "label": "Área produtiva",
+      "value": 486,
+      "unit": "ha",
+      "trend": 0,
+      "note": "Talhões em produção"
+    },
+    {
+      "section": "farming",
+      "key": "harvested",
+      "label": "Volume colhido",
+      "value": 1240,
+      "unit": "t",
+      "trend": 10.2,
+      "note": "Acumulado do ciclo"
+    },
+    {
+      "section": "farming",
+      "key": "yield",
+      "label": "Produtividade média",
+      "value": 22.8,
+      "unit": "t/ha",
+      "trend": 4.4,
+      "note": "Talhões colhidos"
+    },
+    {
+      "section": "farming",
+      "key": "packing",
+      "label": "Aproveitamento packing house",
+      "value": 91,
+      "unit": "%",
+      "trend": 3.5,
+      "note": "Classificação comercial"
+    }
+  ],
+  "farming": [
+    {
+      "id": 1,
+      "field": "Talhão 01",
+      "crop": "Manga Tommy",
+      "area": 82,
+      "productivity": 24.6,
+      "harvested": 318,
+      "status": "Colheita em andamento",
+      "note": "Fruta com bom padrão de calibre"
+    },
+    {
+      "id": 2,
+      "field": "Talhão 02",
+      "crop": "Manga Palmer",
+      "area": 96,
+      "productivity": 23.9,
+      "harvested": 402,
+      "status": "Packing/expedição",
+      "note": "Lote majoritariamente exportação"
+    },
+    {
+      "id": 3,
+      "field": "Talhão 03",
+      "crop": "Manga Tommy",
+      "area": 74,
+      "productivity": 21.8,
+      "harvested": 188,
+      "status": "Florada/enchimento",
+      "note": "Monitoramento fitossanitário intensificado"
+    },
+    {
+      "id": 4,
+      "field": "Talhão 04",
+      "crop": "Manga Palmer",
+      "area": 110,
+      "productivity": 0,
+      "harvested": 0,
+      "status": "Poda e condução",
+      "note": "Janela de colheita a partir de dezembro"
+    },
+    {
+      "id": 5,
+      "field": "Talhão 05",
+      "crop": "Manga Tommy",
+      "area": 124,
+      "productivity": 0,
+      "harvested": 0,
+      "status": "Irrigação e manejo",
+      "note": "Fase vegetativa estabilizada"
+    }
+  ],
+  "inventory": [
+    {
+      "id": 1,
+      "sku": "NPK20520",
+      "item": "Fertilizante NPK 20-05-20",
+      "category": "Insumos",
+      "stock": 84,
+      "min_stock": 60,
+      "unit": "t",
+      "value": 336000,
+      "status": "Normal"
+    },
+    {
+      "id": 2,
+      "sku": "EMB-EXP",
+      "item": "Caixa exportação 4kg",
+      "category": "Embalagens",
+      "stock": 12800,
+      "min_stock": 9000,
+      "unit": "un",
+      "value": 153600,
+      "status": "Normal"
+    },
+    {
+      "id": 3,
+      "sku": "PVC-IRR",
+      "item": "Conexão PVC irrigação",
+      "category": "Irrigação",
+      "stock": 320,
+      "min_stock": 450,
+      "unit": "un",
+      "value": 22400,
+      "status": "Crítico"
+    },
+    {
+      "id": 4,
+      "sku": "EPI-001",
+      "item": "Luvas nitrílicas",
+      "category": "EPI",
+      "stock": 640,
+      "min_stock": 400,
+      "unit": "par",
+      "value": 9600,
+      "status": "Normal"
+    },
+    {
+      "id": 5,
+      "sku": "FUNG-07",
+      "item": "Fungicida protetivo",
+      "category": "Defensivos",
+      "stock": 110,
+      "min_stock": 140,
+      "unit": "L",
+      "value": 68200,
+      "status": "Atenção"
+    },
+    {
+      "id": 6,
+      "sku": "PALLET-02",
+      "item": "Pallet plástico",
+      "category": "Logística",
+      "stock": 220,
+      "min_stock": 260,
+      "unit": "un",
+      "value": 92400,
+      "status": "Crítico"
+    }
+  ],
+  "fleet": [
+    {
+      "id": 1,
+      "asset": "TR-01",
+      "type": "Trator 180 cv",
+      "status": "Operando",
+      "meter": 4820,
+      "availability": 95.2,
+      "fuel": 3680,
+      "monthly_cost": 44200
+    },
+    {
+      "id": 2,
+      "asset": "TR-02",
+      "type": "Trator 145 cv",
+      "status": "Operando",
+      "meter": 5160,
+      "availability": 94.1,
+      "fuel": 3420,
+      "monthly_cost": 39800
+    },
+    {
+      "id": 3,
+      "asset": "PV-01",
+      "type": "Pulverizador autopropelido",
+      "status": "Operando",
+      "meter": 2910,
+      "availability": 92.6,
+      "fuel": 2760,
+      "monthly_cost": 51400
+    },
+    {
+      "id": 4,
+      "asset": "CAM-01",
+      "type": "Caminhão refrigerado",
+      "status": "Operando",
+      "meter": 184000,
+      "availability": 91.8,
+      "fuel": 4120,
+      "monthly_cost": 46600
+    },
+    {
+      "id": 5,
+      "asset": "CAM-02",
+      "type": "Caminhão toco",
+      "status": "Manutenção programada",
+      "meter": 162000,
+      "availability": 84.4,
+      "fuel": 3560,
+      "monthly_cost": 38900
+    },
+    {
+      "id": 6,
+      "asset": "EMP-01",
+      "type": "Empilhadeira elétrica",
+      "status": "Operando",
+      "meter": 2330,
+      "availability": 96.5,
+      "fuel": 0,
+      "monthly_cost": 17200
+    }
+  ],
+  "purchases": [
+    {
+      "id": 1,
+      "code": "PC-AG-0142",
+      "supplier": "AgroFort Fertilizantes",
+      "item": "NPK 20-05-20",
+      "status": "Pedido emitido",
+      "amount": 286000,
+      "saving": 19400,
+      "date": "2026-09-20"
+    },
+    {
+      "id": 2,
+      "code": "PC-AG-0148",
+      "supplier": "Nordeste Irrigação",
+      "item": "Filtros e gotejadores",
+      "status": "Cotação",
+      "amount": 124000,
+      "saving": 8600,
+      "date": "2026-09-21"
+    },
+    {
+      "id": 3,
+      "code": "PC-AG-0151",
+      "supplier": "MangaPack",
+      "item": "Caixas plásticas retornáveis",
+      "status": "Aprovado",
+      "amount": 94000,
+      "saving": 7300,
+      "date": "2026-09-22"
+    },
+    {
+      "id": 4,
+      "code": "PC-AG-0156",
+      "supplier": "Protec Campo",
+      "item": "EPI operação de campo",
+      "status": "Solicitação",
+      "amount": 28600,
+      "saving": 0,
+      "date": "2026-09-23"
+    },
+    {
+      "id": 5,
+      "code": "PC-AG-0159",
+      "supplier": "Agro Química Vale",
+      "item": "Defensivos seletivos",
+      "status": "Negociação",
+      "amount": 176000,
+      "saving": 11200,
+      "date": "2026-09-23"
+    }
+  ],
+  "finance": [
+    {
+      "id": 1,
+      "type": "Receita",
+      "description": "Contrato Exportação Lote MX-21",
+      "category": "Exportação",
+      "due_date": "2026-10-05",
+      "status": "Previsto",
+      "amount": 1280000
+    },
+    {
+      "id": 2,
+      "type": "Receita",
+      "description": "Rede Varejista Nordeste",
+      "category": "Mercado interno",
+      "due_date": "2026-10-11",
+      "status": "Previsto",
+      "amount": 540000
+    },
+    {
+      "id": 3,
+      "type": "Receita",
+      "description": "Atacado CEASA Fortaleza",
+      "category": "Mercado interno",
+      "due_date": "2026-10-18",
+      "status": "Previsto",
+      "amount": 286000
+    },
+    {
+      "id": 4,
+      "type": "Despesa",
+      "description": "Folha operacional da fazenda",
+      "category": "Pessoal",
+      "due_date": "2026-09-30",
+      "status": "Programado",
+      "amount": 412000
+    },
+    {
+      "id": 5,
+      "type": "Despesa",
+      "description": "Fertilizantes ciclo outubro",
+      "category": "Insumos",
+      "due_date": "2026-10-02",
+      "status": "Aprovado",
+      "amount": 318000
+    },
+    {
+      "id": 6,
+      "type": "Despesa",
+      "description": "Diesel agrícola",
+      "category": "Frota",
+      "due_date": "2026-10-07",
+      "status": "Programado",
+      "amount": 124000
+    },
+    {
+      "id": 7,
+      "type": "Despesa",
+      "description": "Embalagens exportação",
+      "category": "Packing house",
+      "due_date": "2026-10-12",
+      "status": "Em aprovação",
+      "amount": 88000
+    },
+    {
+      "id": 8,
+      "type": "Despesa",
+      "description": "Manutenção sistema de irrigação",
+      "category": "Infraestrutura",
+      "due_date": "2026-10-16",
+      "status": "Aprovado",
+      "amount": 74000
+    }
+  ],
+  "sales": [
+    {
+      "id": 1,
+      "customer": "Fresh Iberia",
+      "product": "Manga Palmer exportação",
+      "stage": "Proposta",
+      "value": 2480000,
+      "probability": 70,
+      "expected_date": "2026-11-04"
+    },
+    {
+      "id": 2,
+      "customer": "SuperRede Nordeste",
+      "product": "Manga Tommy 4kg",
+      "stage": "Negociação",
+      "value": 1340000,
+      "probability": 65,
+      "expected_date": "2026-10-22"
+    },
+    {
+      "id": 3,
+      "customer": "Distribuidora São Paulo",
+      "product": "Manga premium selecionada",
+      "stage": "Qualificação",
+      "value": 980000,
+      "probability": 45,
+      "expected_date": "2026-11-18"
+    },
+    {
+      "id": 4,
+      "customer": "Mercado Verde",
+      "product": "Polpa e subprodutos",
+      "stage": "Proposta",
+      "value": 760000,
+      "probability": 52,
+      "expected_date": "2026-12-02"
+    },
+    {
+      "id": 5,
+      "customer": "Atacado Brasília",
+      "product": "Lote atacado interno",
+      "stage": "Negociação",
+      "value": 540000,
+      "probability": 68,
+      "expected_date": "2026-10-20"
+    }
+  ],
+  "activities": [
+    {
+      "id": 1,
+      "module": "Financeiro",
+      "title": "Fluxo da semana consolidado",
+      "detail": "Receitas previstas acima da meta semanal",
+      "status": "Concluído",
+      "date": "2026-09-23"
+    },
+    {
+      "id": 2,
+      "module": "Compras",
+      "title": "Negociação fertilizantes",
+      "detail": "3 fornecedores comparados para NPK 20-05-20",
+      "status": "Em andamento",
+      "date": "2026-09-23"
+    },
+    {
+      "id": 3,
+      "module": "Almoxarifado",
+      "title": "Estoque crítico identificado",
+      "detail": "Conexões PVC da irrigação abaixo do mínimo",
+      "status": "Atenção",
+      "date": "2026-09-23"
+    },
+    {
+      "id": 4,
+      "module": "Frota",
+      "title": "Preventiva CAM-02",
+      "detail": "Troca de filtros e revisão elétrica agendada",
+      "status": "Programado",
+      "date": "2026-09-24"
+    },
+    {
+      "id": 5,
+      "module": "Comercial",
+      "title": "Proposta enviada à Fresh Iberia",
+      "detail": "Lote de manga Palmer para exportação",
+      "status": "Enviado",
+      "date": "2026-09-22"
+    },
+    {
+      "id": 6,
+      "module": "Produção Agrícola",
+      "title": "Packing com 91% de aproveitamento",
+      "detail": "Índice acima da meta de classificação",
+      "status": "Aprovado",
+      "date": "2026-09-22"
+    }
+  ]
+}
