@@ -225,7 +225,7 @@ checkoutLinks.forEach(link => {
 
 const runtimePlanPrices = Array.from(document.querySelectorAll('.plan-runtime-price[data-commerce-product][data-commerce-plan]'));
 if (runtimePlanPrices.length) {
-  const formatMoney = minor => (minor / 100).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+  const formatMoney = minor => 'R$ ' + Math.round(minor / 100).toLocaleString('pt-BR');
   const refreshRuntimePrices = async () => {
     try {
       const response = await fetch('/api/commerce/catalog', { headers: { Accept: 'application/json' }, cache: 'no-store' });
@@ -262,7 +262,7 @@ const renderTierPlanPrices = () => {
     const tier = tierPlanPrices[node.dataset.planTier];
     if (!tier) return;
     const minor = annual ? tier.annual : tier.monthly;
-    node.textContent = (minor / 100).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) + (annual ? '/ano' : '/mês');
+    node.textContent = 'R$ ' + Math.round(minor / 100).toLocaleString('pt-BR') + (annual ? '/ano' : '/mês');
   });
 };
 billingButtons.forEach(button => button.addEventListener('click', renderTierPlanPrices));
