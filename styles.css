@@ -1765,3 +1765,36 @@ body.billing-annual .quick-card-price{color:#5e9517}
 .demo-live-badge{
   box-shadow:0 8px 22px rgba(0,0,0,.16);
 }
+
+
+/* Cactus One commercial polish */
+.inline-plan-card .recommended-label{
+  position:static;
+  align-self:flex-end;
+  margin:-2px 0 8px;
+  max-width:100%;
+  white-space:nowrap;
+  padding:6px 10px;
+  border-radius:999px;
+  background:rgba(129,191,32,.12);
+  color:#609b16;
+  font-size:8px;
+  font-weight:900;
+  letter-spacing:.7px;
+}
+.detail-logo{
+  font-size:clamp(32px,3.2vw,54px);
+  letter-spacing:-1.6px;
+}
+.detail-logo b{font-weight:800}
+@media(max-width:600px){
+  .inline-plan-card .recommended-label{
+    align-self:flex-start;
+    margin:0 0 9px;
+    white-space:normal;
+  }
+  .detail-logo{
+    font-size:34px;
+    letter-spacing:-1px;
+  }
+}
