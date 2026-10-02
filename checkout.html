@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#0E1524">
 <title>Assinar Cactus One Agro — Cactus Hub</title>
-<meta name="description" content="Finalize a contratação do Cactus One Agro com checkout seguro.">
+<meta name="description" content="Finalize a assinatura do Cactus One Agro com cobrança recorrente segura.">
 <link rel="icon" type="image/png" href="assets/favicon.png">
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -24,7 +24,7 @@
 <div class="container compact-hero-grid">
 <div class="compact-hero-copy">
 <span class="eyebrow">Contratação online</span>
-<h1>Configure seu Cactus One Agro e siga para o pagamento seguro.</h1>
+<h1>Configure seu Cactus One Agro e siga para ativar sua assinatura.</h1>
 <p>O valor é conferido no servidor da Cactus Hub. Nenhum preço enviado pelo navegador é aceito como fonte de cobrança.</p>
 </div>
 </div>
@@ -47,8 +47,8 @@
 </div>
 <div id="checkout-summary" class="form-note"></div>
 <input type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">
-<button type="submit" class="btn btn-primary btn-submit">Ir para pagamento seguro</button>
-<p class="form-note">Após a aprovação do pagamento, a Factory inicia a criação do seu ambiente Cactus One Agro automaticamente.</p>
+<button type="submit" class="btn btn-primary btn-submit">Assinar com Mercado Pago</button>
+<p class="form-note">Após a primeira cobrança aprovada, a Factory inicia a criação do seu ambiente Cactus One Agro automaticamente. As próximas cobranças seguem a periodicidade escolhida.</p>
 </form>
 </div>
 </section>
@@ -82,13 +82,13 @@
         : 'A tabela comercial está configurada, mas o pagamento ainda aguarda a ativação das credenciais de produção do Mercado Pago. <a href="index.html?interest=Cactus One Agro - Contratação#contato">Fale com a Cactus Hub</a>.';
       return;
     }
-    status.textContent='Checkout disponível.';
+    status.textContent='Assinaturas disponíveis.';
     form.hidden=false;
   }).catch(()=>{status.textContent='Não foi possível consultar o checkout agora. Tente novamente mais tarde.';});
   form.plan.addEventListener('change',render); form.billing.addEventListener('change',render);
   form.addEventListener('submit',async e=>{
     e.preventDefault();
-    const btn=form.querySelector('button[type=submit]'); btn.disabled=true; btn.textContent='Preparando checkout...';
+    const btn=form.querySelector('button[type=submit]'); btn.disabled=true; btn.textContent='Preparando assinatura...';
     try{
       const data=Object.fromEntries(new FormData(form).entries());
       if(data.website)return;
@@ -98,9 +98,9 @@
       };
       const r=await fetch('/api/commerce/checkout',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(payload)});
       const b=await r.json();
-      if(!r.ok)throw new Error(b?.error?.message||'Não foi possível iniciar o pagamento.');
+      if(!r.ok)throw new Error(b?.error?.message||'Não foi possível iniciar a assinatura.');
       location.href=b.checkoutUrl;
-    }catch(err){alert(err.message||'Não foi possível iniciar o pagamento.');btn.disabled=false;btn.textContent='Ir para pagamento seguro';}
+    }catch(err){alert(err.message||'Não foi possível iniciar o pagamento.');btn.disabled=false;btn.textContent='Assinar com Mercado Pago';}
   });
 })();
 </script>
