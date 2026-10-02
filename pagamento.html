@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#0E1524">
-<title>Status da contratação — Cactus Hub</title>
+<title>Status da assinatura — Cactus Hub</title>
 <meta name="robots" content="noindex,nofollow">
 <link rel="icon" type="image/png" href="assets/favicon.png">
 <link rel="stylesheet" href="styles.css">
@@ -20,7 +20,7 @@
 </header>
 <main>
 <section class="section-dark sales-product-hero"><div class="container compact-hero-grid"><div class="compact-hero-copy">
-<span class="eyebrow">Status da contratação</span><h1 id="title">Consultando seu pedido...</h1><p id="message">A confirmação final é feita pela API do Mercado Pago, não pelo retorno do navegador.</p>
+<span class="eyebrow">Status da assinatura</span><h1 id="title">Consultando seu pedido...</h1><p id="message">A confirmação final é feita pela API do Mercado Pago, não pelo retorno do navegador.</p>
 </div></div></section>
 <section class="section"><div class="container" style="max-width:820px">
 <div id="detail" class="contact-form"></div>
@@ -40,14 +40,14 @@
    const status=b.status;
    if(status==='ONLINE'){
     title.textContent='Seu Cactus One Agro está pronto';
-    msg.textContent='Pagamento confirmado e ambiente criado.';
+    msg.textContent='Primeira cobrança confirmada e ambiente criado.';
     detail.innerHTML='<h3>Primeiro acesso</h3><p>Use o botão abaixo para definir o administrador e a senha.</p><p><a class="btn btn-primary" href="'+b.firstAccessUrl.replace(/"/g,'&quot;')+'">Acessar meu Cactus One Agro</a></p>';
     return;
    }
-   if(status==='AWAITING_PAYMENT'){title.textContent='Aguardando confirmação do pagamento';msg.textContent='Assim que o Mercado Pago confirmar a aprovação, a criação do ambiente começa automaticamente.';}
-   else if(status==='PAYMENT_REVIEW_REQUIRED'){title.textContent='Pagamento em revisão';msg.textContent='O pedido precisa de conferência antes de continuar.';}
+   if(status==='AWAITING_PAYMENT'){title.textContent='Aguardando confirmação da primeira cobrança';msg.textContent='Assim que o Mercado Pago confirmar a primeira cobrança da assinatura, a criação do ambiente começa automaticamente.';}
+   else if(status==='PAYMENT_REVIEW_REQUIRED'){title.textContent='Assinatura/pagamento em revisão';msg.textContent='O pedido precisa de conferência antes de continuar.';}
    else if(status==='FAILED'||status==='VALIDATION_FAILED'){title.textContent='Não foi possível concluir automaticamente';msg.textContent='Seu pedido foi preservado para análise da equipe Cactus Hub.';}
-   else {title.textContent='Configurando seu Cactus One Agro';msg.textContent='Pagamento confirmado. A Factory está preparando seu ambiente: '+status+'.';}
+   else {title.textContent='Configurando seu Cactus One Agro';msg.textContent='Assinatura confirmada. A Factory está preparando seu ambiente: '+status+'.';}
    detail.textContent='Pedido: '+b.orderId+' • Status: '+status;
    setTimeout(poll,5000);
   }catch(err){title.textContent='Consultando seu pedido';msg.textContent=err.message;setTimeout(poll,10000);}
