@@ -99,6 +99,9 @@
       const r=await fetch('/api/commerce/checkout',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(payload)});
       const b=await r.json();
       if(!r.ok)throw new Error(b?.error?.message||'Não foi possível iniciar a assinatura.');
+      sessionStorage.setItem('cactusCommerceStatusUrl',b.statusUrl||'');
+      sessionStorage.setItem('cactusCommerceSubscriptionId',b.subscriptionId||'');
+      sessionStorage.setItem('cactusCommerceOrderId',b.orderId||'');
       location.href=b.checkoutUrl;
     }catch(err){alert(err.message||'Não foi possível iniciar o pagamento.');btn.disabled=false;btn.textContent='Assinar com Mercado Pago';}
   });
