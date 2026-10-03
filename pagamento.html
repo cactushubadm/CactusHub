@@ -29,28 +29,63 @@
 </main>
 <script>
 (async()=>{
- const p=new URLSearchParams(location.search), order=p.get('order'), token=p.get('token');
+ const p=new URLSearchParams(location.search);
+ const order=p.get('order'), token=p.get('token');
+ const returnedSubscription=p.get('preapproval_id')||p.get('subscription_id')||p.get('subscription');
+ const storedStatus=sessionStorage.getItem('cactusCommerceStatusUrl')||'';
+ const storedSubscription=sessionStorage.getItem('cactusCommerceSubscriptionId')||'';
+ const subscription=returnedSubscription||storedSubscription;
  const title=document.querySelector('#title'), msg=document.querySelector('#message'), detail=document.querySelector('#detail');
- if(!order||!token){title.textContent='Pedido não identificado';msg.textContent='O link de acompanhamento está incompleto.';return;}
- const endpoint='/api/commerce/orders/'+encodeURIComponent(order)+'?token='+encodeURIComponent(token);
+
+ const candidates=[];
+ if(order&&token)candidates.push('/api/commerce/orders/'+encodeURIComponent(order)+'?token='+encodeURIComponent(token));
+ if(storedStatus&&!candidates.includes(storedStatus))candidates.push(storedStatus);
+ if(subscription)candidates.push('/api/commerce/subscriptions/'+encodeURIComponent(subscription));
+
+ if(!candidates.length){
+   title.textContent='Pedido não identificado';
+   msg.textContent='Não foi possível recuperar automaticamente o identificador da assinatura.';
+   return;
+ }
+
+ let activeIndex=0;
+ async function fetchStatus(){
+   let lastError=null;
+   for(let i=activeIndex;i<candidates.length;i++){
+     try{
+       const r=await fetch(candidates[i],{headers:{Accept:'application/json'},cache:'no-store'});
+       const b=await r.json();
+       if(!r.ok)throw new Error(b?.error?.message||'Não foi possível consultar o pedido.');
+       activeIndex=i;
+       return b;
+     }catch(err){lastError=err;}
+   }
+   throw lastError||new Error('Não foi possível consultar o pedido.');
+ }
+
  async function poll(){
   try{
-   const r=await fetch(endpoint,{headers:{Accept:'application/json'},cache:'no-store'}), b=await r.json();
-   if(!r.ok)throw new Error(b?.error?.message||'Não foi possível consultar o pedido.');
-   const status=b.status;
+   const b=await fetchStatus(), status=b.status;
    if(status==='ONLINE'){
     title.textContent='Seu Cactus One Agro está pronto';
     msg.textContent='Primeira cobrança confirmada e ambiente criado.';
     detail.innerHTML='<h3>Primeiro acesso</h3><p>Use o botão abaixo para definir o administrador e a senha.</p><p><a class="btn btn-primary" href="'+b.firstAccessUrl.replace(/"/g,'&quot;')+'">Acessar meu Cactus One Agro</a></p>';
+    sessionStorage.removeItem('cactusCommerceStatusUrl');
+    sessionStorage.removeItem('cactusCommerceSubscriptionId');
+    sessionStorage.removeItem('cactusCommerceOrderId');
     return;
    }
-   if(status==='AWAITING_PAYMENT'){title.textContent='Aguardando confirmação da primeira cobrança';msg.textContent='Assim que o Mercado Pago confirmar a primeira cobrança da assinatura, a criação do ambiente começa automaticamente.';}
+   if(status==='AWAITING_PAYMENT'){title.textContent='Confirmando sua assinatura';msg.textContent='O pagamento já foi enviado ao Mercado Pago. Estamos conciliando a primeira cobrança com a Factory.';}
    else if(status==='PAYMENT_REVIEW_REQUIRED'){title.textContent='Assinatura/pagamento em revisão';msg.textContent='O pedido precisa de conferência antes de continuar.';}
    else if(status==='FAILED'||status==='VALIDATION_FAILED'){title.textContent='Não foi possível concluir automaticamente';msg.textContent='Seu pedido foi preservado para análise da equipe Cactus Hub.';}
    else {title.textContent='Configurando seu Cactus One Agro';msg.textContent='Assinatura confirmada. A Factory está preparando seu ambiente: '+status+'.';}
-   detail.textContent='Pedido: '+b.orderId+' • Status: '+status;
+   detail.textContent='Pedido: '+b.orderId+' • Status: '+status+(b.subscriptionStatus?' • Assinatura: '+b.subscriptionStatus:'');
    setTimeout(poll,5000);
-  }catch(err){title.textContent='Consultando seu pedido';msg.textContent=err.message;setTimeout(poll,10000);}
+  }catch(err){
+    title.textContent='Consultando seu pedido';
+    msg.textContent=err.message;
+    setTimeout(poll,10000);
+  }
  }
  poll();
 })();
