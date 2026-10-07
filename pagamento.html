@@ -66,19 +66,22 @@
  async function poll(){
   try{
    const b=await fetchStatus(), status=b.status;
+   const names={agrohub:'Cactus One Agro',buildhub:'Cactus One Build',minehub:'Cactus One Miner',logihub:'Cactus One Route'};
+   const productName=names[b.product]||'Cactus One';
    if(status==='ONLINE'){
-    title.textContent='Seu Cactus One Agro está pronto';
+    title.textContent='Seu '+productName+' está pronto';
     msg.textContent='Primeira cobrança confirmada e ambiente criado.';
-    detail.innerHTML='<h3>Primeiro acesso</h3><p>Use o botão abaixo para definir o administrador e a senha.</p><p><a class="btn btn-primary" href="'+b.firstAccessUrl.replace(/"/g,'&quot;')+'">Acessar meu Cactus One Agro</a></p>';
+    detail.innerHTML='<h3>Primeiro acesso</h3><p>Use o botão abaixo para definir o administrador e a senha.</p><p><a class="btn btn-primary" href="'+b.firstAccessUrl.replace(/"/g,'&quot;')+'">Acessar meu '+productName+'</a></p>';
     sessionStorage.removeItem('cactusCommerceStatusUrl');
     sessionStorage.removeItem('cactusCommerceSubscriptionId');
     sessionStorage.removeItem('cactusCommerceOrderId');
     return;
    }
    if(status==='AWAITING_PAYMENT'){title.textContent='Confirmando sua assinatura';msg.textContent='O pagamento já foi enviado ao Mercado Pago. Estamos conciliando a primeira cobrança com a Factory.';}
+   else if(status==='PAYMENT_CONFIRMED_SETUP_PENDING'){title.textContent='Pagamento confirmado';msg.textContent='Sua assinatura '+productName+' está ativa. A equipe Cactus Hub está preparando a ativação do ambiente.';}
    else if(status==='PAYMENT_REVIEW_REQUIRED'){title.textContent='Assinatura/pagamento em revisão';msg.textContent='O pedido precisa de conferência antes de continuar.';}
    else if(status==='FAILED'||status==='VALIDATION_FAILED'){title.textContent='Não foi possível concluir automaticamente';msg.textContent='Seu pedido foi preservado para análise da equipe Cactus Hub.';}
-   else {title.textContent='Configurando seu Cactus One Agro';msg.textContent='Assinatura confirmada. A Factory está preparando seu ambiente: '+status+'.';}
+   else {title.textContent='Configurando seu '+productName;msg.textContent='Assinatura confirmada. A Factory está preparando seu ambiente: '+status+'.';}
    detail.textContent='Pedido: '+b.orderId+' • Status: '+status+(b.subscriptionStatus?' • Assinatura: '+b.subscriptionStatus:'');
    setTimeout(poll,5000);
   }catch(err){
