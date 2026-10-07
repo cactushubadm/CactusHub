@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#0E1524">
-<title>Assinar Cactus One Agro — Cactus Hub</title>
-<meta name="description" content="Finalize a assinatura do Cactus One Agro com cobrança recorrente segura.">
+<title>Assinar Cactus One — Cactus Hub</title>
+<meta name="description" content="Finalize sua assinatura Cactus One com cobrança recorrente segura pelo Mercado Pago.">
 <link rel="icon" type="image/png" href="assets/favicon.png">
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -24,7 +24,7 @@
 <div class="container compact-hero-grid">
 <div class="compact-hero-copy">
 <span class="eyebrow">Contratação online</span>
-<h1>Configure seu Cactus One Agro e siga para ativar sua assinatura.</h1>
+<h1 id="checkout-product-heading">Configure seu Cactus One e siga para ativar sua assinatura.</h1>
 <p>O valor é conferido no servidor da Cactus Hub. Nenhum preço enviado pelo navegador é aceito como fonte de cobrança.</p>
 </div>
 </div>
@@ -48,7 +48,7 @@
 <div id="checkout-summary" class="form-note"></div>
 <input type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">
 <button type="submit" class="btn btn-primary btn-submit">Assinar com Mercado Pago</button>
-<p class="form-note">Após a primeira cobrança aprovada, a Factory inicia a criação do seu ambiente Cactus One Agro automaticamente. As próximas cobranças seguem a periodicidade escolhida.</p>
+<p class="form-note" id="fulfillment-note">Após a primeira cobrança aprovada, a Cactus Hub inicia a ativação do produto contratado. As próximas cobranças seguem a periodicidade escolhida.</p>
 </form>
 </div>
 </section>
@@ -59,6 +59,7 @@
   const status=document.querySelector('#checkout-status');
   const summary=document.querySelector('#checkout-summary');
   const params=new URLSearchParams(location.search);
+  const product=params.get('product')||'agrohub';
   const plan=params.get('plan');
   const billing=params.get('billing');
   if(plan && ['BASIC','INTERMEDIATE','ADVANCED'].includes(plan)) form.plan.value=plan;
@@ -67,19 +68,26 @@
   const money=v=>(v/100).toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
   function render(){
     if(!catalog)return;
-    const agro=catalog.products.find(x=>x.id==='agrohub');
-    const selected=agro.plans.find(x=>x.plan===form.plan.value);
+    const item=catalog.products.find(x=>x.id===product);
+    if(!item){summary.textContent='Produto indisponível.';return;}
+    const selected=item.plans.find(x=>x.plan===form.plan.value);
     const period=form.billing.value;
     const price=selected?.[period];
-    summary.textContent=price?.amountMinor ? 'Cactus One Agro '+selected.label+' — '+money(price.amountMinor)+' '+(period==='annual'?'por ano':'por mês') : 'Cactus One Agro '+(selected?.label||'')+' — valor em definição';
+    summary.textContent=price?.amountMinor ? item.name+' '+selected.label+' — '+money(price.amountMinor)+' '+(period==='annual'?'por ano':'por mês') : item.name+' '+(selected?.label||'')+' — valor em definição';
   }
   fetch('/api/commerce/catalog',{headers:{Accept:'application/json'}}).then(r=>r.json().then(b=>({r,b}))).then(({r,b})=>{
     if(!r.ok)throw new Error('Catálogo indisponível');
-    catalog=b; render();
+    catalog=b;
+    const item=b.products.find(x=>x.id===product);
+    if(!item)throw new Error('Produto indisponível para contratação online');
+    document.title='Assinar '+item.name+' — Cactus Hub';
+    document.querySelector('#checkout-product-heading').textContent='Configure seu '+item.name+' e siga para ativar sua assinatura.';
+    document.querySelector('#fulfillment-note').textContent=item.fulfillment==='automatic' ? 'Após a primeira cobrança aprovada, a Factory inicia a criação do seu ambiente '+item.name+' automaticamente. As próximas cobranças seguem a periodicidade escolhida.' : 'Após a primeira cobrança aprovada, sua assinatura '+item.name+' fica confirmada e a equipe Cactus Hub inicia a ativação do ambiente. As próximas cobranças seguem a periodicidade escolhida.';
+    render();
     if(!b.checkoutReady){
       status.innerHTML=!b.pricingReady
-        ? 'A nova estrutura de planos já está ativa. Os valores ainda serão definidos; enquanto isso, <a href="index.html?interest=Cactus One Agro - Nova tabela de planos#contato">solicite contato comercial</a>.'
-        : 'A tabela comercial está configurada, mas o pagamento ainda aguarda a ativação das credenciais de produção do Mercado Pago. <a href="index.html?interest=Cactus One Agro - Contratação#contato">Fale com a Cactus Hub</a>.';
+        ? 'A nova estrutura de planos já está ativa. Os valores ainda serão definidos; enquanto isso, <a href="index.html?interest=Cactus One - Nova tabela de planos#contato">solicite contato comercial</a>.'
+        : 'A tabela comercial está configurada, mas o pagamento ainda aguarda a ativação das credenciais de produção do Mercado Pago. <a href="index.html?interest=Cactus One - Contratação#contato">Fale com a Cactus Hub</a>.';
       return;
     }
     status.textContent='Assinaturas disponíveis.';
@@ -93,7 +101,7 @@
       const data=Object.fromEntries(new FormData(form).entries());
       if(data.website)return;
       const payload={
-        requestId:crypto.randomUUID(),product:'agrohub',plan:data.plan,billingPeriod:data.billing,
+        requestId:crypto.randomUUID(),product:product,plan:data.plan,billingPeriod:data.billing,
         customer:{displayName:data.company,contactName:data.name,email:data.email,phone:data.phone}
       };
       const r=await fetch('/api/commerce/checkout',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(payload)});
