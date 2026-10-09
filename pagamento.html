@@ -16,37 +16,62 @@
 <img alt="Cactus Hub" class="brand-mark-img" src="assets/logo-primary.png">
 <span class="brand-copy"><strong>CACTUS HUB</strong><small>SOLUÇÕES TECNOLÓGICAS</small></span>
 </a>
+<nav class="primary-nav"><a href="cliente.html">Área do cliente</a><a href="produtos.html">Produtos &amp; Planos</a></nav>
 </div>
 </header>
 <main>
-<section class="section-dark sales-product-hero"><div class="container compact-hero-grid"><div class="compact-hero-copy">
-<span class="eyebrow">Status da assinatura</span><h1 id="title">Consultando seu pedido...</h1><p id="message">A confirmação final é feita pela API do Mercado Pago, não pelo retorno do navegador.</p>
-</div></div></section>
-<section class="section"><div class="container" style="max-width:820px">
-<div id="detail" class="contact-form"></div>
-<p><a class="btn btn-outline-dark" href="produtos.html">Voltar aos produtos</a></p>
-</div></section>
+<section class="section-dark payment-status-hero">
+<div class="container payment-status-hero-grid">
+<div>
+<span class="eyebrow">Status da assinatura</span>
+<h1 id="title">Confirmando sua compra</h1>
+<p id="message">Estamos consultando o Mercado Pago e a Cactus Factory para mostrar o estado real do seu pedido.</p>
+</div>
+<div class="payment-live-badge"><i></i><span>Consulta em tempo real</span></div>
+</div>
+</section>
+<section class="section payment-status-section">
+<div class="container payment-status-shell">
+<div id="detail" class="payment-status-card">
+<div class="customer-loading"><span></span><p>Localizando o pedido e atualizando a assinatura...</p></div>
+</div>
+<div class="payment-status-actions">
+<a class="btn btn-outline-dark" href="cliente.html">Ir para Área do cliente</a>
+<a class="btn btn-link" href="produtos.html">Voltar aos produtos</a>
+</div>
+</div>
+</section>
 </main>
 <script>
 (async()=>{
- const p=new URLSearchParams(location.search);
- const order=p.get('order'), token=p.get('token');
- const returnedSubscription=p.get('preapproval_id')||p.get('subscription_id')||p.get('subscription');
+ const params=new URLSearchParams(location.search);
+ const order=params.get('order'),token=params.get('token');
+ const returnedSubscription=params.get('preapproval_id')||params.get('subscription_id')||params.get('subscription');
  const storedStatus=sessionStorage.getItem('cactusCommerceStatusUrl')||'';
  const storedSubscription=sessionStorage.getItem('cactusCommerceSubscriptionId')||'';
  const subscription=returnedSubscription||storedSubscription;
- const title=document.querySelector('#title'), msg=document.querySelector('#message'), detail=document.querySelector('#detail');
-
+ const title=document.querySelector('#title'),msg=document.querySelector('#message'),detail=document.querySelector('#detail');
+ const esc=value=>String(value??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+ const names={agrohub:'Cactus One Agro',buildhub:'Cactus One Build',minehub:'Cactus One Miner',logihub:'Cactus One Route'};
+ const labels={
+  AWAITING_PAYMENT:'Aguardando pagamento',REQUESTED:'Pedido recebido',VALIDATED:'Pedido validado',
+  BUILDING_RELEASE:'Preparando produto',RELEASE_READY:'Produto preparado',RUNNING:'Ativando ambiente',
+  PROVISIONING:'Criando ambiente',CONFIGURING_DOMAIN:'Configurando domínio',STARTING:'Iniciando sistema',
+  HEALTHCHECK:'Validando ambiente',ONLINE:'Ambiente disponível',
+  PAYMENT_CONFIRMED_SETUP_PENDING:'Pagamento confirmado',PAYMENT_REVIEW_REQUIRED:'Em revisão',
+  FAILED:'Necessita atendimento',VALIDATION_FAILED:'Necessita atendimento'
+ };
  const candidates=[];
  if(order&&token)candidates.push('/api/commerce/orders/'+encodeURIComponent(order)+'?token='+encodeURIComponent(token));
  if(storedStatus&&!candidates.includes(storedStatus))candidates.push(storedStatus);
  if(subscription)candidates.push('/api/commerce/subscriptions/'+encodeURIComponent(subscription));
 
- if(!candidates.length){
-   title.textContent='Pedido não identificado';
-   msg.textContent='Não foi possível recuperar automaticamente o identificador da assinatura.';
-   return;
+ function unavailable(){
+   title.textContent='Consulte seu pedido na Área do cliente';
+   msg.textContent='Não conseguimos recuperar esta compra automaticamente por este navegador. Seus dados continuam preservados.';
+   detail.innerHTML='<div class="payment-state-icon neutral">CH</div><h2>Seu acompanhamento continua disponível</h2><p>Use o mesmo e-mail e CPF/CNPJ informados na compra para consultar pagamento, assinatura e acesso.</p><a class="btn btn-primary" href="cliente.html">Consultar meus pedidos</a>';
  }
+ if(!candidates.length){unavailable();return;}
 
  let activeIndex=0;
  async function fetchStatus(){
@@ -55,40 +80,57 @@
      try{
        const r=await fetch(candidates[i],{headers:{Accept:'application/json'},cache:'no-store'});
        const b=await r.json();
-       if(!r.ok)throw new Error(b?.error?.message||'Não foi possível consultar o pedido.');
-       activeIndex=i;
-       return b;
+       if(!r.ok)throw new Error('status unavailable');
+       activeIndex=i;return b;
      }catch(err){lastError=err;}
    }
-   throw lastError||new Error('Não foi possível consultar o pedido.');
+   throw lastError||new Error('status unavailable');
  }
-
- async function poll(){
-  try{
-   const b=await fetchStatus(), status=b.status;
-   const names={agrohub:'Cactus One Agro',buildhub:'Cactus One Build',minehub:'Cactus One Miner',logihub:'Cactus One Route'};
+ function render(b){
+   const status=b.status||'';
    const productName=names[b.product]||'Cactus One';
+   const statusLabel=labels[status]||'Em processamento';
    if(status==='ONLINE'){
-    title.textContent='Seu '+productName+' está pronto';
-    msg.textContent='Primeira cobrança confirmada e ambiente criado.';
-    detail.innerHTML='<h3>Primeiro acesso</h3><p>Use o botão abaixo para definir o administrador e a senha.</p><p><a class="btn btn-primary" href="'+b.firstAccessUrl.replace(/"/g,'&quot;')+'">Acessar meu '+productName+'</a></p>';
-    sessionStorage.removeItem('cactusCommerceStatusUrl');
-    sessionStorage.removeItem('cactusCommerceSubscriptionId');
-    sessionStorage.removeItem('cactusCommerceOrderId');
-    return;
+     title.textContent='Seu '+productName+' está pronto';
+     msg.textContent='Pagamento confirmado e ambiente criado com sucesso.';
+     const first=b.firstAccessUrl
+       ? '<a class="btn btn-primary" href="'+esc(b.firstAccessUrl)+'">Concluir primeiro acesso</a>'
+       : '';
+     const open=b.publicUrl
+       ? '<a class="btn btn-outline-dark" href="'+esc(b.publicUrl)+'" target="_blank" rel="noopener">Abrir ambiente</a>'
+       : '';
+     detail.innerHTML='<div class="payment-state-icon success">✓</div><span class="customer-status ready">Ambiente disponível</span><h2>'+esc(productName)+' online</h2><p>Seu endereço já foi criado. No primeiro acesso, defina o administrador e a senha do ambiente.</p><div class="payment-url-box">'+esc((b.publicUrl||'').replace(/^https?:\/\//,''))+'</div><div class="payment-card-actions">'+first+open+'<a class="btn btn-link" href="cliente.html">Ver na Área do cliente</a></div>';
+     sessionStorage.removeItem('cactusCommerceStatusUrl');
+     sessionStorage.removeItem('cactusCommerceSubscriptionId');
+     sessionStorage.removeItem('cactusCommerceOrderId');
+     return false;
    }
-   if(status==='AWAITING_PAYMENT'){title.textContent='Confirmando sua assinatura';msg.textContent='O pagamento já foi enviado ao Mercado Pago. Estamos conciliando a primeira cobrança com a Factory.';}
-   else if(status==='PAYMENT_CONFIRMED_SETUP_PENDING'){title.textContent='Pagamento confirmado';msg.textContent='Sua assinatura '+productName+' está ativa. A equipe Cactus Hub está preparando a ativação do ambiente.';}
-   else if(status==='PAYMENT_REVIEW_REQUIRED'){title.textContent='Assinatura/pagamento em revisão';msg.textContent='O pedido precisa de conferência antes de continuar.';}
-   else if(status==='FAILED'||status==='VALIDATION_FAILED'){title.textContent='Não foi possível concluir automaticamente';msg.textContent='Seu pedido foi preservado para análise da equipe Cactus Hub.';}
-   else {title.textContent='Configurando seu '+productName;msg.textContent='Assinatura confirmada. A Factory está preparando seu ambiente: '+status+'.';}
-   detail.textContent='Pedido: '+b.orderId+' • Status: '+status+(b.subscriptionStatus?' • Assinatura: '+b.subscriptionStatus:'');
-   setTimeout(poll,5000);
-  }catch(err){
-    title.textContent='Consultando seu pedido';
-    msg.textContent=err.message;
-    setTimeout(poll,10000);
-  }
+   if(status==='AWAITING_PAYMENT'){
+     title.textContent='Confirmando seu pagamento';
+     msg.textContent='A assinatura foi criada e aguardamos a confirmação da primeira cobrança pelo Mercado Pago.';
+   }else if(status==='PAYMENT_CONFIRMED_SETUP_PENDING'){
+     title.textContent='Pagamento confirmado';
+     msg.textContent='Sua assinatura está ativa e a equipe Cactus Hub está preparando o ambiente.';
+   }else if(status==='PAYMENT_REVIEW_REQUIRED'){
+     title.textContent='Pagamento em revisão';
+     msg.textContent='O pedido foi preservado e precisa de conferência antes de continuar.';
+   }else if(status==='FAILED'||status==='VALIDATION_FAILED'){
+     title.textContent='Seu pedido precisa de atendimento';
+     msg.textContent='A compra foi preservada. A equipe Cactus Hub poderá retomar a ativação sem refazer o pedido.';
+   }else{
+     title.textContent='Preparando seu '+productName;
+     msg.textContent='Pagamento confirmado. A Cactus Factory está configurando seu ambiente.';
+   }
+   const paid=b.paymentConfirmed?'Confirmado':'Aguardando';
+   const sub=b.subscriptionStatus||'—';
+   detail.innerHTML='<div class="payment-state-icon working">↻</div><span class="customer-status working">'+esc(statusLabel)+'</span><h2>'+esc(productName)+'</h2><div class="payment-status-grid"><div><small>Pedido</small><strong>'+esc(b.orderId||'—')+'</strong></div><div><small>Pagamento</small><strong>'+esc(paid)+'</strong></div><div><small>Assinatura</small><strong>'+esc(sub)+'</strong></div><div><small>Ativação</small><strong>'+esc(statusLabel)+'</strong></div></div><p class="payment-poll-note">Esta tela atualiza automaticamente enquanto a ativação estiver em andamento.</p><a class="btn btn-outline-dark" href="cliente.html">Acompanhar na Área do cliente</a>';
+   return !['PAYMENT_REVIEW_REQUIRED','FAILED','VALIDATION_FAILED'].includes(status);
+ }
+ async function poll(){
+   try{
+     const b=await fetchStatus();
+     if(render(b))setTimeout(poll,5000);
+   }catch{unavailable();}
  }
  poll();
 })();
