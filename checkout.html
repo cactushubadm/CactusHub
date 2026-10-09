@@ -16,7 +16,7 @@
 <img alt="Cactus Hub" class="brand-mark-img" src="assets/logo-primary.png">
 <span class="brand-copy"><strong>CACTUS HUB</strong><small>SOLUÇÕES TECNOLÓGICAS</small></span>
 </a>
-<nav class="primary-nav"><a href="produtos.html">Voltar aos produtos</a></nav>
+<nav class="primary-nav"><a href="cliente.html">Área do cliente</a><a href="produtos.html">Voltar aos produtos</a></nav>
 </div>
 </header>
 <main id="conteudo">
@@ -39,7 +39,11 @@
 </div>
 <div class="field-row">
 <label>E-mail<input type="email" name="email" required maxlength="180" autocomplete="email"></label>
+<label>CPF ou CNPJ<input name="document" required maxlength="18" inputmode="numeric" autocomplete="off" placeholder="000.000.000-00 ou 00.000.000/0000-00"></label>
+</div>
+<div class="field-row">
 <label>WhatsApp<input name="phone" maxlength="40" autocomplete="tel"></label>
+<label class="checkout-security-note"><span>Consulta do pedido</span><small>Depois da compra, use este mesmo e-mail e CPF/CNPJ na Área do cliente para acompanhar pagamento, assinatura e acesso.</small></label>
 </div>
 <div class="field-row">
 <label>Plano<select name="plan"><option value="BASIC">Básico</option><option value="INTERMEDIATE">Intermediário</option><option value="ADVANCED">Avançado</option></select></label>
@@ -93,6 +97,13 @@
     status.textContent='Assinaturas disponíveis.';
     form.hidden=false;
   }).catch(()=>{status.textContent='Não foi possível consultar o checkout agora. Tente novamente mais tarde.';});
+  const documentInput=form.querySelector('input[name="document"]');
+  documentInput?.addEventListener('input',()=>{
+    const digits=documentInput.value.replace(/\D/g,'').slice(0,14);
+    documentInput.value=digits.length<=11
+      ? digits.replace(/^(\d{3})(\d{0,3})(\d{0,3})(\d{0,2}).*/,(_,a,b,c,d)=>a+(b?'.'+b:'')+(c?'.'+c:'')+(d?'-'+d:''))
+      : digits.replace(/^(\d{2})(\d{0,3})(\d{0,3})(\d{0,4})(\d{0,2}).*/,(_,a,b,c,d,e)=>a+(b?'.'+b:'')+(c?'.'+c:'')+(d?'/'+d:'')+(e?'-'+e:''));
+  });
   form.plan.addEventListener('change',render); form.billing.addEventListener('change',render);
   form.addEventListener('submit',async e=>{
     e.preventDefault();
@@ -102,7 +113,7 @@
       if(data.website)return;
       const payload={
         requestId:crypto.randomUUID(),product:product,plan:data.plan,billingPeriod:data.billing,
-        customer:{displayName:data.company,contactName:data.name,email:data.email,phone:data.phone}
+        customer:{displayName:data.company,contactName:data.name,email:data.email,phone:data.phone,document:data.document}
       };
       const r=await fetch('/api/commerce/checkout',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(payload)});
       const b=await r.json();
