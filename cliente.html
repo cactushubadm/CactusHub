@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0E1524">
+<title>Área do cliente — Cactus Hub</title>
+<meta name="description" content="Consulte pedidos, pagamentos, assinaturas e acessos dos produtos Cactus One.">
+<meta name="robots" content="noindex,follow">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="cliente">
+<header class="site-header">
+<div class="container nav-wrap">
+<a aria-label="Cactus Hub" class="brand" href="index.html">
+<img alt="Cactus Hub" class="brand-mark-img" src="assets/logo-primary.png">
+<span class="brand-copy"><strong>CACTUS HUB</strong><small>SOLUÇÕES TECNOLÓGICAS</small></span>
+</a>
+<button class="nav-toggle" aria-label="Abrir menu" aria-expanded="false"><span></span><span></span></button>
+<nav class="primary-nav" aria-label="Navegação principal">
+<a href="index.html" data-nav="empresa">Empresa</a>
+<a href="produtos.html" data-nav="produtos">Produtos &amp; Planos</a>
+<a href="servicos.html" data-nav="servicos">Serviços</a>
+<a href="cliente.html" data-nav="cliente">Área do cliente</a>
+<a href="index.html#contato" class="nav-cta">Falar com a Cactus Hub</a>
+</nav>
+</div>
+</header>
+
+<main id="conteudo">
+<section class="section-dark customer-hero">
+<div class="container customer-hero-grid">
+<div>
+<span class="eyebrow">Área do cliente</span>
+<h1>Seu pedido, sua assinatura e seu acesso em um só lugar.</h1>
+<p>Consulte a situação da compra com o mesmo e-mail e CPF ou CNPJ usados na contratação. Assim que o ambiente estiver pronto, o acesso aparece aqui.</p>
+</div>
+<div class="customer-hero-proof" aria-label="Etapas do atendimento">
+<div><span>01</span><strong>Pagamento</strong><small>Confirmação pelo Mercado Pago</small></div>
+<div><span>02</span><strong>Ativação</strong><small>Provisionamento pela Cactus Factory</small></div>
+<div><span>03</span><strong>Acesso</strong><small>Link do seu Cactus One</small></div>
+</div>
+</div>
+</section>
+
+<section class="section customer-portal-section">
+<div class="container customer-portal-layout">
+<aside class="customer-lookup-card">
+<div class="customer-card-heading">
+<span class="eyebrow">Consultar pedido</span>
+<h2>Identifique sua compra</h2>
+<p>Os dados são usados apenas para localizar os pedidos vinculados à sua contratação.</p>
+</div>
+<form id="customer-lookup-form" class="customer-lookup-form">
+<label>E-mail da compra
+<input type="email" name="email" required maxlength="180" autocomplete="email" placeholder="voce@empresa.com.br">
+</label>
+<label>CPF ou CNPJ
+<input name="document" required maxlength="18" inputmode="numeric" autocomplete="off" placeholder="000.000.000-00 ou 00.000.000/0000-00">
+</label>
+<button class="btn btn-primary customer-lookup-submit" type="submit">Consultar meus pedidos</button>
+<p class="customer-security-copy"><strong>Consulta protegida.</strong> O documento não é exibido nem salvo neste navegador.</p>
+</form>
+<div class="customer-help-box">
+<strong>Precisa de ajuda?</strong>
+<p>Se os dados da compra mudaram ou você não reconhece o pedido, fale com a equipe Cactus Hub.</p>
+<a href="index.html#contato">Ir para atendimento →</a>
+</div>
+</aside>
+
+<section class="customer-results-card" aria-live="polite">
+<div class="customer-results-head">
+<div>
+<span class="eyebrow">Pedidos &amp; assinaturas</span>
+<h2 id="customer-results-title">Consulte para começar</h2>
+</div>
+<button id="customer-refresh" class="customer-refresh" type="button" hidden>Atualizar</button>
+</div>
+<div id="customer-results">
+<div class="customer-empty">
+<div class="customer-empty-icon">CH</div>
+<h3>Acompanhe tudo por aqui</h3>
+<p>Pagamento, plano, status de ativação e o endereço do seu sistema aparecem nesta área.</p>
+</div>
+</div>
+</section>
+</div>
+</section>
+</main>
+
+<footer class="site-footer customer-footer">
+<div class="container footer-grid">
+<div class="footer-brand"><img src="assets/logo-primary.png" alt="Cactus Hub"><div><strong>CACTUS HUB</strong><p>Soluções tecnológicas que conectam operação, gestão e resultado.</p></div></div>
+<div><strong>Produtos</strong><a href="produtos.html">Cactus One</a><a href="servicos.html">Serviços</a></div>
+<div><strong>Cliente</strong><a href="cliente.html">Área do cliente</a><a href="index.html#contato">Atendimento</a></div>
+</div>
+</footer>
+
+<script src="script.js"></script>
+<script>
+(() => {
+  const form=document.querySelector('#customer-lookup-form');
+  const results=document.querySelector('#customer-results');
+  const title=document.querySelector('#customer-results-title');
+  const refresh=document.querySelector('#customer-refresh');
+  const documentInput=form.elements.document;
+  const submit=form.querySelector('button[type="submit"]');
+  let lastLookup=null, timer=null;
+
+  const esc=value=>String(value??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+  const money=(minor,currency='BRL')=>Number.isFinite(Number(minor))?(Number(minor)/100).toLocaleString('pt-BR',{style:'currency',currency:currency||'BRL'}):'—';
+  const date=value=>{if(!value)return '—';const d=new Date(value);return Number.isNaN(d.getTime())?'—':d.toLocaleString('pt-BR',{dateStyle:'short',timeStyle:'short'});};
+  const statusMeta=status=>{
+    const map={
+      AWAITING_PAYMENT:['Aguardando pagamento','pending','O Mercado Pago ainda não confirmou a primeira cobrança.'],
+      PAYMENT_CONFIRMED_SETUP_PENDING:['Pagamento confirmado','working','A assinatura está ativa e o ambiente será preparado pela equipe Cactus Hub.'],
+      PAYMENT_REVIEW_REQUIRED:['Em revisão','attention','A compra precisa de conferência antes de continuar.'],
+      REQUESTED:['Pedido recebido','working','A Factory recebeu a solicitação.'],
+      VALIDATED:['Pedido validado','working','Os dados foram validados.'],
+      BUILDING_RELEASE:['Preparando produto','working','A Factory está montando a versão do seu produto.'],
+      RELEASE_READY:['Produto preparado','working','A versão está pronta para provisionamento.'],
+      RUNNING:['Ativando ambiente','working','A Factory está executando a ativação.'],
+      PROVISIONING:['Criando ambiente','working','Seu ambiente isolado está sendo criado.'],
+      CONFIGURING_DOMAIN:['Configurando endereço','working','O domínio do seu sistema está sendo configurado.'],
+      STARTING:['Iniciando sistema','working','O sistema está iniciando.'],
+      HEALTHCHECK:['Validando ambiente','working','A Factory está validando o acesso e a segurança.'],
+      ONLINE:['Ambiente disponível','ready','Seu produto está online e pronto para acesso.'],
+      FAILED:['Necessita atendimento','attention','A ativação precisa de análise da equipe Cactus Hub.'],
+      VALIDATION_FAILED:['Necessita atendimento','attention','A ativação precisa de análise da equipe Cactus Hub.']
+    };
+    return map[status]||['Em processamento','working','Seu pedido está sendo atualizado.'];
+  };
+  const subscriptionLabel=value=>({authorized:'Ativa',pending:'Pendente',paused:'Pausada',cancelled:'Cancelada'}[String(value||'').toLowerCase()]||value||'—');
+
+  function formatDocument(){
+    const digits=documentInput.value.replace(/\D/g,'').slice(0,14);
+    documentInput.value=digits.length<=11
+      ? digits.replace(/^(\d{3})(\d{0,3})(\d{0,3})(\d{0,2}).*/,(_,a,b,c,d)=>a+(b?'.'+b:'')+(c?'.'+c:'')+(d?'-'+d:''))
+      : digits.replace(/^(\d{2})(\d{0,3})(\d{0,3})(\d{0,4})(\d{0,2}).*/,(_,a,b,c,d,e)=>a+(b?'.'+b:'')+(c?'.'+c:'')+(d?'/'+d:'')+(e?'-'+e:''));
+  }
+  documentInput.addEventListener('input',formatDocument);
+
+  function stageClass(order,step){
+    const paid=order.paymentConfirmed||order.status!=='AWAITING_PAYMENT';
+    const online=order.status==='ONLINE';
+    if(step==='payment')return paid?'done':'current';
+    if(step==='activation')return online?'done':(paid?'current':'future');
+    if(step==='access')return online?'done':'future';
+    return 'future';
+  }
+
+  function orderCard(order){
+    const meta=statusMeta(order.status);
+    const period=order.billing?.period==='annual'?'Anual':'Mensal';
+    const doc=order.documentLast4?esc(order.documentType||'Documento')+' •••• '+esc(order.documentLast4):'Documento protegido';
+    const paymentAction=order.paymentUrl?'<a class="btn btn-primary" href="'+esc(order.paymentUrl)+'">Continuar pagamento</a>':'';
+    const openAction=order.publicUrl?'<a class="btn btn-primary" href="'+esc(order.publicUrl)+'" target="_blank" rel="noopener">Abrir meu '+esc(order.productName)+'</a>':'';
+    const setupAction=order.publicUrl&&order.setupRequired
+      ? '<button class="btn btn-outline-dark customer-access-email" type="button" data-order="'+esc(order.orderId)+'">Enviar primeiro acesso por e-mail</button>'
+      : '';
+    const accessHint=order.publicUrl
+      ? (order.setupRequired?'O ambiente está online. Envie o link seguro de primeiro acesso ao e-mail cadastrado para criar o administrador e a senha.':'Seu ambiente está disponível para acesso.')
+      : 'O endereço do sistema será exibido aqui assim que a ativação for concluída.';
+    return '<article class="customer-order-card" data-status="'+esc(meta[1])+'">'+
+      '<header><div><span class="customer-product-pill">'+esc(order.productName)+'</span><h3>'+esc(order.customerName||order.productName)+'</h3><p>Pedido '+esc(order.orderId)+' • '+doc+'</p></div><span class="customer-status '+esc(meta[1])+'">'+esc(meta[0])+'</span></header>'+
+      '<div class="customer-order-grid">'+
+        '<div><small>Plano</small><strong>'+esc(order.planName||order.plan)+'</strong><span>'+period+'</span></div>'+
+        '<div><small>Valor</small><strong>'+money(order.billing?.amountMinor,order.billing?.currency)+'</strong><span>'+period.toLowerCase()+'</span></div>'+
+        '<div><small>Pagamento</small><strong>'+(order.paymentConfirmed?'Confirmado':'Pendente')+'</strong><span>'+date(order.updatedAt||order.createdAt)+'</span></div>'+
+        '<div><small>Assinatura</small><strong>'+esc(subscriptionLabel(order.subscriptionStatus))+'</strong><span>Mercado Pago</span></div>'+
+      '</div>'+
+      '<div class="customer-progress">'+
+        '<div class="'+stageClass(order,'payment')+'"><i>1</i><span><strong>Pagamento</strong><small>'+(order.paymentConfirmed?'Confirmado':'Aguardando')+'</small></span></div>'+
+        '<em></em>'+
+        '<div class="'+stageClass(order,'activation')+'"><i>2</i><span><strong>Ativação</strong><small>'+(order.status==='ONLINE'?'Concluída':(order.paymentConfirmed?'Em andamento':'Aguardando'))+'</small></span></div>'+
+        '<em></em>'+
+        '<div class="'+stageClass(order,'access')+'"><i>3</i><span><strong>Acesso</strong><small>'+(order.status==='ONLINE'?'Disponível':'Em breve')+'</small></span></div>'+
+      '</div>'+
+      '<div class="customer-order-message"><strong>'+esc(meta[0])+'</strong><p>'+esc(meta[2])+'</p></div>'+
+      '<div class="customer-access-panel"><div><small>ACESSO AO PRODUTO</small><p>'+esc(accessHint)+'</p>'+(order.publicUrl?'<code>'+esc(order.publicUrl.replace(/^https?:\/\//,''))+'</code>':'')+'</div><div class="customer-order-actions">'+paymentAction+openAction+setupAction+'</div></div>'+
+      '<div class="customer-access-feedback" hidden></div>'+
+    '</article>';
+  }
+
+  function bindAccessButtons(){
+    document.querySelectorAll('.customer-access-email').forEach(button=>{
+      button.addEventListener('click',async()=>{
+        if(!lastLookup)return;
+        const feedback=button.closest('.customer-order-card').querySelector('.customer-access-feedback');
+        const original=button.textContent;
+        button.disabled=true;button.textContent='Enviando...';feedback.hidden=true;
+        try{
+          const r=await fetch('/api/commerce/customer/orders/'+encodeURIComponent(button.dataset.order)+'/send-access',{
+            method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},cache:'no-store',
+            body:JSON.stringify(lastLookup)
+          });
+          const b=await r.json();
+          if(!r.ok)throw new Error(b?.error?.message||'Não foi possível enviar o acesso.');
+          feedback.hidden=false;feedback.className='customer-access-feedback success';
+          feedback.textContent=b.notification==='SENT'
+            ? 'Link de primeiro acesso enviado ao e-mail da compra.'
+            : 'Solicitação registrada. O envio de e-mail está sendo processado.';
+        }catch(err){
+          feedback.hidden=false;feedback.className='customer-access-feedback error';
+          feedback.textContent=err.message||'Não foi possível enviar o acesso.';
+        }finally{button.disabled=false;button.textContent=original;}
+      });
+    });
+  }
+
+  async function lookup({silent=false}={}){
+    if(!lastLookup)return;
+    if(timer){clearTimeout(timer);timer=null;}
+    if(!silent){
+      submit.disabled=true;submit.textContent='Consultando...';
+      title.textContent='Consultando seus pedidos';
+      results.innerHTML='<div class="customer-loading"><span></span><p>Conferindo pagamento, assinatura e ativação...</p></div>';
+    }
+    try{
+      const r=await fetch('/api/commerce/customer/orders/lookup',{
+        method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},cache:'no-store',
+        body:JSON.stringify(lastLookup)
+      });
+      const b=await r.json();
+      if(!r.ok)throw new Error(b?.error?.message||'Não foi possível consultar seus pedidos.');
+      refresh.hidden=false;
+      if(!b.orders?.length){
+        title.textContent='Nenhum pedido localizado';
+        results.innerHTML='<div class="customer-empty"><div class="customer-empty-icon">?</div><h3>Confira os dados da compra</h3><p>Não encontramos pedido com este e-mail e CPF/CNPJ. Use exatamente os dados informados na contratação.</p><a class="btn btn-outline-dark" href="produtos.html">Ver produtos Cactus One</a></div>';
+        return;
+      }
+      title.textContent=b.orders.length===1?'1 pedido encontrado':b.orders.length+' pedidos encontrados';
+      results.innerHTML='<div class="customer-order-list">'+b.orders.map(orderCard).join('')+'</div>';
+      bindAccessButtons();
+      if(b.orders.some(o=>!['ONLINE','FAILED','VALIDATION_FAILED','PAYMENT_REVIEW_REQUIRED'].includes(o.status))){
+        timer=setTimeout(()=>lookup({silent:true}),15000);
+      }
+    }catch(err){
+      title.textContent='Não foi possível consultar agora';
+      refresh.hidden=false;
+      results.innerHTML='<div class="customer-empty customer-empty-error"><div class="customer-empty-icon">!</div><h3>Consulta temporariamente indisponível</h3><p>'+esc(err.message||'Tente novamente em alguns instantes.')+'</p><p><a href="index.html#contato">Falar com a Cactus Hub</a></p></div>';
+    }finally{
+      submit.disabled=false;submit.textContent='Consultar meus pedidos';
+    }
+  }
+
+  form.addEventListener('submit',event=>{
+    event.preventDefault();
+    lastLookup={email:form.elements.email.value.trim().toLowerCase(),document:form.elements.document.value.trim()};
+    lookup();
+  });
+  refresh.addEventListener('click',()=>lookup());
+})();
+</script>
+</body>
+</html>
