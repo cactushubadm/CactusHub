@@ -120,6 +120,7 @@
       sessionStorage.setItem('cactusCommerceStatusUrl',b.statusUrl||'');
       sessionStorage.setItem('cactusCommerceSubscriptionId',b.subscriptionId||'');
       sessionStorage.setItem('cactusCommerceOrderId',b.orderId||'');
+      sessionStorage.setItem('cactusCommerceEmail',data.email||'');
       location.href=b.checkoutUrl;
     }catch(err){alert(err.message||'Não foi possível iniciar o pagamento.');btn.disabled=false;btn.textContent='Assinar com Mercado Pago';}
   });
