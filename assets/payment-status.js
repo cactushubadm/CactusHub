@@ -36,10 +36,21 @@
     if(title)title.textContent=heading;
     if(text)text.textContent=message;
   }
+  function mensagemPt(message,status){
+    const msg=String(message||'').trim();
+    const lower=msg.toLowerCase();
+    if(status===404 || lower.includes('not found') || lower.includes('route was not found')) return 'Pedido ou consulta não encontrado.';
+    if(status===429 || lower.includes('too many requests')) return 'Muitas consultas em sequência. Aguarde um instante e tente novamente.';
+    if(lower.includes('invalid json')) return 'Os dados enviados são inválidos.';
+    if(lower.includes('payload exceeds')) return 'Os dados enviados excedem o limite permitido.';
+    if(lower.includes('valid requestid is required')) return 'Não foi possível identificar esta solicitação.';
+    if(lower.includes('tracking identity changed')) return 'Os dados de acompanhamento deste pedido foram alterados.';
+    return msg || 'Pedido não encontrado.';
+  }
   async function fetchJson(url){
     const res=await fetch(url,{cache:'no-store',credentials:'same-origin',headers:{Accept:'application/json'}});
     let body={};try{body=await res.json()}catch{}
-    if(!res.ok)throw new Error(body?.error?.message||'Pedido não encontrado.');
+    if(!res.ok)throw new Error(mensagemPt(body?.error?.message,res.status));
     return body;
   }
   async function getStatus(){
