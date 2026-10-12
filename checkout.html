@@ -16,7 +16,7 @@
 <img alt="Cactus Hub" class="brand-mark-img" src="assets/logo-primary.png">
 <span class="brand-copy"><strong>CACTUS HUB</strong><small>SOLUÇÕES TECNOLÓGICAS</small></span>
 </a>
-<nav class="primary-nav"><a href="produtos.html">Voltar aos produtos</a><a href="planos.html">Meus pedidos</a></nav>
+<nav class="primary-nav"><a href="produtos.html">Voltar aos produtos</a><a href="pagamento.html?area=cliente">Meus pedidos</a></nav>
 </div>
 </header>
 <main id="conteudo">
@@ -120,6 +120,7 @@
       sessionStorage.setItem('cactusCommerceStatusUrl',b.statusUrl||'');
       sessionStorage.setItem('cactusCommerceSubscriptionId',b.subscriptionId||'');
       sessionStorage.setItem('cactusCommerceOrderId',b.orderId||'');
+      sessionStorage.setItem('cactusCommerceEmail',data.email||'');
       location.href=b.checkoutUrl;
     }catch(err){alert(err.message||'Não foi possível iniciar o pagamento.');btn.disabled=false;btn.textContent='Assinar com Mercado Pago';}
   });

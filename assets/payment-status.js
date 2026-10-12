@@ -68,7 +68,7 @@
     if(actions){
       const links=[];
       if(data.publicUrl)links.push('<a class="btn btn-primary" href="'+esc(data.publicUrl)+'" target="_blank" rel="noopener noreferrer">Abrir meu sistema</a>');
-      links.push('<a class="btn btn-outline-dark" href="/planos.html'+(orderId?'?order='+encodeURIComponent(orderId):'')+'">'+(data.status==='ONLINE'&&data.setupRequired?'Receber primeiro acesso por e-mail':'Consultar meus pedidos')+'</a>');
+      links.push('<a class="btn btn-outline-dark" href="/pagamento.html?area=cliente'+(orderId?'?order='+encodeURIComponent(orderId):'')+'">'+(data.status==='ONLINE'&&data.setupRequired?'Receber primeiro acesso por e-mail':'Consultar meus pedidos')+'</a>');
       links.push('<a class="btn btn-outline-dark" href="/produtos.html">Voltar aos produtos</a>');
       actions.innerHTML=links.join('');
     }
@@ -83,7 +83,7 @@
     }catch(err){
       setState('problem','Não encontramos esse pedido',err.message);
       if(details)details.innerHTML='';
-      if(actions)actions.innerHTML='<a class="btn btn-primary" href="/planos.html'+(orderId?'?order='+encodeURIComponent(orderId):'')+'">Consultar com meus dados</a><a class="btn btn-outline-dark" href="/produtos.html">Voltar aos produtos</a>';
+      if(actions)actions.innerHTML='<a class="btn btn-primary" href="/pagamento.html?area=cliente'+(orderId?'?order='+encodeURIComponent(orderId):'')+'">Consultar com meus dados</a><a class="btn btn-outline-dark" href="/produtos.html">Voltar aos produtos</a>';
     }
   }
   poll();
