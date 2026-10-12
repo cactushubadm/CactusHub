@@ -28,10 +28,21 @@
 
   function esc(value=''){return String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
   function digits(value=''){return String(value).replace(/\D/g,'')}
+  function mensagemPt(message,status){
+    const msg=String(message||'').trim();
+    const lower=msg.toLowerCase();
+    if(status===404 || lower.includes('not found') || lower.includes('route was not found')) return 'Não foi possível localizar esta consulta agora.';
+    if(status===429 || lower.includes('too many requests')) return 'Muitas consultas em sequência. Aguarde um instante e tente novamente.';
+    if(lower.includes('invalid json')) return 'Os dados enviados são inválidos.';
+    if(lower.includes('payload exceeds')) return 'Os dados enviados excedem o limite permitido.';
+    if(lower.includes('valid requestid is required')) return 'Não foi possível identificar esta solicitação.';
+    if(lower.includes('tracking identity changed')) return 'Os dados de acompanhamento deste pedido foram alterados.';
+    return msg || 'Não foi possível concluir a consulta.';
+  }
   async function api(path,options={}){
     const res=await fetch(path,{...options,headers:{'Content-Type':'application/json','Accept':'application/json',...(options.headers||{})},credentials:'same-origin',cache:'no-store'});
     let body={};try{body=await res.json();}catch{}
-    if(!res.ok)throw new Error(body?.error?.message||'Não foi possível concluir a consulta.');
+    if(!res.ok)throw new Error(mensagemPt(body?.error?.message,res.status));
     return body;
   }
   function setAlert(message='',tone='info'){

@@ -116,7 +116,16 @@
       };
       const r=await fetch('/api/commerce/checkout',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(payload)});
       const b=await r.json();
-      if(!r.ok)throw new Error(b?.error?.message||'Não foi possível iniciar a assinatura.');
+      if(!r.ok){
+        const raw=String(b?.error?.message||'').trim();
+        const lower=raw.toLowerCase();
+        let message=raw||'Não foi possível iniciar a assinatura.';
+        if(r.status===404||lower.includes('not found')||lower.includes('route was not found'))message='Não foi possível localizar o serviço de contratação agora.';
+        else if(r.status===429||lower.includes('too many requests'))message='Muitas tentativas em sequência. Aguarde um instante e tente novamente.';
+        else if(lower.includes('invalid json'))message='Os dados enviados são inválidos.';
+        else if(lower.includes('valid requestid is required'))message='Não foi possível identificar esta solicitação.';
+        throw new Error(message);
+      }
       sessionStorage.setItem('cactusCommerceStatusUrl',b.statusUrl||'');
       sessionStorage.setItem('cactusCommerceSubscriptionId',b.subscriptionId||'');
       sessionStorage.setItem('cactusCommerceOrderId',b.orderId||'');
