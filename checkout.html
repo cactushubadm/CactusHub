@@ -16,7 +16,7 @@
 <img alt="Cactus Hub" class="brand-mark-img" src="assets/logo-primary.png">
 <span class="brand-copy"><strong>CACTUS HUB</strong><small>SOLUÇÕES TECNOLÓGICAS</small></span>
 </a>
-<nav class="primary-nav"><a href="produtos.html">Voltar aos produtos</a></nav>
+<nav class="primary-nav"><a href="produtos.html">Voltar aos produtos</a><a href="pedido.html">Meus pedidos</a></nav>
 </div>
 </header>
 <main id="conteudo">
@@ -41,6 +41,7 @@
 <label>E-mail<input type="email" name="email" required maxlength="180" autocomplete="email"></label>
 <label>WhatsApp<input name="phone" maxlength="40" autocomplete="tel"></label>
 </div>
+<label>CPF ou CNPJ<input name="document" required maxlength="18" inputmode="numeric" autocomplete="off" placeholder="000.000.000-00 ou 00.000.000/0000-00"></label>
 <div class="field-row">
 <label>Plano<select name="plan"><option value="BASIC">Básico</option><option value="INTERMEDIATE">Intermediário</option><option value="ADVANCED">Avançado</option></select></label>
 <label>Cobrança<select name="billing"><option value="monthly">Mensal</option><option value="annual">Anual — equivalente a 10 mensalidades</option></select></label>
@@ -93,6 +94,15 @@
     status.textContent='Assinaturas disponíveis.';
     form.hidden=false;
   }).catch(()=>{status.textContent='Não foi possível consultar o checkout agora. Tente novamente mais tarde.';});
+  const documentInput=form.querySelector('input[name="document"]');
+  if(documentInput){
+    documentInput.addEventListener('input',()=>{
+      const d=documentInput.value.replace(/\D/g,'').slice(0,14);
+      documentInput.value=d.length<=11
+        ? d.replace(/(\d{3})(\d)/,'$1.$2').replace(/(\d{3})(\d)/,'$1.$2').replace(/(\d{3})(\d{1,2})$/,'$1-$2')
+        : d.replace(/^(\d{2})(\d)/,'$1.$2').replace(/^(\d{2})\.(\d{3})(\d)/,'$1.$2.$3').replace(/\.(\d{3})(\d)/,'.$1/$2').replace(/(\d{4})(\d{1,2})$/,'$1-$2');
+    });
+  }
   form.plan.addEventListener('change',render); form.billing.addEventListener('change',render);
   form.addEventListener('submit',async e=>{
     e.preventDefault();
@@ -102,7 +112,7 @@
       if(data.website)return;
       const payload={
         requestId:crypto.randomUUID(),product:product,plan:data.plan,billingPeriod:data.billing,
-        customer:{displayName:data.company,contactName:data.name,email:data.email,phone:data.phone}
+        customer:{displayName:data.company,contactName:data.name,email:data.email,phone:data.phone,document:data.document}
       };
       const r=await fetch('/api/commerce/checkout',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(payload)});
       const b=await r.json();
