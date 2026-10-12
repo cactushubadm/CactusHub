@@ -1,97 +1,82 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#0E1524">
-<title>Status da assinatura — Cactus Hub</title>
-<meta name="robots" content="noindex,nofollow">
-<link rel="icon" type="image/png" href="assets/favicon.png">
-<link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0E1524">
+  <title>Status da assinatura — Cactus Hub</title>
+  <meta name="description" content="Acompanhe o pagamento e a ativação da sua assinatura Cactus One.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="/assets/favicon.png">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/assets/customer-orders.css">
 </head>
-<body>
-<header class="site-header">
-<div class="container nav-wrap">
-<a aria-label="Cactus Hub" class="brand" href="index.html">
-<img alt="Cactus Hub" class="brand-mark-img" src="assets/logo-primary.png">
-<span class="brand-copy"><strong>CACTUS HUB</strong><small>SOLUÇÕES TECNOLÓGICAS</small></span>
-</a>
-</div>
-</header>
-<main>
-<section class="section-dark sales-product-hero"><div class="container compact-hero-grid"><div class="compact-hero-copy">
-<span class="eyebrow">Status da assinatura</span><h1 id="title">Consultando seu pedido...</h1><p id="message">A confirmação final é feita pela API do Mercado Pago, não pelo retorno do navegador.</p>
-</div></div></section>
-<section class="section"><div class="container" style="max-width:820px">
-<div id="detail" class="contact-form"></div>
-<p><a class="btn btn-outline-dark" href="produtos.html">Voltar aos produtos</a></p>
-</div></section>
-</main>
-<script>
-(async()=>{
- const p=new URLSearchParams(location.search);
- const order=p.get('order'), token=p.get('token');
- const returnedSubscription=p.get('preapproval_id')||p.get('subscription_id')||p.get('subscription');
- const storedStatus=sessionStorage.getItem('cactusCommerceStatusUrl')||'';
- const storedSubscription=sessionStorage.getItem('cactusCommerceSubscriptionId')||'';
- const subscription=returnedSubscription||storedSubscription;
- const title=document.querySelector('#title'), msg=document.querySelector('#message'), detail=document.querySelector('#detail');
+<body class="customer-portal-page">
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="/index.html" aria-label="Cactus Hub">
+        <img class="brand-mark-img" src="/assets/logo-primary.png" alt="Cactus Hub">
+        <span class="brand-copy"><strong>CACTUS HUB</strong><small>SOLUÇÕES TECNOLÓGICAS</small></span>
+      </a>
+      <button class="nav-toggle" aria-label="Abrir menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      <nav class="primary-nav" aria-label="Navegação principal">
+        <a href="/index.html">Empresa</a>
+        <a href="/produtos.html">Produtos &amp; Planos</a>
+        <a href="/servicos.html">Serviços</a>
+        <a href="/pedido.html">Meus pedidos</a>
+      </nav>
+    </div>
+  </header>
 
- const candidates=[];
- if(order&&token)candidates.push('/api/commerce/orders/'+encodeURIComponent(order)+'?token='+encodeURIComponent(token));
- if(storedStatus&&!candidates.includes(storedStatus))candidates.push(storedStatus);
- if(subscription)candidates.push('/api/commerce/subscriptions/'+encodeURIComponent(subscription));
+  <main id="conteudo">
+    <section class="section-dark sales-product-hero customer-hero">
+      <div class="container compact-hero-grid">
+        <div class="compact-hero-copy">
+          <span class="eyebrow">Status da assinatura</span>
+          <h1>Acompanhando seu pedido.</h1>
+          <p>O retorno do pagamento é conferido com a Cactus Factory e atualizado automaticamente até seu ambiente ficar disponível.</p>
+        </div>
+      </div>
+    </section>
+    <section class="section customer-section">
+      <div class="container" style="max-width:900px">
+        <div class="customer-payment-card">
+          <div class="customer-payment-state">
+            <div class="customer-state-icon" data-state-icon aria-hidden="true">…</div>
+            <div>
+              <h2 data-state-title>Consultando seu pedido</h2>
+              <p data-state-text>Aguarde enquanto buscamos a atualização mais recente.</p>
+            </div>
+          </div>
+          <div class="customer-payment-details" data-payment-details></div>
+          <div class="customer-payment-actions" data-payment-actions></div>
+        </div>
+      </div>
+    </section>
+  </main>
 
- if(!candidates.length){
-   title.textContent='Pedido não identificado';
-   msg.textContent='Não foi possível recuperar automaticamente o identificador da assinatura.';
-   return;
- }
-
- let activeIndex=0;
- async function fetchStatus(){
-   let lastError=null;
-   for(let i=activeIndex;i<candidates.length;i++){
-     try{
-       const r=await fetch(candidates[i],{headers:{Accept:'application/json'},cache:'no-store'});
-       const b=await r.json();
-       if(!r.ok)throw new Error(b?.error?.message||'Não foi possível consultar o pedido.');
-       activeIndex=i;
-       return b;
-     }catch(err){lastError=err;}
-   }
-   throw lastError||new Error('Não foi possível consultar o pedido.');
- }
-
- async function poll(){
-  try{
-   const b=await fetchStatus(), status=b.status;
-   const names={agrohub:'Cactus One Agro',buildhub:'Cactus One Build',minehub:'Cactus One Miner',logihub:'Cactus One Route'};
-   const productName=names[b.product]||'Cactus One';
-   if(status==='ONLINE'){
-    title.textContent='Seu '+productName+' está pronto';
-    msg.textContent='Primeira cobrança confirmada e ambiente criado.';
-    detail.innerHTML='<h3>Primeiro acesso</h3><p>Use o botão abaixo para definir o administrador e a senha.</p><p><a class="btn btn-primary" href="'+b.firstAccessUrl.replace(/"/g,'&quot;')+'">Acessar meu '+productName+'</a></p>';
-    sessionStorage.removeItem('cactusCommerceStatusUrl');
-    sessionStorage.removeItem('cactusCommerceSubscriptionId');
-    sessionStorage.removeItem('cactusCommerceOrderId');
-    return;
-   }
-   if(status==='AWAITING_PAYMENT'){title.textContent='Confirmando sua assinatura';msg.textContent='O pagamento já foi enviado ao Mercado Pago. Estamos conciliando a primeira cobrança com a Factory.';}
-   else if(status==='PAYMENT_CONFIRMED_SETUP_PENDING'){title.textContent='Pagamento confirmado';msg.textContent='Sua assinatura '+productName+' está ativa. A equipe Cactus Hub está preparando a ativação do ambiente.';}
-   else if(status==='PAYMENT_REVIEW_REQUIRED'){title.textContent='Assinatura/pagamento em revisão';msg.textContent='O pedido precisa de conferência antes de continuar.';}
-   else if(status==='FAILED'||status==='VALIDATION_FAILED'){title.textContent='Não foi possível concluir automaticamente';msg.textContent='Seu pedido foi preservado para análise da equipe Cactus Hub.';}
-   else {title.textContent='Configurando seu '+productName;msg.textContent='Assinatura confirmada. A Factory está preparando seu ambiente: '+status+'.';}
-   detail.textContent='Pedido: '+b.orderId+' • Status: '+status+(b.subscriptionStatus?' • Assinatura: '+b.subscriptionStatus:'');
-   setTimeout(poll,5000);
-  }catch(err){
-    title.textContent='Consultando seu pedido';
-    msg.textContent=err.message;
-    setTimeout(poll,10000);
-  }
- }
- poll();
-})();
-</script>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <a class="brand" href="/index.html">
+        <img class="brand-mark-img" src="/assets/logo-soft.png" alt="Cactus Hub">
+        <span class="brand-copy"><strong>CACTUS HUB</strong><small>TECNOLOGIA PARA OPERAÇÕES REAIS</small></span>
+      </a>
+      <div class="footer-links">
+        <a href="/index.html">Empresa</a>
+        <a href="/produtos.html">Produtos &amp; Planos</a>
+        <a href="/servicos.html">Serviços</a>
+        <a href="/pedido.html">Meus pedidos</a>
+      </div>
+      <div class="footer-copy">
+        <span>© <span id="year">2026</span> Cactus Hub</span>
+        <small>Produtos de gestão, sites, sistemas e soluções sob medida.</small>
+      </div>
+    </div>
+  </footer>
+  <script src="/script.js"></script>
+  <script src="/assets/payment-status.js"></script>
 </body>
 </html>
