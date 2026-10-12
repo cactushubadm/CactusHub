@@ -71,7 +71,7 @@
     const out=[];
     if(order.paymentUrl&&!order.paymentConfirmed)out.push('<a class="btn btn-primary" href="'+esc(order.paymentUrl)+'" rel="noopener">Continuar pagamento</a>');
     if(order.publicUrl)out.push('<a class="btn btn-primary" href="'+esc(order.publicUrl)+'" target="_blank" rel="noopener noreferrer">Abrir meu sistema</a>');
-    if(order.status==='ONLINE'&&order.setupRequired)out.push('<button class="btn btn-outline-dark" type="button" data-send-access="'+esc(order.orderId)+'">Enviar primeiro acesso por e-mail</button>');
+    if(order.status==='ONLINE'&&order.setupRequired&&identity)out.push('<button class="btn btn-outline-dark" type="button" data-send-access="'+esc(order.orderId)+'">Enviar primeiro acesso por e-mail</button>');
     return out.join('');
   }
   function card(order){
@@ -79,7 +79,7 @@
     const payment=order.paymentConfirmed?'Confirmado':(order.subscriptionStatus==='authorized'?'Autorizado':'Pendente');
     const doc=maskDocument(order.documentType,order.documentLast4);
     const security=order.status==='ONLINE'&&order.setupRequired
-      ? '<div class="customer-security-note"><strong>Primeiro acesso protegido.</strong> O link que cria o administrador não aparece nesta página. Clique em “Enviar primeiro acesso por e-mail” para recebê-lo no endereço cadastrado na compra.</div>'
+      ? '<div class="customer-security-note"><strong>Primeiro acesso protegido.</strong> '+(identity?'Use “Enviar primeiro acesso por e-mail” para receber o link seguro no endereço cadastrado.':'Para receber o link que cria o administrador, informe seus dados acima e clique em “Consultar”.')+'</div>'
       : '';
     return '<article class="customer-order-card">'+
       '<div class="customer-order-head">'+
@@ -151,9 +151,35 @@
       : d.replace(/^(\d{2})(\d)/,'$1.$2').replace(/^(\d{2})\.(\d{3})(\d)/,'$1.$2.$3').replace(/\.(\d{3})(\d)/,'.$1/$2').replace(/(\d{4})(\d{1,2})$/,'$1-$2');
   }
 
+  async function restoreProtectedCheckoutStatus(){
+    const params=new URLSearchParams(location.search);
+    const rememberedEmail=sessionStorage.getItem('cactusCommerceEmail')||'';
+    if(rememberedEmail&&form?.email)form.email.value=rememberedEmail;
+    const order=params.get('order')||sessionStorage.getItem('cactusCommerceOrderId')||'';
+    const token=params.get('token')||'';
+    const saved=sessionStorage.getItem('cactusCommerceStatusUrl')||'';
+    const statusUrl=saved||(order&&token?'/api/commerce/orders/'+encodeURIComponent(order)+'?token='+encodeURIComponent(token):'');
+    if(!statusUrl)return;
+    try{
+      const data=await api(statusUrl,{method:'GET'});
+      const productNames={buildhub:'Cactus One Build',agrohub:'Cactus One Agro',minehub:'Cactus One Miner',logihub:'Cactus One Route'};
+      const planNames={BASIC:'Básico',INTERMEDIATE:'Intermediário',ADVANCED:'Avançado',CUSTOM:'Personalizado'};
+      render({orders:[{
+        ...data,
+        productName:productNames[data.product]||'Cactus One',
+        planName:planNames[data.plan]||data.plan||'',
+        customerName:'',
+        documentType:null,
+        documentLast4:null
+      }]});
+      setAlert(data.status==='ONLINE'?'Pagamento confirmado e ambiente disponível.':'Pedido recuperado com segurança. Acompanhe a ativação abaixo.',data.status==='ONLINE'?'success':'info');
+    }catch{}
+  }
+
   form?.addEventListener('submit',submit);
   const documentInput=form?.querySelector('[name="document"]');
   documentInput?.addEventListener('input',()=>documentMask(documentInput));
   const prefillOrder=new URLSearchParams(location.search).get('order');
   if(prefillOrder&&form?.orderId&&/^[A-Za-z0-9_-]{20,64}$/.test(prefillOrder))form.orderId.value=prefillOrder;
+  restoreProtectedCheckoutStatus();
 })();
