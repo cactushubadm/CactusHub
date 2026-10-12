@@ -421,7 +421,7 @@ radial-gradient(circle at 80% 20%,rgba(129,191,32,.12),transparent 35%)}
 .home-info-card ul,.sales-offer-card ul{margin:14px 0 0;padding-left:18px;color:#4d5a70;font-size:13px;line-height:1.8}
 .sales-offer-card ul li+li,.home-info-card ul li+li{margin-top:4px}
 .service-price-card strong{display:block;margin-top:18px;font-size:18px;color:var(--navy)}
-.home-shortcuts{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:28px}
+.home-shortcuts{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:28px}
 .home-shortcuts a{padding:18px 20px;border-radius:18px;background:var(--navy);color:#fff;border:1px solid rgba(255,255,255,.08);transition:.2s}
 .home-shortcuts a:hover{transform:translateY(-3px)}
 .home-shortcuts strong{display:block;font-family:"Montserrat",sans-serif;font-size:20px;margin-bottom:5px}
