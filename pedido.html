@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0E1524">
+  <title>Meus pedidos e assinaturas — Cactus Hub</title>
+  <meta name="description" content="Consulte seus pedidos, pagamentos, assinaturas e ambientes Cactus One.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="/assets/favicon.png">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/assets/customer-orders.css">
+</head>
+<body data-page="pedidos" class="customer-portal-page">
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="/index.html" aria-label="Cactus Hub">
+        <img class="brand-mark-img" src="/assets/logo-primary.png" alt="Cactus Hub">
+        <span class="brand-copy"><strong>CACTUS HUB</strong><small>SOLUÇÕES TECNOLÓGICAS</small></span>
+      </a>
+      <button class="nav-toggle" aria-label="Abrir menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      <nav class="primary-nav" aria-label="Navegação principal">
+        <a href="/index.html" data-nav="empresa">Empresa</a>
+        <a href="/produtos.html" data-nav="produtos">Produtos &amp; Planos</a>
+        <a href="/servicos.html" data-nav="servicos">Serviços</a>
+        <a href="/pedido.html" data-nav="pedidos" class="active">Meus pedidos</a>
+        <a href="/index.html#contato" class="nav-cta">Falar com a Cactus Hub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <section class="section-dark sales-product-hero customer-hero">
+      <div class="container compact-hero-grid">
+        <div class="compact-hero-copy">
+          <span class="eyebrow">Área do cliente</span>
+          <h1>Pedidos, assinaturas e acesso ao seu Cactus One.</h1>
+          <p>Consulte o pagamento, acompanhe a ativação e abra o ambiente da sua empresa quando ele estiver disponível.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section customer-section">
+      <div class="container">
+        <div class="customer-lookup-card">
+          <form class="customer-lookup-grid" data-order-lookup-form novalidate>
+            <div class="customer-field">
+              <label for="customerEmail">E-mail da contratação</label>
+              <input id="customerEmail" name="email" type="email" autocomplete="email" placeholder="voce@empresa.com.br" required>
+            </div>
+            <div class="customer-field">
+              <label for="customerDocument">CPF ou CNPJ</label>
+              <input id="customerDocument" name="document" inputmode="numeric" autocomplete="off" maxlength="18" placeholder="000.000.000-00">
+            </div>
+            <div class="customer-field">
+              <label for="customerOrder">Nº do pedido <small>(pedidos antigos)</small></label>
+              <input id="customerOrder" name="orderId" autocomplete="off" maxlength="64" placeholder="web_...">
+            </div>
+            <button class="btn btn-primary" type="submit"><span>Consultar</span><span class="customer-spinner" aria-hidden="true"></span></button>
+          </form>
+          <p class="customer-lookup-help">Use o e-mail e o CPF/CNPJ informados na contratação. Se a compra foi feita antes da coleta de documento, informe o e-mail e o número do pedido. O link de criação do administrador nunca é exibido publicamente: ele é enviado somente ao e-mail cadastrado.</p>
+          <div class="customer-alert" data-order-alert role="status" aria-live="polite"></div>
+        </div>
+        <section class="customer-results" data-order-results aria-live="polite"></section>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <a class="brand" href="/index.html">
+        <img class="brand-mark-img" src="/assets/logo-soft.png" alt="Cactus Hub">
+        <span class="brand-copy"><strong>CACTUS HUB</strong><small>TECNOLOGIA PARA OPERAÇÕES REAIS</small></span>
+      </a>
+      <div class="footer-links">
+        <a href="/index.html">Empresa</a><a href="/produtos.html">Produtos &amp; Planos</a><a href="/servicos.html">Serviços</a><a href="/pedido.html">Meus pedidos</a>
+      </div>
+      <div class="footer-copy"><span>© <span id="year">2026</span> Cactus Hub</span><small>Produtos de gestão, sites, sistemas e soluções sob medida.</small></div>
+    </div>
+  </footer>
+  <script src="/script.js"></script>
+  <script src="/assets/customer-orders.js"></script>
+</body>
+</html>
